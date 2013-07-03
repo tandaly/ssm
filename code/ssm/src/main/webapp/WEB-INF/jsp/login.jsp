@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>网站管理员登陆</title>
+<title>登录</title>
 <style type="text/css">
 <!--
 body {
