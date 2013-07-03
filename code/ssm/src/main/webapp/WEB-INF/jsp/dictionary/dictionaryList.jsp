@@ -30,7 +30,7 @@
 		function callback(data)
 		{
 			var list = data.list;
-			buildTable('datatable',list,['name','key', 'value', 'remark', 'status'],true,'id','cbx_',true);
+			buildTable('datatable',list,['name','dicKey', 'value', 'remark', 'status'],true,'id','cbx_',true);
 		}
 		
 		function deleteDictionarys()
@@ -103,10 +103,10 @@
 		}
 		
 		//打开添加页面
-		function openAddDicationary()
+		function openAddDictionary()
 		{
-			top.art.dialog.open('dictionary/addDicationary.do',
-				    {id: 'addDicationary', title: '添加字典', width:500, height:310, lock: true,
+			top.art.dialog.open('dictionary/addDictionary.do',
+				    {id: 'addDictionary', title: '添加字典', width:500, height:400, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -166,7 +166,7 @@
 								<div class="toolGroup">
 									<input type="button" value="新增" onclick="openAddDictionary();"/>
 									<input type="button" value="修改" onclick="openUpdateDictionary()"/>
-									<input  type="button" value="删除" onclick="deleteDictionary()"/>
+									<input  type="button" value="删除" onclick="deleteDictionarys()"/>
 									<input type="button" value="内存同步" onclick=""/>
 									<font color=red size=2>提示:维护字典后必须执行内存同步</font>
 								</div>

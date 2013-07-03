@@ -1,0 +1,1 @@
+mysqldump -h localhost -P3307 -uroot -proot share > E:/tools/eclipse/project/ssm/code/ssm/src/main/resources/db/share.sql

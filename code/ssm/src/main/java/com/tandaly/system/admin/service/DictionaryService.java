@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
 import com.tandaly.core.service.BaseService;
+import com.tandaly.system.admin.beans.Dictionary;
 import com.tandaly.system.admin.dao.DictionaryDao;
 /**
  * 字典业务层
@@ -19,6 +20,26 @@ public class DictionaryService extends BaseService
 	@Autowired
 	DictionaryDao dictionaryDao;
 
+	/**
+	 * 新增字典
+	 * @param dictionary
+	 */
+	@Transactional
+	public void addDictionary(Dictionary dictionary)
+	{
+		if(null == dictionary)
+		{
+			throw new ServiceException("传入的参数错误");
+		}
+		
+		//TODO 检查唯一性
+		this.dictionaryDao.insert(dictionary);
+		if(null == dictionary.getId())
+		{
+			throw new ServiceException("添加失败");
+		}
+	}
+	
 	/**
 	 * 删除字典
 	 * @param ids

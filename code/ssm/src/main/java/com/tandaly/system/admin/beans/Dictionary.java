@@ -12,7 +12,7 @@ public class Dictionary implements Serializable
 	private static final long serialVersionUID = 8409170323838025849L;
 	
 	private Integer id;
-	private String key;//键
+	private String dicKey;//键
 	private String name;//名称
 	private String value;//值
 	private String status;//启用/禁用
@@ -27,13 +27,14 @@ public class Dictionary implements Serializable
 	{
 		this.id = id;
 	}
-	public String getKey()
+
+	public String getDicKey()
 	{
-		return key;
+		return dicKey;
 	}
-	public void setKey(String key)
+	public void setDicKey(String dicKey)
 	{
-		this.key = key;
+		this.dicKey = dicKey;
 	}
 	public String getName()
 	{

@@ -6,6 +6,29 @@
 
 	<!-- <cache />  -->
 	
+	<!--新增字典-->
+	<insert id="insert" parameterType="Dictionary" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_sys_dictionary
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			id,
+			<if test="name != null and name != ''">name,</if>
+			<if test="dicKey != null and dicKey != ''">dicKey,</if>
+			<if test="value != null">value,</if>
+			<if test="status != null and status != ''">status,</if>
+			<if test="remark != null">remark,</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			#{id},
+			<if test="name != null and name != ''">#{name},</if>
+			<if test="dicKey != null and dicKey != ''">#{dicKey},</if>
+			<if test="value != null">#{value},</if>
+			<if test="status != null and status != ''">#{status},</if>
+			<if test="remark != null">#{remark},</if>
+		</trim>
+		
+	</insert>
+	
 	<!--删除-->
 	<delete id="delete" parameterType="string">
 		DELETE FROM

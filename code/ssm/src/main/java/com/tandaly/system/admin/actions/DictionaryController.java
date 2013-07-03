@@ -1,5 +1,6 @@
 package com.tandaly.system.admin.actions;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,38 @@ public class DictionaryController
 {
 	@Autowired
 	DictionaryService dictionaryService;
+	
+	/**
+	 * 添加字典页面
+	 */
+	@RequestMapping("addDictionary")
+	public void addDictionary()
+	{
+		
+	}
+	
+	/**
+	 * 添加字典
+	 * @param response
+	 * @param request
+	 * @param dictionary
+	 */
+	@RequestMapping(value = "ajaxAddDictionary", method = RequestMethod.POST)
+	public void ajaxAddDictionary(HttpServletResponse response, HttpServletRequest request, Dictionary dictionary)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try {
+			this.dictionaryService.addDictionary(dictionary);
+			responseMap.put("id", dictionary.getId());
+			responseMap.setStatus(true);
+			responseMap.setInfo("添加成功");
+		} catch (ServiceException e) {
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
 	
 	/**
 	 * 删除字典
