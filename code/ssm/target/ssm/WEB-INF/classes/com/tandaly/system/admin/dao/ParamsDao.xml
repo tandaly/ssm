@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tandaly.system.admin.dao.ParamsDao">
+
+	<!-- <cache />  -->
+	
+	<!--删除-->
+	<delete id="delete" parameterType="string">
+		DELETE FROM
+			t_sys_params
+		WHERE id IN (
+		<trim suffixOverrides=",">
+			${_parameter}
+		</trim>
+		)
+	</delete>
+	
+	<!--查询所有参数-->
+	<select id="queryEntitys" parameterType="params" resultType="Params">
+		SELECT
+			t.*
+		FROM
+			t_sys_params t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="id != null">
+					AND t.id = #{id}
+				</if>
+				<if test="name != null and name != ''">
+					AND t.name = #{name}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!--分页查询全局参数总数-->
+	<select id="pageQueryEntityCount" parameterType="hashmap" resultType="integer">
+	  	SELECT
+	  		COUNT(1)
+	  	FROM
+	  		t_sys_params t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="params.name != null and params.name != ''">
+					AND t.name LIKE '%${params.name}%'
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!--分页查询全局参数列表-->
+	<select id="pageQueryEntityList" parameterType="hashmap" resultType="Params">
+	  	SELECT
+	  		t.*
+	  	FROM
+	  		t_sys_params t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="params.name != null and params.name != ''">
+					AND t.name LIKE '%${params.name}%'
+				</if>
+			</trim>
+		</where>
+		ORDER BY t.id DESC
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	
+	
+	
+	
+</mapper>
