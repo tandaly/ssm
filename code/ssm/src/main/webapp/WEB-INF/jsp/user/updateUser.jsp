@@ -5,11 +5,12 @@
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<title>修改用户</title>
+	<!-- 表单验证插件 -->
 	<link rel="stylesheet" href="plugins/validform/css/style.css" type="text/css" media="all" />
 	<link href="plugins/validform/css/form.css" type="text/css" rel="stylesheet" />
 </head>
 
-<body style="background-color: #FFFFFF;">  
+<body style="background-color: #FFF">  
 
 	<!-- 主内容 start -->
 	<div class="main">
@@ -84,7 +85,6 @@
 							
 	
 	<!-- 表单验证 -->
-	<script type="text/javascript" src="plugins/validform/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="plugins/validform/Validform.js"></script>
 	<script type="text/javascript" src="plugins/validform/form.js"></script>
 	<script type="text/javascript">

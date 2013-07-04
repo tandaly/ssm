@@ -1,5 +1,6 @@
 .login_top_bg {
-	background-image: url(login-top-bg.gif);
+	/*background-image: url(login-top-bg.gif);*/
+	background-image: url(top-bg.gif);
 	background-repeat: repeat-x;
 }
 .body {
@@ -16,8 +17,8 @@
 }
 .login-buttom-txt {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	color: #ABCAD3;
+	font-size: 14px;
+	color: #666666;
 	text-decoration: none;
 	line-height: 20px;
 }
@@ -40,11 +41,11 @@
 	background-repeat: repeat-x;
 }
 .login_bg {
-	background-image: url(login_bg.jpg);
+	/*background-image: url(login_bg.jpg);*/
 	background-repeat: repeat-x;
 }
 .login_bg2 {
-	background-image: url(login-content-bg.gif);
+	/*background-image: url(login-content-bg.gif);*/
 	background-repeat: no-repeat;
 	background-position: right;
 }
@@ -67,7 +68,11 @@
 	font-weight: bold;
 }
 .admin_topbg {
-	background-image: url(top-right.gif);
+	background-image: url(bg.gif);
+	background-repeat: repeat-x;
+}
+.top_bottom{
+	background-image: url(top-bottom.gif);
 	background-repeat: repeat-x;
 }
 .txt_bt {

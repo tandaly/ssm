@@ -4,22 +4,9 @@
 <html>
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
-	<!-- 分页必须 -->
+	<!-- 分页插件 -->
 	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="plugins/page/page.js"></script>
-	
-	
-	<style type="text/css">
-		<!--
-		body {
-			margin-left: 0px;
-			margin-top: 0px;
-			margin-right: 0px;
-			margin-bottom: 0px;
-			background-color: #EEF2FB;
-		}
-		-->
-	</style>
 	<script type="text/javascript">
 	
 		$(function(){
@@ -173,7 +160,7 @@
 										<th>
 											<input type="checkbox" id="ckall" />
 										</th>
-										<th>
+										<th width="120px">
 											激活时间
 										</th>
 										<th>

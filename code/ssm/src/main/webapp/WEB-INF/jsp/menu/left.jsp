@@ -34,7 +34,6 @@
 					onClick: function (event, treeId, treeNode){
 						selectTreeNode = treeNode;
 						//turnPage(treeNode.linkUrl);
-						debugger;
 						//$("#rightFrame").contents().find("#parentNo");
 						var mNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#menuNo"));
 						var pNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#parentNo"));

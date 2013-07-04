@@ -6,19 +6,20 @@
 <title>框架页</title>
 <meta http-equiv=Content-Type content=text/html;charset=utf-8>
 </head>
-<frameset rows="64,*" frameborder="no" border="0" framespacing="0">
-	<frame src="top.do" noresize="noresize" frameborder="0"
-		name="topFrame" scrolling="no" marginwidth="0" marginheight="0"
-		target="main" />
-	<frameset cols="200,*"  id="frame" framespacing="0">
+<frameset rows="96,*" frameborder="no" border="0" framespacing="0" style="background-color: #EEF2FB;">
+	<frame src="top.do" noresize="noresize" frameborder="0" name="topFrame"
+		scrolling="no" marginwidth="0" marginheight="0" target="main" />
+	<frameset cols="200,10,*" id="contentFrameset" framespacing="0">
 		<frame src="left.do" name="leftFrame" noresize="noresize"
 			marginwidth="0" marginheight="0" frameborder="0" scrolling="no"
 			target="main" />
-		<frame src="main.do" name="main" marginwidth="0" marginheight="0" 
-			frameborder="0"  scrolling="auto" target="_self" />
+		<frame src="changeScreen.do" name="changeFrame" noresize="noresize"
+			marginwidth="0" marginheight="0" frameborder="0" scrolling="no" />
+		<frame src="main.do" name="main" marginwidth="0" marginheight="0"
+			frameborder="0" scrolling="auto" target="_self" />
 	</frameset>
 </frameset>
-	<noframes>
-		<body></body>
-	</noframes>
+<noframes>
+	<body></body>
+</noframes>
 </html>

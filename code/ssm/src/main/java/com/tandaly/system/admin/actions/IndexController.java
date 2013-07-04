@@ -64,6 +64,12 @@ public class IndexController
 	{
 	}
 	
+	@RequestMapping("changeScreen")
+	public void changeScreen()
+	{
+		
+	}
+	
 	@RequestMapping("left")
 	public Object left(HttpServletResponse response, ModelMap model, HttpSession session)
 	{

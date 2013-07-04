@@ -11,12 +11,6 @@
 <script src="js/moo.fx.js" type="text/javascript"></script>
 <script src="js/moo.fx.pack.js" type="text/javascript"></script>
 <style>
-body {
-	font: 12px Arial, Helvetica, sans-serif;
-	color: #000;
-	background-color: #EEF2FB;
-	margin: 0px;
-}
 
 #container {
 	width: 182px;

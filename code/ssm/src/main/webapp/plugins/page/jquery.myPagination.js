@@ -20,7 +20,7 @@
 			var defaults = {
               currPage: 1,
               pageCount: 10,
-              pageNumber: 5,
+              pageNumber: 10,
               cssStyle: "msdn",
               ajax: {
                 on: false,

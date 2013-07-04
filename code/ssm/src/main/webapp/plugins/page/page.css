@@ -421,7 +421,9 @@ div.youtube span.disabled {
 /*css msdn style pagination*/
 
 div.msdn {
-	padding-right: 6px; padding-left: 0px; font-size: 13px; padding-bottom: 4px; color: #313031; padding-top: 4px; font-family: verdana,tahoma,arial,helvetica,sans-serif; background-color: #fff; text-align: right
+	padding-right: 6px; padding-left: 0px; font-size: 13px; padding-bottom: 4px; color: #313031; padding-top: 4px; font-family: verdana,tahoma,arial,helvetica,sans-serif; 
+	/*background-color: #fff;*/
+	text-align: right
 }
 div.msdn a {
 	border-right: #b7d8ee 1px solid; padding-right: 6px; border-top: #b7d8ee 1px solid; padding-left: 5px; padding-bottom: 4px; margin: 0px 3px; border-left: #b7d8ee 1px solid; color: #0030ce; padding-top: 5px; border-bottom: #b7d8ee 1px solid; text-decoration: none

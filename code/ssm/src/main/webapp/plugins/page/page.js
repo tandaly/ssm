@@ -104,7 +104,9 @@ function buildTable(tableId,list,fields,checkbox,boxid,prefix,num,cbxname){
 		});
 		/*tanfei add start*/
 		$("#ckall").bind("click", function(){
-			$("input[id^="+prefix+"]").attr("checked", $("#ckall").attr("checked"));//全选/取消 （用的模糊匹配）
+			var iCheck = $("#ckall").attr("checked");
+			iCheck = iCheck == "checked"?true:false;//这是为jquery 1.6而处理
+			$("input[id^="+prefix+"]").attr("checked", iCheck);//全选/取消 （用的模糊匹配）
 			for(var i = 0; i < trs.length; i++)
 			{
 				if($("#ckall").attr("checked"))

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp"%>	
-	<!-- 分页必须 -->
+	<!-- 分页插件 -->
 	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="plugins/page/page.js"></script>
 	
@@ -15,18 +15,6 @@
 	<script type="text/javascript" src="plugins/select/js/select_split.js"></script>
 	<!-- 单选下拉框 end -->
 	
-	<style type="text/css">
-		<!--
-		body {
-			margin-left: 0px;
-			margin-top: 0px;
-			margin-right: 0px;
-			margin-bottom: 0px;
-			background-color: #EEF2FB;
-		}
-		-->
-		
-	</style>
 	<script type="text/javascript">
 	
 		$(function(){
@@ -234,7 +222,7 @@
 							
 							<div style="text-align: center;">
 								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
-									用户名：<input name="userName" /> 
+									用户名：<input name="userName" /> <input type="hidden" name="pageSize" value="15"/>
 									状态：
 									<select name="status">
 										<option value="">--请选择--</option>

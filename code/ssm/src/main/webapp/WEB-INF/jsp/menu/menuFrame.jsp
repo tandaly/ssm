@@ -7,7 +7,6 @@
 
 <link rel="stylesheet" href="plugins/tree/css/zTreeStyle/zTreeStyle.css"
 	type="text/css">
-<script type="text/javascript" src="plugins/tree/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript"
 	src="plugins/tree/js/jquery.ztree.core-3.5.js"></script>
 

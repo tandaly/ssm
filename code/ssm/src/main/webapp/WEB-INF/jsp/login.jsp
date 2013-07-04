@@ -11,12 +11,17 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
-	background-color: #1D3647;
+	background-color: #E1E4EB;
 }
 -->
 </style>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
+	
+	$(function(){
+		$("input[name=userName]").focus();
+	});
+	
 	function correctPNG() {
 		var arVersion = navigator.appVersion.split("MSIE");
 		var version = parseFloat(arVersion[1]);
@@ -88,8 +93,9 @@ body {
 												<td height="149">&nbsp;</td>
 											</tr>
 											<tr>
-												<td height="80" align="right" valign="top"><img
-													src="images/logo.png" width="279" height="68"></td>
+												<td height="80" align="right" valign="top">
+													<!-- <img src="images/logo.png" width="279" height="68"> -->
+												</td>
 											</tr>
 											<tr>
 												<td height="198" align="right" valign="top"><table
@@ -97,27 +103,22 @@ body {
 														<tr>
 															<td width="35%">&nbsp;</td>
 															<td height="25" colspan="2" class="left_txt"><p>1-
-																	地区商家信息网门户站建立的首选方案...</p></td>
+																	网站系统...</p></td>
 														</tr>
 														<tr>
 															<td>&nbsp;</td>
 															<td height="25" colspan="2" class="left_txt"><p>2-
-																	一站通式的整合方式，方便用户使用...</p></td>
-														</tr>
-														<tr>
-															<td>&nbsp;</td>
-															<td height="25" colspan="2" class="left_txt"><p>3-
-																	强大的后台系统，管理内容易如反掌...</p></td>
+																	强大的后台系统...</p></td>
 														</tr>
 														<tr>
 															<td>&nbsp;</td>
 															<td width="30%" height="40"><img
 																src="images/icon-demo.gif" width="16" height="16"><a
-																href="http://www.865171.cn" target="_blank"
+																href="#" target="_blank"
 																class="left_txt3"> 使用说明</a></td>
 															<td width="35%"><img
 																src="images/icon-login-seaver.gif" width="16"
-																height="16"><a href="http://www.865171.cn"
+																height="16"><a href="#"
 																class="left_txt3"> 在线客服</a></td>
 														</tr>
 													</table></td>
@@ -187,8 +188,11 @@ body {
 													</form></td>
 											</tr>
 											<tr>
-												<td width="433" height="164" align="right" valign="bottom"><img
-													src="images/login-wel.gif" width="242" height="138"></td>
+												<td width="433" height="164" align="right" valign="bottom">
+													
+													<!-- <img src="images/login-wel.gif" width="242" height="138"> -->
+													
+												</td>
 												<td width="57" align="right" valign="bottom">&nbsp;</td>
 											</tr>
 										</table></td>
@@ -199,7 +203,7 @@ body {
 		</tr>
 		<tr>
 			<td height="20"><table width="100%" border="0" cellspacing="0"
-					cellpadding="0" class="login-buttom-bg">
+					cellpadding="0" class="">
 					<tr>
 						<td align="center"><span class="login-buttom-txt">Copyright
 								&copy; 2013 tandaly</span></td>

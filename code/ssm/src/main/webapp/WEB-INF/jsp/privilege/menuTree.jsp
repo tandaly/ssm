@@ -5,12 +5,13 @@
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<title></title>
-	<link rel="stylesheet" href="plugins/tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="plugins/tree/js/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="plugins/tree/js/jquery.ztree.core-3.5.js"></script>
 	
+	<!-- 树形插件 -->
+	<link rel="stylesheet" href="plugins/tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="plugins/tree/js/jquery.ztree.core-3.5.js"></script>
+	<!-- 树形编辑插件 -->
 	<script type="text/javascript" src="plugins/tree/js/jquery.ztree.excheck-3.5.js"></script>
-		<script type="text/javascript" src="plugins/tree/js/jquery.ztree.exedit-3.5.js"></script>
+	<script type="text/javascript" src="plugins/tree/js/jquery.ztree.exedit-3.5.js"></script>
 	
 		<script type="text/javascript">
 			var treeObj;//菜单树
