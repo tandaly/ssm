@@ -130,7 +130,7 @@
 				<input type="hidden" id="menuNo" name="menuNo" value="${menuNo}"/>
 				菜单名称：<input id="menuName" name="menuName" /> 
 				&nbsp;
-				<input value="查询" type="submit" class="btn_gray btn_space"/>
+				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>
 		<div>

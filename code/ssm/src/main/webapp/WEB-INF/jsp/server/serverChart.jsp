@@ -28,14 +28,14 @@
 	                    load: function() {
 	                        var series = this.series[0];
 	                        
-	                    	//设置每隔5秒钟更新一次
+	                    	//设置每隔1秒钟更新一次
 	                        setInterval(function() {
 	                            var x = (new Date()).getTime(), // 当前时间
 	                                y = parseInt(ajaxServerChartData());//Math.random() * 100;
 	                            series.addPoint([x, y], true, true);
 	                            
 	                            
-	                        }, 5000);
+	                        }, 1000);
 	                    }
 	                }
 	            },

@@ -147,7 +147,7 @@
 								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
 									名称：<input name="name" /> 
 									&nbsp;
-									<input value="查询" type="submit" class="btn_gray btn_space"/>
+									<input value="查询" type="submit" class="button_highlight"/>
 								</form>
 							</div>
 							<div>

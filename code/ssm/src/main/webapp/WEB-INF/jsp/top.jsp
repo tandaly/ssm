@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 <base target="main">
@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 	function locks() {
-		top.art
+		suopin = top.art
 				.dialog({
 					lock : true,
 					fixed : true,
@@ -23,22 +23,30 @@
 					ok : function() {
 						var input = top.document
 								.getElementById('demo-labs-input');
-
-						if (input.value !== '${user.password}') {
-							this.shake && this.shake();// 调用抖动接口
-							input.select();
-							input.focus();
-							return false;
-						} else {
-							top.art.dialog({
-								content : '密码正确！',
-								icon : 'succeed',
-								fixed : true,
-								lock : true,
-								time : 1.5
-							});
-						}
-						;
+						
+						$.ajax({
+							type: 'POST',
+							url: 'user/ajaxValidPassword.do',
+							data: {"param": input.value},
+							success: function(data)
+							{
+								if (data.status != 'y') {
+									suopin.shake && suopin.shake();// 调用抖动接口
+									input.select();
+									input.focus();
+								} else {
+									suopin.close();
+									top.art.dialog({
+										content : '密码正确！',
+										icon : 'succeed',
+										fixed : true,
+										lock : true,
+										time : 1.5
+									});
+								}
+							}
+						});
+						return false;
 					},
 					cancel : false
 				});
@@ -48,7 +56,7 @@
 		top.art.dialog.confirm('你确定要退出系统吗？', function() {
 			top.location = "logout.do";
 		}, function() {
-
+			top.art.dialog.alert("你还挺明智的嘛");
 		});
 	}
 	
@@ -57,50 +65,91 @@
 		
 		top.topFrame.document.getElementsByTagName("frameset")[0].rows = "0,*";
 		
-		var obj = top.topFrame.document.getElementsByTagName("frameset")[1].cols;
-		if(obj == "0,10,*")
-		{
-			top.topFrame.document.getElementsByTagName("frameset")[1].cols = "200,10,*";
-		}
-		else
-		{
-			top.topFrame.document.getElementsByTagName("frameset")[1].cols = "0,10,*";
-		}
+		top.topFrame.document.getElementsByTagName("frameset")[1].cols = "0,10,*";
 	}
 </script>
+<style type="text/css">
+	.a {
+		color: #333;
+		text-decoration: none;
+	}
+	.a:hover {
+		color: #CA0000;
+		text-decoration: none;
+	}
+	
+	.logo {
+		color: #5F7B00;
+		font-size: 27px;
+		line-height: 38px;
+		text-shadow: 2px 2px 5px #092334;
+		font-weight: bold;
+	}
+</style>
+
+<script type="text/javascript">
+	//密码修改弹出框
+	function openUpdatePassword()
+	{
+		top.art.dialog.open('user/updateUserPassword.do',
+		    {id: 'addUserPassword', title: '修改密码', width:500, height:400, lock: true,
+			 ok: function () {
+		    	var iframe = this.iframe.contentWindow;
+		    	if (!iframe.document.body) {
+		        	return false;
+		        };
+		        iframe.$("#submit").click();
+		       	return false;
+			 },
+			 button:[{
+				    name: '关闭',
+				    callback: function() {
+				    	return true;
+				    }
+				}]
+			 
+		    });
+	}
+</script>
+
 </head>
 <body leftmargin="0" topmargin="0">
-	<div style="width:100%;height:96px;background-image: url('images/bg.jpg');">
-		
-		<table width="100%" height="64" border="0" cellpadding="0"
-			cellspacing="0" >
+	<!-- bg color BDDEE3 -->
+	<!-- 顶部区域 -->
+	<div style="width:100%;height:52px;background-color:#D8E7ED; background-repeat: repeat-x;">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td height="64">
-					<!-- <img src="images/logo.gif"
-					width="262" height="64"> -->
+				<td width="38%">
+					<div class="logo" style="padding-left:50px;">
+						信息化管理系统
+					</div>
 				</td>
-				<td  valign="top"><table width="100%" border="0"
-						cellspacing="0" cellpadding="0">
-						<tr>
-							<td width="70%">
-								&nbsp;
-							</td>
-							<td height="38" class="admin_txt">
-								用户：<b>${user.userName}</b>
-									您好,感谢登陆使用！
-									【<font onclick="locks();" style="cursor: pointer;">锁屏</font>】
-									【<font onclick="setsitebar();" style="cursor: pointer;">切屏</font>】
-							</td>
-							<td><a href="#" target="_self"
-								onClick="logout();"><img src="images/out.gif" alt="安全退出"
-									width="46" height="20" border="0"></a></td>
-							<td width="4%">&nbsp;</td>
-						</tr>
-					</table></td>
+				<td width="40%" height="38" class="admin_txt" align="right">
+					欢迎你[<b style="color:red">${user.userName}</b>]
+				</td>
+				<td style="padding-left:20px;text-align:right;font-size: 12px;" width="20%">
+					<a href="#" target="_self" onClick="openUpdatePassword();" class="a">修改密码</a>|
+					<a href="#" target="_self" onClick="locks();" class="a">锁屏</a>|
+					<a href="#" target="_self" onClick="setsitebar();" class="a">切屏</a>|
+					<a href="#" target="_self" onClick="logout();" class="a">退出</a>
+				</td>
+				<td width="2%">&nbsp;</td>
 			</tr>
-		</table> 
-		
+		</table>
 	</div>
+	
+	<!-- 顶级菜单条 -->
+	<div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
+		<marquee scrollamount="2" onmouseover="this.stop();"
+				onmouseout="this.start();">
+			<pre><b style="color:red">公告</b>: 系统升级啦!         -2013年07月05日</pre>
+		</marquee>
+	</div> 
+	
+	<!-- 底部样式 -->
+	<div style="width:100%;height:11px;margin:0px;background-image: url('images/top-bottom.jpg'); background-repeat: repeat-x;">
+	</div>
+	
  	<%-- <table width="100%" height="64" border="0" cellpadding="0"
 		cellspacing="0" >
 		<tr class="admin_topbg">

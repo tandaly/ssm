@@ -81,7 +81,7 @@
 				<input type="hidden" name="roleId" value="${role.id}"/>
 				权限名称：<input name="privilegeName" id="privilegeName"/> 
 				&nbsp;
-				<input value="查询" type="submit" class="btn_gray btn_space"/>
+				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>
 		<div>

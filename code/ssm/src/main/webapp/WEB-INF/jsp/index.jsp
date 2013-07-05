@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${sysTitle}</title>
-
+<script type="text/javascript" src="js/jquery.js"></script>
 <script src="plugins/dialog/artDialog.source.js?skin=black"
 	type="text/javascript"></script>
 <script type="text/javascript"
@@ -61,13 +61,132 @@
 					}
 				});
 	});
-
+	
+	/* window.onbeforeunload = function exitWindow()
+	{
+		event.returnValue="确定离开当前页面吗？";
+		return "确定离开当前页面吗？";//
+	} */
+	
+	window.onbeforeunload   =   function(e){
+			e = e || window.event;
+			
+	      var   n   =   window.event.screenX   -   window.screenLeft;   
+	      var   b   =   n   >   document.documentElement.scrollWidth-20;   
+	      if(b   &&   window.event.clientY   <   0   ||   window.event.altKey)   
+	      {   
+	         // alert("是关闭而非刷新");   
+	        e.returnValue   =   "是否关闭？"; // For IE and Firefox prior to version 4 
+		    	 
+	      }else
+	      {
+	        //alert("是刷新而非关闭");   
+	      }   
+	     
+	    var bw = checkbrowse();
+        if(bw.is == 'chrome')
+        {
+        	 return "你确认要退出吗？";// For Safari  and Chrome 
+        }
+	     
+	}
+	
 </script>
+<script type="text/javascript">
+<!--
+	/* var winWidth = 0;
+	var winHeight = 0;
+	function findDimensions() // 函数：获取尺寸
+	{
+		// 获取窗口宽度
+		if (window.innerWidth)
+			winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+			winWidth = document.body.clientWidth;
+		// 获取窗口高度
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+		// 通过深入 Document 内部对 body 进行检测，获取窗口大小
+		if (document.documentElement && document.documentElement.clientHeight
+				&& document.documentElement.clientWidth) {
+			winHeight = document.documentElement.clientHeight;
+			winWidth = document.documentElement.clientWidth;
+		}
+		// 结果输出至两个文本框
+		document.getElementById("topFrame").height = winHeight - 2;
+		//document.getElementById("topFrame").width= winWidth;
+	} */
+	// 调用函数，获取数值
+	//window.onresize = findDimensions;
+//-->
+</script>
+
+	<style type="text/css">
+		html,body{height:100%;}
+		#topFrame{
+			height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
+			height:100%; /*修复IE6,all browser*/
+			min-height:99%; /*for ie6 bug and ie7+,moz,webkit 正确*/
+		}
+		
+		.BScreen_omBtn {
+			height: 15px;
+			width: 15px;
+			position: absolute;
+			cursor: pointer;
+			overflow: hidden;
+			background: url(images/iconctrls.gif) no-repeat;
+			z-index: 1210;
+			
+			background-position: 0 -26px;
+			background-position-x: 0px;
+			background-position-y: -26px;
+		}
+		
+		.BScreen_omBtnClosed {
+			background-position: 0 -41px;
+			background-position-x: 0px;
+			background-position-y: -41px;
+		}
+	</style>
+	<script type="text/javascript">
+		function setsitebar(obj)
+		{
+			var topObject = top.topFrame.document.getElementsByTagName("frameset")[0].rows;
+			var obj = top.topFrame.document.getElementsByTagName("frameset")[1].cols;
+			
+			if(topObject == "0,*" && obj == "0,0,*")
+			{
+				top.topFrame.document.getElementsByTagName("frameset")[0].rows = "108,*";
+			}else
+			{
+				top.topFrame.document.getElementsByTagName("frameset")[0].rows = "0,*";
+			}
+			
+			if(obj == "0,0,*")
+			{//打开
+				$(obj).removeClass("BScreen_omBtnClosed");
+				top.topFrame.document.getElementsByTagName("frameset")[1].cols = "200,10,*";
+				$("#sitebarimg").attr("src", "images/sbhide.gif");
+			}
+			else
+			{//关闭
+				$(obj).addClass("BScreen_omBtnClosed"); 
+				top.topFrame.document.getElementsByTagName("frameset")[1].cols = "0,0,*";
+				$("#sitebarimg").attr("src", "images/sbshow.gif");
+			}
+		}
+	</script>	
 </head>
 <body style="margin: 0px;">
-	<div style="width: 100%; height: 800px;">
-		<iframe name="topFrame" src="frame.do" style="margin: 0px;"
-			frameborder="0" width="100%" height="100%"></iframe>
+	<div style="width: 100%; height: 100%;">
+		<iframe id="topFrame" name="topFrame" src="frame.do"
+			style="margin: 0px;" frameborder="0" width="100%" height="100%"></iframe>
 	</div>
+	
+	<div class="BScreen_omBtn" style="bottom: 0px; right: 0px; top: auto; left: auto;" onclick="setsitebar(this)"></div>
 </body>
+
 </html>

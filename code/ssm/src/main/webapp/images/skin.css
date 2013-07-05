@@ -1,3 +1,10 @@
+html,body{height:100%;}
+#content{
+	height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
+	height:100%; /*修复IE6,all browser*/
+	min-height:99.5%; /*for ie6 bug and ie7+,moz,webkit 正确*/
+}
+
 .login_top_bg {
 	/*background-image: url(login-top-bg.gif);*/
 	background-image: url(top-bg.gif);
@@ -21,10 +28,11 @@
 	color: #666666;
 	text-decoration: none;
 	line-height: 20px;
+	font-weight: bold;
 }
 .login_txt {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 25px;
 	color: #333333;
 }
@@ -53,17 +61,15 @@
 .admin_txt {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	color: #FFFFFF;
+	color: #444;
 	text-decoration: none;
 	height: 38px;
-	width: 100%;
-	position: �̶�;
 	line-height: 38px;
 }
 .login_txt_bt {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	line-height: 25px;
+	font-size: 30px;
+	line-height: 90px;
 	color: #666666;
 	font-weight: bold;
 }
@@ -234,4 +240,90 @@ a:visited {
 
 .toolGroup {
 	margin:10px;
+}
+
+
+
+/*******************tanfei add********************/
+
+/* .button {
+	color: #000;
+	width: 78px;
+	height: 32px;
+	border: none;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	line-height: 20px;
+	background: url(bg_button_search.png) left top no-repeat;
+} */
+
+.toolGroup input {
+	font: 12px/1.11 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
+	margin-left: 0px;
+	padding: 6px 8px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 2px;
+	font-family: Tahoma, Arial/9!important;
+	width: auto;
+	overflow: visible;
+	color: #333;
+	border: solid 1px #999;
+	border-radius: 5px;
+	background: #DDD;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD');
+	background: linear-gradient(top, #FFF, #DDD);
+	background: -moz-linear-gradient(top, #FFF, #DDD);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 -1px 0 rgba(0, 0, 0, .09);
+	-moz-transition: -moz-box-shadow linear .2s;
+	-webkit-transition: -webkit-box-shadow linear .2s;
+	transition: box-shadow linear .2s;
+}
+
+.toolGroup input:hover {
+	color: #000;
+	border-color: #666;
+}
+
+.button_highlight {
+	font: 12px/1.11 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
+	margin-left: 15px;
+	padding: 6px 8px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 2px;
+	font-family: Tahoma, Arial/9!important;
+	width: auto;
+	overflow: visible;
+	
+	color: #FFF;
+	border: solid 1px #3399dd;
+	border-radius: 5px;
+	background: #2288cc;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bbee', endColorstr='#2288cc');
+	background: linear-gradient(top, #33bbee, #2288cc);
+	background: -moz-linear-gradient(top, #33bbee, #2288cc);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#33bbee), to(#2288cc));
+	text-shadow: -1px -1px 1px #1c6a9e;
+	
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 -1px 0 rgba(0, 0, 0, .09);
+	-moz-transition: -moz-box-shadow linear .2s;
+	-webkit-transition: -webkit-box-shadow linear .2s;
+	transition: box-shadow linear .2s;
+}
+
+.button_highlight:hover {
+	color: #FFF;
+	border-color: #1c6a9e;
+}
+
+form {
+	font-size:12px;
 }

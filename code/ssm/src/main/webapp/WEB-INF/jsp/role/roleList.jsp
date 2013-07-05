@@ -163,7 +163,7 @@
 								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
 									角色名：<input name="roleName" /> 
 									&nbsp;
-									<input value="查询" type="submit" class="btn_gray btn_space"/>
+									<input value="查询" type="submit" class="button_highlight"/>
 								</form>
 							</div>
 							<div>

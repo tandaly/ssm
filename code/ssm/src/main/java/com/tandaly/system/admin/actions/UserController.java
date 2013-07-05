@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.beans.Role;
 import com.tandaly.system.admin.beans.User;
 import com.tandaly.system.admin.service.UserService;
+import com.tandaly.system.common.util.SystemConstants;
 /**
  * 用户控制器
  * @author Tandaly
@@ -308,4 +310,38 @@ public class UserController
 		
 		WebUtil.writerJson(response, responseMap);
 	}
+	
+	/**
+	 * 修改用户密码
+	 */
+	@RequestMapping("updateUserPassword")
+	public void updateUserPassword()
+	{
+		
+	}
+	
+	/**
+	 * 异步验证密码
+	 * @param response
+	 * @param session
+	 * @param param
+	 * @param name
+	 */
+	@RequestMapping(value="ajaxValidPassword", method=RequestMethod.POST)
+	public void ajaxValidPassword(HttpServletResponse response, HttpSession session, String param, String name)
+	{
+		User user = (User)session.getAttribute(SystemConstants.LOGIN_USER_SESSION);
+		ResponseMap responseMap = new HashResponseMap();
+		if(param.equals(user.getPassword()))
+		{
+			responseMap.setStatus(true);
+			responseMap.setInfo("密码正确");
+		}else
+		{
+			responseMap.setStatus(false);
+			responseMap.setInfo("密码错误");
+		}
+		WebUtil.writerJson(response, responseMap);
+	}
+	
 }

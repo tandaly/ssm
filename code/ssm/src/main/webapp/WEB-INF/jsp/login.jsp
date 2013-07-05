@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
+<link href="images/skin.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 <!--
 body {
@@ -12,6 +13,41 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 	background-color: #E1E4EB;
+}
+
+#myform .button {
+	background: url(images/bg_button_login.jpg) center center no-repeat;
+	color: #333;
+	width: 87px;
+	height: 33px;
+	line-height: 33px;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.userName {
+	background: #FFFFFF url(images/user.gif) 5px center no-repeat;
+}
+
+.password {
+	background: #FFFFFF url(images/luck.gif) 5px center no-repeat;
+}
+
+.userName, .password{
+	padding: 5px 5px 5px 25px;
+	height: 30px;
+	width: 220px;
+	border: 1px #C4D9E1 solid;
+	color: #333;
+}
+
+.verifyCode{
+	padding: 5px 5px 5px 25px;
+	height: 30px;
+	width: 150px;
+	border: 1px #C4D9E1 solid;
+	color: #333;
 }
 -->
 </style>
@@ -64,11 +100,18 @@ body {
 		}
 	}
 </script>
-
-<link href="images/skin.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	html,body{height:100%;}
+	#content{
+		height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
+		height:100%; /*修复IE6,all browser*/
+		min-height:99%; /*for ie6 bug and ie7+,moz,webkit 正确*/
+	}
+</style>
 </head>
-<body onload="correctPNG()">
-	<table width="100%" height="166" border="0" cellpadding="0"
+<body onload="correctPNG();">
+	<div id="content">
+	<table id="loginTable" width="100%" height="99%" border="0" cellpadding="0"
 		cellspacing="0">
 		<tr>
 			<td height="42" valign="top"><table width="100%" height="42"
@@ -130,57 +173,52 @@ body {
 						<td width="1%">&nbsp;</td>
 						<td width="50%" valign="bottom"><table width="100%"
 								height="59" border="0" align="center" cellpadding="0"
-								cellspacing="0">
+								cellspacing="0" style="border-left: 1px;border-left-color: #ccc;border-left-style: solid;">
 								<tr>
 									<td width="4%">&nbsp;</td>
-									<td width="96%" height="38"><span class="login_txt_bt">登陆信息网后台管理</span></td>
+									<td width="96%"><span class="login_txt_bt">信息网系统管理</span></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
 									<td height="21"><table cellSpacing="0" cellPadding="0"
 											width="100%" border="0" id="table211" height="328">
 											<tr>
-												<td height="164" colspan="2" align="center"><form
+												<td height="164" colspan="2" align="center"><form id="myform"
 														name="myform" action="logins.do" method="post">
 														<table cellSpacing="0" cellPadding="0" width="100%"
 															border="0" height="143" id="table212">
 															<tr>
-																<td colspan="2">
-																	<font color="red" style="font-size:12px;">${msg}&nbsp;</font>
+																<td width="100%" colspan="2"> 
+																	<font color="red" style="font-size:12px;padding-left:100px;line-height:40px;">${msg}&nbsp;</font>
 																</td>
 															</tr>
 															<tr>
 																<td width="13%" height="38" class="top_hui_text"><span
-																	class="login_txt">用户名：&nbsp;&nbsp; </span></td>
-																<td height="38" colspan="2" class="top_hui_text"><input
-																	name="userName" class="editbox4" value="" size="20">
+																	class="login_txt">用户名</span></td>
+																<td height="38" colspan="2" >
+																<input class="userName" name="userName" value="" size="20">
 																</td>
 															</tr>
 															<tr>
 																<td width="13%" height="35" class="top_hui_text"><span
-																	class="login_txt"> 密&nbsp;&nbsp;码： &nbsp;&nbsp; </span></td>
-																<td height="35" colspan="2" class="top_hui_text"><input
-																	class="editbox4" type="password" size="20"
-																	name="password"> <img src="images/luck.gif"
-																	width="19" height="18"></td>
+																	class="login_txt"> 密&nbsp;&nbsp;码 </span></td>
+																<td height="35" colspan="2" class="top_hui_text">
+																	<input class="password" type="password" size="20" name="password"> 
+																</td>
 															</tr>
 															<tr>
-																<td width="13%" height="35"><span class="login_txt">验证码：</span></td>
-																<td height="35" colspan="2" class="top_hui_text"><input
-																	class="wenbenkuang" name="verifyCode" type="text" value=""
-																	maxLength=4 size=10>
+																<td width="13%" height="35"><span class="login_txt">验证码</span></td>
+																<td height="35" colspan="2" >
+																	<input class="verifyCode" name="verifyCode" type="text" value="" maxLength=4 size=10>
 																	<img id="verifyCodeImg" name="verifyCodeImg" height="28" width="60" style="vertical-align:bottom;cursor:pointer;"
 											title="点我换下张图" border=0 onClick="javascript:document.getElementById('verifyCodeImg').src='image.do?'+Math.random();"
 											src="image.do" >
 																	</td>
 															</tr>
 															<tr>
-																<td height="35">&nbsp;</td>
-																<td width="20%" height="35"><input name="Submit"
-																	type="submit" class="Submit" id="Submit" value="登  录">
-																</td>
-																<td width="67%" class="top_hui_text">
-																	&nbsp;
+																<td width="100%" height="35" colspan="2" style="padding-left:76px;">
+																	<input name="Submit" type="submit" class="button" id="Submit" value="登  录">
+																	<input type="reset" class="button" value="重  置">
 																</td>
 															</tr>
 														</table>
@@ -211,7 +249,7 @@ body {
 				</table></td>
 		</tr>
 	</table>
-
+	</div>
 </body>
 
 

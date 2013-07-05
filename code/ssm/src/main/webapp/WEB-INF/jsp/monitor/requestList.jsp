@@ -121,9 +121,10 @@
 							
 							<div style="text-align: center;">
 								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
+									<input type="hidden" name="pageSize" value="15"/>
 									用户名：<input name="userName" /> 
 									&nbsp;
-									<input value="查询" type="submit" class="btn_gray btn_space"/>
+									<input value="查询" type="submit" class="button_highlight"/>
 								</form>
 							</div>
 							<div>

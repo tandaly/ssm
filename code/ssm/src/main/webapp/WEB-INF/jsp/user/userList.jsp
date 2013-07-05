@@ -230,17 +230,17 @@
 										<option value="禁用">禁用</option>
 									</select>
 									&nbsp;
-									<input value="查询" type="submit" />
+									<input value="查询" type="submit" class="button_highlight"/>
 								</form>
 							</div>
 							<div>
 								<div class="toolGroup">
-									<input type="button" value="新增" onclick="openAddUser();"/>
-									<input type="button" value="修改" onclick="openUpdateUser()"/>
-									<input  type="button" value="删除" onclick="deleteUsers()"/>
-									<input type="button" value="分配角色" onclick="openUserRole();"/>
-									<input type="button" value="启用" onclick="changeUserStatus('启用');"/>
-									<input type="button" value="禁用" onclick="changeUserStatus('禁用');"/>
+									<input type="button" value="新增" onclick="openAddUser();" class="button"/>
+									<input type="button" value="修改" onclick="openUpdateUser()" class="button"/>
+									<input  type="button" value="删除" onclick="deleteUsers()" class="button"/>
+									<input type="button" value="分配角色" onclick="openUserRole();" class="button"/>
+									<input type="button" value="启用" onclick="changeUserStatus('启用');" class="button"/>
+									<input type="button" value="禁用" onclick="changeUserStatus('禁用');" class="button"/>
 								</div>
 								<table width="100%" border="1" cellpadding="0" cellspacing="0"
 									class="content-right-column-tb" id="datatable">

@@ -9,6 +9,12 @@
 <script type="text/javascript">
 	function setsitebar()
 	{
+		var topObject = top.topFrame.document.getElementsByTagName("frameset")[0].rows;
+		if(topObject == "0,*")
+		{
+			top.topFrame.document.getElementsByTagName("frameset")[0].rows = "108,*";
+		}
+		
 		var obj = top.topFrame.document.getElementsByTagName("frameset")[1].cols;
 		if(obj == "0,10,*")
 		{
@@ -22,12 +28,18 @@
 		}
 	}
 </script>
+<style type="text/css">
+	#sitebarimg {
+		position: absolute;
+		cursor: pointer;
+		overflow: hidden;
+		z-index: 1210;
+	}
+</style>
 </head>
 <body>
 	<div style="padding-top:200px">
-		<a href="javascript:">
-        	<img id="sitebarimg" src="images/sbhide.gif" onclick="javascript:setsitebar();">
-        </a>
+        <img id="sitebarimg" src="images/sbhide.gif" onclick="javascript:setsitebar();">
 	</div>
 	
 </body>

@@ -24,59 +24,11 @@ body {
 <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 </head>
 <body>
-
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td width="17" valign="top" background="images/mail_leftbg.gif"><img
-				src="images/left-top-right.gif" width="17" height="29" /></td>
-			<td valign="top" background="images/content-bg.gif"><table
-					width="100%" height="31" border="0" cellpadding="0" cellspacing="0"
-					class="left_topbg" id="table2">
-					<tr>
-						<td height="31"><div class="titlebt">当前地图</div></td>
-					</tr>
-				</table></td>
-			<td width="16" valign="top" background="images/mail_rightbg.gif"><img
-				src="images/nav-right-bg.gif" width="16" height="29" /></td>
-		</tr>
-		<tr>
-			<td valign="middle" background="images/mail_leftbg.gif">&nbsp;</td>
-			<td valign="top" bgcolor="#F7F8F9">
-				<table width="98%" height="500px" border="0" align="center"
-					cellpadding="0" cellspacing="0">
-					<tr>
-						<td colspan="2" valign="top">&nbsp;</td>
-						<td>&nbsp;</td>
-						<td valign="top">&nbsp;</td>
-					</tr>
-					<tr>
-						<td colspan="4" valign="top" style="text-align:center;">
-						
-						
-						
-						<!-- 主体 start -->
-							 <!--百度地图容器-->
-						 <div style="width:100%;height:650px;border:#ccc solid 1px;" id="dituContent"></div>
-						
-						<!-- 主体end -->
-						
-						
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td background="images/mail_rightbg.gif">&nbsp;</td>
-		</tr>
-		<tr>
-			<td valign="bottom" background="images/mail_leftbg.gif"><img
-				src="images/buttom_left2.gif" width="17" height="17" /></td>
-			<td background="images/buttom_bgs.gif"><img
-				src="images/buttom_bgs.gif" width="17" height="17"></td>
-			<td valign="bottom" background="images/mail_rightbg.gif"><img
-				src="images/buttom_right2.gif" width="16" height="17" /></td>
-		</tr>
-	</table>
-
+		<!-- 主体 start -->
+		<!--百度地图容器-->
+		<div style="border:#ccc solid 1px;" id="content"></div>
+		
+		<!-- 主体end -->
 </body>
 <script type="text/javascript">
     //创建和初始化地图函数：
@@ -88,7 +40,7 @@ body {
     
     //创建地图函数：
     function createMap(){
-        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var map = new BMap.Map("content");//在百度地图容器中创建一个地图
         var point = new BMap.Point(118.769204,31.969002);//定义一个中心点坐标
         map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
         window.map = map;//将map变量存储在全局

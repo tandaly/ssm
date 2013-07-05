@@ -145,9 +145,10 @@ H1 a {
 </style>
 </head>
 
-<body >
-	<table width="100%" height="280px" border="0" cellpadding="0"
-		cellspacing="0" bgcolor="#EEF2FB">
+<body style="background-color: ;">
+	<div id="content">
+	<table width="100%" height="100%" border="0" cellpadding="0"
+		cellspacing="0">
 		<tr>
 			<td width="182" valign="top"><div id="container">
 					<c:forEach items="${menus}" var="menu">
@@ -314,5 +315,6 @@ H1 a {
 				</script></td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>
