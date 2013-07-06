@@ -222,7 +222,8 @@
 							
 							<div style="text-align: center;">
 								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
-									用户名：<input name="userName" /> <input type="hidden" name="pageSize" value="15"/>
+									用户名：<input name="userName" /> 
+									<input type="hidden" name="pageSize" value="10"/>
 									状态：
 									<select name="status">
 										<option value="">--请选择--</option>
