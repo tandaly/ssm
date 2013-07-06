@@ -6,10 +6,10 @@
 <title>框架页</title>
 <meta http-equiv=Content-Type content=text/html;charset=utf-8>
 </head>
-<frameset rows="108,*" frameborder="no" border="0" framespacing="0" style="background-color: #EEF2FB;">
+<frameset rows="90,*" frameborder="no" border="0" framespacing="0" style="background-color: #EEF2FB;">
 	<frame src="top.do" noresize="noresize" frameborder="0" name="topFrame"
 		scrolling="no" marginwidth="0" marginheight="0" target="main" />
-	<frameset cols="200,10,*" id="contentFrameset" framespacing="0">
+	<frameset cols="190,10,*" id="contentFrameset" framespacing="0">
 		<frame src="left.do" name="leftFrame" noresize="noresize"
 			marginwidth="0" marginheight="0" frameborder="0" scrolling="yes"
 			target="main" />

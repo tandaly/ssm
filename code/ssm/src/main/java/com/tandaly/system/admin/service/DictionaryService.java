@@ -8,6 +8,7 @@ import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
 import com.tandaly.core.service.BaseService;
 import com.tandaly.system.admin.beans.Dictionary;
+import com.tandaly.system.admin.beans.Role;
 import com.tandaly.system.admin.dao.DictionaryDao;
 /**
  * 字典业务层
@@ -54,6 +55,38 @@ public class DictionaryService extends BaseService
 			throw new ServiceException("删除失败");
 		}
 	}
+	
+	/**
+	 * 修改字典
+	 * @param dictionary
+	 * @throws ServiceException 
+	 */
+	@Transactional
+	public void updateDictionary(Dictionary dictionary) throws ServiceException
+	{
+		if(null == dictionary)
+		{
+			throw new ServiceException("传入的参数错误");
+		}
+		
+		Integer result = this.dictionaryDao.update(dictionary);
+		
+		if(null == result || 1 > result)
+		{
+			throw new ServiceException("修改失败");
+		}
+	}
+	
+	/**
+	 * 根据id查询字典
+	 * @param id
+	 * @return
+	 */
+	public Dictionary queryDictionaryById(Integer id)
+	{
+		return (Dictionary) this.dictionaryDao.queryEntityById(id);
+	}
+	
 	
 	/**
 	 * 分页查询字典列表

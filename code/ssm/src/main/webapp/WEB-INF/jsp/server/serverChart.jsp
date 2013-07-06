@@ -33,8 +33,6 @@
 	                            var x = (new Date()).getTime(), // 当前时间
 	                                y = parseInt(ajaxServerChartData());//Math.random() * 100;
 	                            series.addPoint([x, y], true, true);
-	                            
-	                            
 	                        }, 1000);
 	                    }
 	                }

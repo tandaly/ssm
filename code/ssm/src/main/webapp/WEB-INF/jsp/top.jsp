@@ -80,7 +80,7 @@
 	
 	.logo {
 		color: #5F7B00;
-		font-size: 27px;
+		font-size: 25px;
 		line-height: 38px;
 		text-shadow: 2px 2px 5px #092334;
 		font-weight: bold;
@@ -92,7 +92,7 @@
 	function openUpdatePassword()
 	{
 		top.art.dialog.open('user/updateUserPassword.do',
-		    {id: 'addUserPassword', title: '修改密码', width:500, height:400, lock: true,
+		    {id: 'updateUserPassword', title: '修改密码', width:500, height:400, lock: true,
 			 ok: function () {
 		    	var iframe = this.iframe.contentWindow;
 		    	if (!iframe.document.body) {
@@ -116,12 +116,12 @@
 <body leftmargin="0" topmargin="0">
 	<!-- bg color BDDEE3 -->
 	<!-- 顶部区域 -->
-	<div style="width:100%;height:52px;background-color:#D8E7ED; background-repeat: repeat-x;">
+	<div style="width:100%;height:34px;background-color:#D8E7ED; background-repeat: repeat-x;">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td width="38%">
 					<div class="logo" style="padding-left:50px;">
-						信息化管理系统
+						${sys_params.SYS_TITLE}
 					</div>
 				</td>
 				<td width="40%" height="38" class="admin_txt" align="right">

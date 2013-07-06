@@ -85,7 +85,7 @@ public class ServerInfoController {
 	 * @throws UnknownHostException 
 	 */
 	@RequestMapping("serverInfo")
-	public Object serverInfo(@Value("#{systemProperties['java.vm.version']}")String jvmVersion,HttpServletRequest request, Model model) throws UnknownHostException
+	public void serverInfo(@Value("#{systemProperties['java.vm.version']}")String jvmVersion,HttpServletRequest request, Model model) throws UnknownHostException
 	{
 		OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 		model.addAttribute("", "");
@@ -114,8 +114,6 @@ public class ServerInfoController {
 		model.addAttribute("serverSwapSpace", osmxb.getTotalSwapSpaceSize() / 1024 / 1024 + "M");
 		//JVM可用最大内存
 		model.addAttribute("jvmMaxMemory", Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M");
-		
-		return model;
 	}
 	
 	

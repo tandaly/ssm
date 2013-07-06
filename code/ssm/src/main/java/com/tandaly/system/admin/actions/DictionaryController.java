@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -81,6 +82,38 @@ public class DictionaryController
 		WebUtil.writerJson(response, responseMap);
 	}
 	
+	/**
+	 * 跳转到字典修改页面
+	 */
+	@RequestMapping("updateDictionary")
+	public void updateDictionary(Model model, Integer id)
+	{
+		Dictionary dictionary = this.dictionaryService.queryDictionaryById(id);
+		model.addAttribute(dictionary);
+	}
+	
+	/**
+	 * 修改字典
+	 * @param response
+	 * @param dictionary
+	 */
+	@RequestMapping(value = "ajaxUpdateDictionary", method = RequestMethod.POST)
+	public void ajaxUpdateDictionary(HttpServletResponse response, Dictionary dictionary)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try
+		{
+			this.dictionaryService.updateDictionary(dictionary);
+			responseMap.setStatus(true);
+			responseMap.setInfo("修改成功");
+		} catch (ServiceException e)
+		{
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
 	
 	/**
 	 * 跳转到字典列表

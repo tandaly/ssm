@@ -35,7 +35,7 @@
 						<td colspan="4" valign="top" style="">
 							
 						<!-- 主体 start -->
-							<div style="width:100%;height:650px;">
+							<div style="width:100%;height:500px;">
 								<iframe name="contentFrame" id="contentFrame" src="privilege/frame.do" style="margin:0px;" frameborder="0" width="100%" height="100%"></iframe>
 							</div>
 						<!-- 主体 end -->

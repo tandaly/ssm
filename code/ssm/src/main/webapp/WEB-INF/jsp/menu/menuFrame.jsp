@@ -81,6 +81,7 @@
 	$(document).ready(function() {
 		initTree();
 	});
+	
 </script>
 
 </head>
@@ -113,9 +114,9 @@
 					<tr>
 						<td colspan="4" valign="top" style="">
 							<!-- 主体 start -->
-							<div style="width: 100%; height: 650px;">
+							<div style="width: 100%;">
 								<iframe name="menuFrame" id="menuFrame" src="menu/frame.do"
-									style="margin: 0px;" frameborder="0" width="100%" height="100%"></iframe>
+									style="margin: 0px;" frameborder="0" width="100%" height="100%" onload="loadIframes('menuFrame', 80)"></iframe>
 							</div> <!-- 主体 end -->
 
 						</td>

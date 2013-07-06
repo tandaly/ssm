@@ -165,7 +165,7 @@
 			</table>
 		</div>
 		<br/>
-		<div style="height: 80px;">
+		<div>
 			<div id="pageDiv"></div>
 		</div>
 		

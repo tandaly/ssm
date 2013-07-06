@@ -73,18 +73,14 @@
 			top.art.dialog.confirm('你确定要提交吗？', function () {
 				$.ajax({
 					type: "POST",
-					url: "user/ajaxAddUser.do",
+					url: "user/ajaxUpdateUserPassword.do",
 					data: $(".registerform").serialize(),
 					success: function(data)
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.window.queryFrom();
 							top.art.dialog.tips(data.info);
-							//top.art.dialog.confirm(data.info + ",是否要现在给该用户分配角色?", function(){
-								openUserRole(data.id);
-							//s});
-							top.art.dialog({id: 'addUserPassword'}).close();
+							top.art.dialog({id: 'updateUserPassword'}).close();
 						}else
 						{
 							top.art.dialog.alert(data.info);

@@ -332,15 +332,41 @@ public class UserController
 	{
 		User user = (User)session.getAttribute(SystemConstants.LOGIN_USER_SESSION);
 		ResponseMap responseMap = new HashResponseMap();
-		if(param.equals(user.getPassword()))
+		try
 		{
+			this.userService.validOldPassword(user.getId(), param);
 			responseMap.setStatus(true);
 			responseMap.setInfo("密码正确");
-		}else
+		}catch(ServiceException e)
 		{
 			responseMap.setStatus(false);
 			responseMap.setInfo("密码错误");
 		}
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+	/**
+	 * 修改用户密码
+	 * @param response
+	 */
+	@RequestMapping(value="ajaxUpdateUserPassword", method=RequestMethod.POST)
+	public void ajaxUpdateUserPassword(HttpServletResponse response, HttpSession session, 
+			String oldPassword, String password, String password2)
+	{
+		User user = (User)session.getAttribute(SystemConstants.LOGIN_USER_SESSION);
+		ResponseMap responseMap = new HashResponseMap();
+		
+		try
+		{
+			this.userService.updateUserPassword(user.getId(), oldPassword, password, password2);
+			responseMap.setStatus(true);
+			responseMap.setInfo("修改密码成功");
+		}catch(ServiceException e)
+		{
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
 		WebUtil.writerJson(response, responseMap);
 	}
 	

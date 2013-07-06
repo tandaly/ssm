@@ -9,4 +9,8 @@ import com.tandaly.core.util.Constants;
  */
 public interface SystemConstants extends Constants{
 	
+	/**
+	 * 全局系统参数
+	 */
+	public static final String SYS_PARAMS = "sys_params";
 }

@@ -131,7 +131,7 @@ public class RoleController
 		{
 			this.roleService.updateRole(role);
 			responseMap.setStatus(true);
-			responseMap.setInfo("删除成功");
+			responseMap.setInfo("修改成功");
 		} catch (ServiceException e)
 		{
 			responseMap.setStatus(false);

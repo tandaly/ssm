@@ -108,6 +108,7 @@ public class IndexController
 			user = this.userService.logins(user);
 			
 			session.setAttribute(SystemConstants.LOGIN_USER_SESSION, user);
+			session.setAttribute(SystemConstants.SYS_PARAMS, ParamsConstants.SYSTEM_PARAMS);
 			viewName = "redirect:index.do";
 			
 		} catch (ServiceException e)

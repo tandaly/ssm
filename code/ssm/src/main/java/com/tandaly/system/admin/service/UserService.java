@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
 import com.tandaly.core.service.BaseService;
+import com.tandaly.core.util.StringUtil;
 import com.tandaly.system.admin.beans.User;
 import com.tandaly.system.admin.dao.UserDao;
 
@@ -284,6 +285,54 @@ public class UserService extends BaseService
 		if(null == result || 1 > result)
 		{
 			throw new ServiceException("操作失败");
+		}
+	}
+	
+	/**
+	 * 验证旧密码
+	 * @param id
+	 * @param oldPassword
+	 */
+	public void validOldPassword(Integer id, String oldPassword)
+	{
+		//验证旧密码
+		User u = (User) this.userDao.queryEntityById(id);
+		if(!oldPassword.equals(u.getPassword()))
+		{
+			throw new ServiceException("旧密码错误");
+		}
+	}
+	
+	/**
+	 * 修改用户密码
+	 * @param id
+	 * @param password
+	 * @param password2
+	 */
+	@Transactional
+	public void updateUserPassword(Integer id, String oldPassword,
+			String password, String password2) throws ServiceException
+	{
+		if(StringUtil.isEmpty(id)
+				||StringUtil.isEmpty(oldPassword)||
+				StringUtil.isEmpty(password) 
+				|| StringUtil.isEmpty(password2))
+		{
+			throw new ServiceException("传入的参数错误");
+		}
+		
+		validOldPassword(id, oldPassword);
+		
+		if(password.equals(password2))
+		{
+			User user = new User();
+			user.setId(id);
+			user.setPassword(password);
+			Integer result = this.userDao.update(user);
+			if(null == result || 1 > result)
+			{
+				throw new ServiceException("修改密码失败");
+			}
 		}
 	}
 }

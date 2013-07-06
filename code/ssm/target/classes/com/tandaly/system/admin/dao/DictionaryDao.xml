@@ -40,6 +40,29 @@
 		)
 	</delete>
 	
+	<!-- 修改字典 -->
+	<update id="update" parameterType="Dictionary">
+		UPDATE t_sys_dictionary
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="dicKey != null">dicKey = #{dicKey},</if>
+			<if test="value != null">value = #{value},</if>
+			<if test="status != null">status = #{status},</if>
+			<if test="remark != null">remark = #{remark},</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<!--根据id查询字典-->
+	<select id="queryEntityById" parameterType="integer" resultType="Dictionary">
+		SELECT
+			t.*
+		FROM
+			t_sys_dictionary t
+		WHERE
+			t.id = #{_parameter}
+	</select>
+	
 	<!--分页查询字典总数-->
 	<select id="pageQueryEntityCount" parameterType="hashmap" resultType="integer">
 	  	SELECT

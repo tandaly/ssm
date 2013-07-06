@@ -70,8 +70,8 @@
 				return;
 			}
 				
-			top.art.dialog.open('dicationary/updateDictionary.do?id=' + ids,
-				    {id: 'updateDicationary', title: '修改字典', width:500, height:410, lock: true,
+			top.art.dialog.open('dictionary/updateDictionary.do?id=' + ids,
+				    {id: 'updateDictionary', title: '修改字典', width:500, height:410, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {

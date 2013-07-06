@@ -159,7 +159,7 @@
 			
 			if(topObject == "0,*" && obj == "0,0,*")
 			{
-				top.topFrame.document.getElementsByTagName("frameset")[0].rows = "108,*";
+				top.topFrame.document.getElementsByTagName("frameset")[0].rows = "90,*";
 			}else
 			{
 				top.topFrame.document.getElementsByTagName("frameset")[0].rows = "0,*";
@@ -168,7 +168,7 @@
 			if(obj == "0,0,*")
 			{//打开
 				$(obj).removeClass("BScreen_omBtnClosed");
-				top.topFrame.document.getElementsByTagName("frameset")[1].cols = "200,10,*";
+				top.topFrame.document.getElementsByTagName("frameset")[1].cols = "190,10,*";
 				$("#sitebarimg").attr("src", "images/sbhide.gif");
 			}
 			else

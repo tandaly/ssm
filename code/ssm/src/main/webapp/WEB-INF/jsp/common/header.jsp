@@ -9,6 +9,7 @@
 
 <link href="images/skin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/iframe.js"></script>
 
 <style type="text/css">
 	<!--

@@ -12,13 +12,13 @@
 		var topObject = top.topFrame.document.getElementsByTagName("frameset")[0].rows;
 		if(topObject == "0,*")
 		{
-			top.topFrame.document.getElementsByTagName("frameset")[0].rows = "108,*";
+			top.topFrame.document.getElementsByTagName("frameset")[0].rows = "90,*";
 		}
 		
 		var obj = top.topFrame.document.getElementsByTagName("frameset")[1].cols;
 		if(obj == "0,10,*")
 		{
-			top.topFrame.document.getElementsByTagName("frameset")[1].cols = "200,10,*";
+			top.topFrame.document.getElementsByTagName("frameset")[1].cols = "190,10,*";
 			$("#sitebarimg").attr("src", "images/sbhide.gif");
 		}
 		else

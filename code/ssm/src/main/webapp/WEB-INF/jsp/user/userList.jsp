@@ -192,7 +192,7 @@
 	</script>
 </head>
 <body >
-
+	<div id="content">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="17" valign="top" background="images/mail_leftbg.gif"><img
@@ -270,7 +270,7 @@
 								</table>
 							</div>
 							<br/>
-							<div style="height: 80px;">
+							<div>
 								<div id="pageDiv"></div>
 							</div>
 							
@@ -289,6 +289,6 @@
 				src="images/buttom_right2.gif" width="16" height="17" /></td>
 		</tr>
 	</table>
-
+	</div>
 </body>
 </html>
