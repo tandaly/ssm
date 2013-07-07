@@ -91,7 +91,7 @@ public class ServerInfoController {
 		model.addAttribute("", "");
 		InetAddress localhost = InetAddress.getLocalHost();
 		//操作系统
-		model.addAttribute("osSystem", System.getProperty("os.name") + "_" + System.getProperty("os.arch"));
+		model.addAttribute("osSystem", System.getProperty("os.name") + "_" + System.getProperty("os.arch") + "_" + System.getProperty("sun.os.patch.level"));
 		//主机IP
 		model.addAttribute("serverIP", "" + localhost.getHostAddress());
 		//应用服务器信息
