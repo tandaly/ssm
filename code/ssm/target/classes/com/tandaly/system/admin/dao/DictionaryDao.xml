@@ -63,6 +63,30 @@
 			t.id = #{_parameter}
 	</select>
 	
+	<!--根据条件查询字典列表-->
+	<select id="queryEntitys" parameterType="Dictionary" resultType="Dictionary">
+		SELECT 
+			t.*
+		FROM
+			t_sys_dictionary t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="name != null and name != ''">
+					AND t.name = #{name}
+				</if>
+				<if test="dicKey != null and dicKey != ''">
+					AND t.dicKey = #{dicKey}
+				</if>
+				<if test="value != null and value != ''">
+					AND t.value = #{value}
+				</if>
+				<if test="status != null and status != ''">
+					AND t.status = #{status}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
 	<!--分页查询字典总数-->
 	<select id="pageQueryEntityCount" parameterType="hashmap" resultType="integer">
 	  	SELECT

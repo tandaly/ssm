@@ -6,6 +6,25 @@
 
 	<!-- <cache />  -->
 	
+	<!--新增-->
+	<insert id="insert" parameterType="Params" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_sys_params
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			id,
+			<if test="name != null and name != ''">name,</if>
+			<if test="value != null">value,</if>
+			<if test="remark != null">remark,</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			#{id},
+			<if test="name != null and name != ''">#{name},</if>
+			<if test="value != null">#{value},</if>
+			<if test="remark != null">#{remark},</if>
+		</trim>
+		
+	</insert>
+	
 	<!--删除-->
 	<delete id="delete" parameterType="string">
 		DELETE FROM
@@ -16,6 +35,30 @@
 		</trim>
 		)
 	</delete>
+	
+	
+	<!-- 修改参数 -->
+	<update id="update" parameterType="Params">
+		UPDATE t_sys_params
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="value != null">value = #{value},</if>
+			<if test="remark != null">remark = #{remark},</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--根据id查询参数-->
+	<select id="queryEntityById" parameterType="integer" resultType="Params">
+		SELECT
+			t.*
+		FROM
+			t_sys_params t
+		WHERE
+			t.id = #{_parameter}
+	</select>
+	
 	
 	<!--查询所有参数-->
 	<select id="queryEntitys" parameterType="params" resultType="Params">
@@ -67,6 +110,18 @@
 		LIMIT #{startRow}, #{pageSize}
 	</select>
 	
+	<!--检查修改参数有效性-->
+	<select id="checkUpdateParams" parameterType="Params" resultType="integer">
+		SELECT
+			COUNT(1)
+		FROM
+			t_sys_params t
+		WHERE
+			t.id != #{id}
+			<if test="name != null and name != ''">
+				AND t.name = #{name}
+			</if>
+	</select>
 	
 	
 	
