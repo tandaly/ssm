@@ -1,5 +1,7 @@
 package com.tandaly.system.admin.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
 import com.tandaly.core.service.BaseService;
+import com.tandaly.core.util.StringUtil;
 import com.tandaly.system.admin.beans.Dictionary;
-import com.tandaly.system.admin.beans.Role;
 import com.tandaly.system.admin.dao.DictionaryDao;
 /**
  * 字典业务层
@@ -33,7 +35,6 @@ public class DictionaryService extends BaseService
 			throw new ServiceException("传入的参数错误");
 		}
 		
-		//TODO 检查唯一性
 		this.dictionaryDao.insert(dictionary);
 		if(null == dictionary.getId())
 		{
@@ -87,6 +88,17 @@ public class DictionaryService extends BaseService
 		return (Dictionary) this.dictionaryDao.queryEntityById(id);
 	}
 	
+	/**
+	 * 根据条件查询字典列表
+	 * @param dictionary
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Dictionary> queryDictionarys(Dictionary dictionary)
+	{
+		return (List<Dictionary>) this.dictionaryDao.queryEntitys(dictionary);
+	}
+	
 	
 	/**
 	 * 分页查询字典列表
@@ -103,6 +115,25 @@ public class DictionaryService extends BaseService
 		{
 			pagination.setTotalCount(0);
 		}
+	}
+	
+	/**
+	 * 根据字典键查询字典列表
+	 * @param dicKey
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Dictionary> queryDictionarysByDicKey(String dicKey)
+	{
+		if(StringUtil.isEmpty(dicKey))
+		{
+			throw new ServiceException("传入的参数错误");
+		}
+		Dictionary dictionary = new Dictionary();
+		dictionary.setDicKey(dicKey);
+		dictionary.setStatus("启用");
+		
+		return (List<Dictionary>) this.dictionaryDao.queryEntitys(dictionary);
 	}
 
 }

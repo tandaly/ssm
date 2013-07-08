@@ -22,7 +22,7 @@
 				for(var i = 0; i < list.length; i++)
 				{
 					list[i].description = "<font color=red>" + formatStr(list[i].description, 50) +"</font>";
-					list[i].options = '<a href="id='+list[i].id+'">详情</a>';
+					list[i].options = '<a href="javascript:openDetailExceptions('+list[i].id+')">详情</a>';
 				}
 			}
 			buildTable('datatable',list,['activeTime', 'className', 'methodName', 'description', 'options'],true,'id','cbx_',true);
@@ -40,6 +40,29 @@
 				result = str;
 			}
 			return result;
+		}
+		
+		//打开详情页面
+		function openDetailExceptions(id)
+		{	
+			top.art.dialog.open('monitor/detailExceptions.do?id=' + id,
+				    {id: 'detailDialog', title: '查看异常', width:700, height:400, lock: true,
+					 ok: function () {
+				    	var iframe = this.iframe.contentWindow;
+				    	if (!iframe.document.body) {
+				        	return false;
+				        };
+				        iframe.$("#submit").click();
+				       	return false;
+					 },
+					 button:[{
+						    name: '关闭',
+						    callback: function() {
+						    	return true;
+						    }
+						}]
+					 
+				    });
 		}
 		
 		function deleteRows()

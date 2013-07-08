@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${sysTitle}</title>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script src="plugins/dialog/artDialog.source.js?skin=black"
+<script src="plugins/dialog/jquery.artDialog.source.js?skin=black"
 	type="text/javascript"></script>
 <script type="text/javascript"
 	src="plugins/dialog/plugins/iframeTools.js"></script>

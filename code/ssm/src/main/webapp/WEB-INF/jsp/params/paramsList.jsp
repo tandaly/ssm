@@ -59,19 +59,11 @@
 			});
 		}
 		
-
-		//打开修改页面
-		function openUpdateDictionary()
-		{	
-			var ids = checkedValue("cbx_");
-			if("" == ids || ids.indexOf(",") > 0)
-			{
-				top.art.dialog.alert("请选择一条记录!");
-				return;
-			}
-				
-			top.art.dialog.open('dicationary/updateDictionary.do?id=' + ids,
-				    {id: 'updateDicationary', title: '修改字典', width:500, height:410, lock: true,
+		//打开添加页面
+		function openAddParams()
+		{
+			top.art.dialog.open('params/addParams.do',
+				    {id: 'addDialog', title: '添加参数', width:500, height:400, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -90,11 +82,19 @@
 				    });
 		}
 		
-		//打开添加页面
-		function openAddDicationary()
-		{
-			top.art.dialog.open('dictionary/addDicationary.do',
-				    {id: 'addDicationary', title: '添加字典', width:500, height:310, lock: true,
+
+		//打开修改页面
+		function openUpdateParams()
+		{	
+			var ids = checkedValue("cbx_");
+			if("" == ids || ids.indexOf(",") > 0)
+			{
+				top.art.dialog.alert("请选择一条记录!");
+				return;
+			}
+				
+			top.art.dialog.open('params/updateParams.do?id=' + ids,
+				    {id: 'updateDialog', title: '修改参数', width:500, height:400, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -150,7 +150,7 @@
 					width="100%" height="31" border="0" cellpadding="0" cellspacing="0"
 					class="left_topbg" id="table2">
 					<tr>
-						<td height="31"><div class="titlebt">全局参数</div></td>
+						<td height="31"><div class="titlebt">系统参数</div></td>
 					</tr>
 				</table></td>
 			<td width="16" valign="top" background="images/mail_rightbg.gif"><img
@@ -178,8 +178,8 @@
 							</div>
 							<div>
 								<div class="toolGroup">
-									<input type="button" value="新增" onclick="openAddDictionary();"/>
-									<input type="button" value="修改" onclick="openUpdateDictionary()"/>
+									<input type="button" value="新增" onclick="openAddParams();"/>
+									<input type="button" value="修改" onclick="openUpdateParams()"/>
 									<input  type="button" value="删除" onclick="deleteParams()"/>
 									<input type="button" value="内存同步" onclick="synMemoryParams()"/>
 									<font color=red size=2>提示:维护参数后必须执行内存同步</font>

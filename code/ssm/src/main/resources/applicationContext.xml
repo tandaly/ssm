@@ -15,7 +15,7 @@
 	<!-- 读取属性配置文件 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="locations"> <list> <value>/WEB-INF/classes/jdbc.properties</value> 
 		</list> </property> </bean> -->
-	<context:property-placeholder location="classpath:properties/jdbc.properties, classpath:properties/project.properties" />
+	<context:property-placeholder location="classpath:jdbc.properties, classpath:properties/project.properties" />
 	
 	<!-- 配置C3P0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"

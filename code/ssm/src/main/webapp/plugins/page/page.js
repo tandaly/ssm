@@ -174,9 +174,9 @@ function createRow(index,values,checkbox,prefix,num,cbxname){
 		var td = $("<td style='width:25px;'>").append(box).css("text-align","left");
 		
 		/*tanfei add start*/
-		tr.bind("click", function(){
+		/*tr.bind("click", function(){
 			changeEvent(index, tr, box);
-		});
+		});*/ //2013-07-08 remove
 		/*tanfei add end*/
 		tr.append(td);
 	}
@@ -229,13 +229,13 @@ function hoverEvent(index, tr)
 /*tanfei add: 复选框是否被选中样式*/
 function changeEvent(index, tr, box)
 {
-	if(box.attr("checked"))//复选框被选中
+	if(!box.attr("checked"))//复选框被选中
 	{
 		hoverEvent(index, tr);
-		box.attr("checked", false);
+		//box.attr("checked", false);
 	}else
 	{
-		box.attr("checked", true);
+		//box.attr("checked", true);
 		tr.css({"background":selectedBG}).hover(
 			function () {
 		    	tr.css({"background":selectedBG});

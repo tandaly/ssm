@@ -18,6 +18,21 @@
 		function callback(data)
 		{
 			var list = data.list;
+			
+			if(list)
+			{
+				for(var i = 0; i < list.length; i++)
+				{
+					if(list[i].status == '启用')
+					{
+						list[i].status = '<font color=green>' + list[i].status + '</font>';
+					}else
+					{
+						list[i].status = '<font color=red>' + list[i].status + '</font>';
+					}
+				}
+			}
+			
 			buildTable('datatable',list,['name','dicKey', 'value', 'remark', 'status'],true,'id','cbx_',true);
 		}
 		
@@ -155,8 +170,8 @@
 									<input type="button" value="新增" onclick="openAddDictionary();"/>
 									<input type="button" value="修改" onclick="openUpdateDictionary()"/>
 									<input  type="button" value="删除" onclick="deleteDictionarys()"/>
-									<input type="button" value="内存同步" onclick=""/>
-									<font color=red size=2>提示:维护字典后必须执行内存同步</font>
+									<input  type="button" value="启用" onclick=""/>
+									<input  type="button" value="禁用" onclick=""/>
 								</div>
 								<table width="100%" border="1" cellpadding="0" cellspacing="0"
 									class="content-right-column-tb" id="datatable">

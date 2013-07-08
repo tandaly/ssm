@@ -52,13 +52,25 @@ public class SystemExeptionResolver implements HandlerExceptionResolver
 	{
 		 StackTraceElement[] stackTraceElements = e.getStackTrace();
 		 String exceptionMsg = e.toString() + "\n";
-		 for (int index = stackTraceElements.length - 1; index >= 0; --index) {
+		 StackTraceElement se = null;
+		 for (int index = 0; index <= stackTraceElements.length - 1; index++) {
 			 exceptionMsg += "在 [" + stackTraceElements[index].getClassName() + ",";
 			 exceptionMsg += stackTraceElements[index].getFileName() + ",";
 			 exceptionMsg += stackTraceElements[index].getMethodName() + ",";
 			 exceptionMsg += stackTraceElements[index].getLineNumber() + "]\n";
+			 
+			 System.out.println(stackTraceElements[index].getClassName());
+			 if(null == se && stackTraceElements[index].getClassName()
+					 .indexOf(ParamsConstants.SYSTEM_PARAMS.get("EXCEPTIONS_PACKAGE").toString()) != -1)
+			 {
+				 se = stackTraceElements[index];
+			 }
 		}
-		StackTraceElement se = stackTraceElements[0];
+		
+		if(null == se)
+		{
+			se = stackTraceElements[0];
+		}
           
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("className", se.getClassName());
@@ -68,6 +80,7 @@ public class SystemExeptionResolver implements HandlerExceptionResolver
 		
 		MonitorService monitorService = SpringFactory.getBean(MonitorService.class);
 		monitorService.saveExceptions(params);
+		
 	}
 
 }

@@ -125,4 +125,20 @@ public class MonitorService extends BaseService{
 			pagination.setTotalCount(0);
 		}
 	}
+	
+	/**
+	 * 根据id查询异常信息
+	 * @param id
+	 * @return
+	 * @throws ServiceException
+	 */
+	public Map<String, Object> queryExceptionsById(Integer id) throws ServiceException
+	{
+		if(null == id)
+		{
+			throw new ServiceException("传入的参数有错误");
+		}
+		
+		return this.monitorDao.queryExceptionsById(id);
+	}
 }

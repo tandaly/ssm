@@ -128,6 +128,7 @@
 					欢迎你[<b style="color:red">${user.userName}</b>]
 				</td>
 				<td style="padding-left:20px;text-align:right;font-size: 12px;" width="20%">
+					<a href="main.do" target="main" class="a">首页</a>|
 					<a href="#" target="_self" onClick="openUpdatePassword();" class="a">修改密码</a>|
 					<a href="#" target="_self" onClick="locks();" class="a">锁屏</a>|
 					<a href="#" target="_self" onClick="setsitebar();" class="a">切屏</a>|

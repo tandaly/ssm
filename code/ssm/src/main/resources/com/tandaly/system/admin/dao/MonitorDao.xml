@@ -89,6 +89,16 @@
 		)
 	</delete>
 	
+	<!--根据id查询异常信息-->
+	<select id="queryExceptionsById" parameterType="integer" resultType="hashMap">
+		SELECT 
+			t.*
+		FROM
+			t_sys_exceptions t
+		WHERE
+			t.id = #{id}
+	</select>
+	
 	<!--清空异常日志-->
 	<delete id="clearExceptions" parameterType="string">
 		DELETE FROM

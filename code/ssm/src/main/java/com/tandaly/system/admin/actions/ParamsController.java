@@ -1,9 +1,11 @@
 package com.tandaly.system.admin.actions;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +31,38 @@ public class ParamsController
 	ParamsService paramsService;
 	
 	/**
+	 * 添加参数页面
+	 */
+	@RequestMapping("addParams")
+	public void addParams()
+	{
+		
+	}
+	
+	/**
+	 * 添加参数
+	 * @param response
+	 * @param request
+	 * @param params
+	 */
+	@RequestMapping(value = "ajaxAddParams", method = RequestMethod.POST)
+	public void ajaxAddParams(HttpServletResponse response, HttpServletRequest request, 
+			Params params)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try {
+			this.paramsService.addParams(params);
+			responseMap.setStatus(true);
+			responseMap.setInfo("添加成功");
+		} catch (ServiceException e) {
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+	/**
 	 * 删除参数
 	 * @param response
 	 * @param ids
@@ -42,6 +76,73 @@ public class ParamsController
 			responseMap.setStatus(true);
 			responseMap.setInfo("删除成功");
 		} catch (ServiceException e) {
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+	/**
+	 * 修改参数页面
+	 * @param model
+	 * @param id
+	 */
+	@RequestMapping("updateParams")
+	public void updateParams(Model model, Integer id)
+	{
+		Params params = this.paramsService.queryParamsById(id);
+		model.addAttribute(params);
+	}
+	
+	/**
+	 * 修改参数
+	 * @param response
+	 * @param params
+	 */
+	@RequestMapping(value = "ajaxUpdateParams", method = RequestMethod.POST)
+	public void ajaxUpdateParams(HttpServletResponse response, Params params)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try
+		{
+			this.paramsService.updateParams(params);
+			responseMap.setStatus(true);
+			responseMap.setInfo("修改成功");
+		} catch (ServiceException e)
+		{
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+
+	/**
+	 * 异步表单参数名称验证(新增和修改)
+	 * @param response
+	 * @param param
+	 * @param name
+	 */
+	@RequestMapping("ajaxFormParamsName")
+	public void ajaxFormParamsName(HttpServletResponse response, 
+			String param, String name, Integer id)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try
+		{
+			if(null != id)
+			{
+				this.paramsService.checkUpdateParamsName(id, param);
+			}else
+			{
+				this.paramsService.checkParamsName(param);
+			}
+			responseMap.setStatus(true);
+			responseMap.setInfo("该名称可用");
+		} catch (ServiceException e)
+		{
 			responseMap.setStatus(false);
 			responseMap.setInfo(e.getMessage());
 		}

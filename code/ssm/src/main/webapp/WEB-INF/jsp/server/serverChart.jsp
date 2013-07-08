@@ -56,7 +56,7 @@
 	            },
 	            tooltip: {
 	            	crosshairs: true,//坐标线
-	            	//shared: true, //冒泡并暂停
+	            	shared: false, //冒泡并暂停
 	                formatter: function() {
 	                        return '<b>'+ this.series.name +'</b>：'+Highcharts.numberFormat(this.y, 2)+'M<br/>'+
 	                        "<b>当前时间</b>：" + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) +'<br/>';

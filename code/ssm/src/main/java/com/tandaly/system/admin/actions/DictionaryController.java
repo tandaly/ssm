@@ -50,7 +50,6 @@ public class DictionaryController
 		ResponseMap responseMap = new HashResponseMap();
 		try {
 			this.dictionaryService.addDictionary(dictionary);
-			responseMap.put("id", dictionary.getId());
 			responseMap.setStatus(true);
 			responseMap.setInfo("添加成功");
 		} catch (ServiceException e) {

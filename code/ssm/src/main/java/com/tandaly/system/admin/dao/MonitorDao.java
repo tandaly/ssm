@@ -62,4 +62,11 @@ public interface MonitorDao extends BaseDao{
 	 */
 	List<?> pageQueryExceptionsList(Map<String, Object> params);
 	
+	/**
+	 * 根据id查询异常信息
+	 * @param id
+	 * @return
+	 */
+	Map<String, Object> queryExceptionsById(Integer id);
+	
 }

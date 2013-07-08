@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+	<%
+		session.setMaxInactiveInterval(300); //参数单位是秒，即在没有活动5分钟后，session将失效。 
+	%>
 	<jsp:forward page="login.do"></jsp:forward>
 </body>
 </html>
