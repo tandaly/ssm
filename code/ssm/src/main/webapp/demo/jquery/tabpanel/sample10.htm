@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>tab的激活事件</title>
+<style type="text/css"  >
+html, body { 
+	width : 100%;
+	height : 100%;
+	padding : 0; 
+	margin : 5px; 
+	font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif; /* MAIN BODY FONTS */
+}
+.jcTab { width:100%; height:100%;}
+</style>
+<!-- link href="css/core.css" rel="stylesheet" type="text/css"/ -->
+<link href="css/TabPanel.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/Plugins/TabPanel.js"></script>
+<script type="text/javascript" src="src/Plugins/Math.uuid.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){ 
+     tabpanel=  new TabPanel({
+        renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab
+        width:600,  //tabpanel宽度
+        height:300,  //tabpanel高度
+        border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框
+        active : 1,//默认激活的tab索引数，此处为第二个，索引从0开始
+        tabWidth:114,//顶上tab标签页的宽度
+        items : [
+            {
+            	id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一
+            	title:'Closable0',//顶上标签的标题
+            	html:"toolbarPlugin0",//标签的内容
+            	activate:activate//tab激活后的事件
+            },
+            {id:'toolbarPlugin1',title:'Closable1',html:"toolbarPlugin1",activate:activate},
+            {id:'toolbarPlugin2',title:'Closable2',html:"toolbarPlugin2",activate:activate},
+            {id:'toolbarPlugin3',title:'Closable3',html:"toolbarPlugin3",activate:activate},
+            {id:'toolbarPlugin4',title:'Closable4',html:"toolbarPlugin4",activate:activate}
+        ]
+    });
+}); 
+//tab激活后的事件
+function activate(tab){
+	alert('my title is '+tab.title);
+}
+</script>
+</head>
+<body>
+ <div id="tab" style='float:left'></div>
+ <div style='float:left'>
+ $(document).ready(function(){ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabpanel=  new TabPanel({<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:600,  //tabpanel宽度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:300,  //tabpanel高度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active : 1,//默认激活的tab索引数，此处为第二个，索引从0开始<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabWidth:114,//顶上tab标签页的宽度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items : [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:'Closable0',//顶上标签的标题<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html:"toolbarPlugin0",//标签的内容<br/>
+<font color='red'>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activate:activate//tab激活后的事件<br/>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin1',title:'Closable1',html:"toolbarPlugin1",activate:activate},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin2',title:'Closable2',html:"toolbarPlugin2",activate:activate},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin3',title:'Closable3',html:"toolbarPlugin3",activate:activate},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin4',title:'Closable4',html:"toolbarPlugin4",activate:activate}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br/>
+}); <br/>
+<font color='red'>
+	//tab激活后的事件<br/>
+function activate(tab){<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert('my title is '+tab.title);<br/>
+}<br/>
+</font>
+</div>
+</body>
+</html>

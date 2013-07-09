@@ -12,4 +12,9 @@ public class MapController
 	public void map()
 	{
 	}
+	
+	@RequestMapping("createMap")
+	public void createMap()
+	{
+	}
 }

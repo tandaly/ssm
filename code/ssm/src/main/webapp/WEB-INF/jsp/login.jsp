@@ -216,6 +216,12 @@ body {
 																	</td>
 															</tr>
 															<tr>
+																<td width="13%" height="35"><span class="login_txt"></span></td>
+																<td height="35" colspan="2" >
+																	<input type="checkbox" />记住密码
+																</td>
+															</tr>
+															<tr>
 																<td width="100%" height="35" colspan="2" style="padding-left:76px;">
 																	<input name="Submit" type="submit" class="button" id="Submit" value="登  录">
 																	<input type="reset" class="button" value="重  置">

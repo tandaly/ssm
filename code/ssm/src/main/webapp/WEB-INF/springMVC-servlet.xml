@@ -43,10 +43,10 @@
 
 
 	<!-- 视图解析器配置 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
+		<property name="order" value="0"></property>
 	</bean>
 	
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 （解决中文乱码）-->    

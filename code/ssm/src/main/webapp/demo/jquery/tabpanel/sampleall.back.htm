@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>sample</title>
+<style type="text/css"  >
+html, body { 
+	width : 100%;
+	height : 100%;
+	padding : 0; 
+	margin : 0px; 
+	font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif; /* MAIN BODY FONTS */
+}
+.jcTab { width:100%; height:100%;}
+</style>
+<!-- link href="css/core.css" rel="stylesheet" type="text/css"/ -->
+<link href="css/TabPanel.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/Plugins/TabPanel.js"></script>
+<script type="text/javascript" src="src/Plugins/Math.uuid.js"></script>
+<script type="text/javascript" >
+var tabpanel;  
+var jcTabs = [
+'<iframe src="test1.html" width="100%" height="100%" frameborder="0" onload="alert(1);"></iframe>',
+'This tab is not closableddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+'You can close me by click fork button',
+'You cant see it'
+];
+
+$(document).ready(function(){ 
+	/*tabpanel=$.fn.tabPanel({
+        //renderTo:'tab',  
+       // width:600,  
+      //  height:300,  
+        autoResizable:true,
+        border:'none',  
+        active : 0,
+        tabWidth:114,
+        //maxLength : 10,  
+        items : [
+            {id:'toolbarPlugin1',title:'中文',html:jcTabs[0],closable: true,icon:'allCss'},  
+            {id:'toolbarPlugin2',title:'Google111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',html:jcTabs[1],closable: true,icon:'allCss'},  
+            {id:'toolbarPlugin3',title:'Google111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111',html:jcTabs[2],closable: true,icon:'allCss'},  
+            {id:'toolbarPlugin4',title:'Closable2',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin5',title:'Closable3',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin6',title:'Closable4',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin7',title:'Closable5',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin8',title:'Closable6',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin9',title:'Closable7',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin10',title:'Closable8',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin11',title:'Closable9',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin12',title:'Closable10',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin13',title:'Closable11',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin14',title:'Closable12',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin15',title:'Closable13',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin16',title:'Disabled14',html:jcTabs[3],closable: true, disabled:false,icon:'allCss'}
+        ],
+        activate:activate
+    });*/
+     tabpanel=  new TabPanel({
+        renderTo:'tab',  
+        width:600,  
+        height:300,  
+        autoResizable:true,
+        border:'5',  
+        active : 15,
+        tabWidth:114,
+        //maxLength : 10,  
+        items : [
+            {id:'toolbarPlugin1',title:'中文',html:jcTabs[0],closable: true,icon:'allCss',
+        activate:clickMe,disabled:true},
+            {
+            	id:'toolbarPlugin2',
+            	title:'Closable4',
+            	loader: {
+                    url: 'test1.html',
+                    param:{abc:'abc'},
+										activateFresh:true
+              },
+            	closable: true,
+            	icon:'allCss'},
+            	 {
+            	id:'toolbarPlugin3',
+            	title:'Closable4',
+            	elementId:'test',
+            	closable: true,
+            	icon:'allCss'},
+         //   {id:'toolbarPlugin2',title:'Closable0',html:jcTabs[1],closable: true,icon:'allCss'},  
+         //   {id:'toolbarPlugin3',title:'Closable1',html:jcTabs[2],closable: true,icon:'allCss'},  
+            {id:'toolbarPlugin4',title:'Closable2',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin5',title:'Closable3',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin6',title:'Closable4',html:jcTabs[2],closable: true,icon:'allCss'},
+            {id:'toolbarPlugin7',title:'Closable5',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin8',title:'Closable6',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin9',title:'Closable7',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin10',title:'Closable8',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin11',title:'Closable9',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin12',title:'Closable10',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin13',title:'Closable11',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin14',title:'Closable12',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin15',title:'Closable13',html:jcTabs[2],closable: true},
+            {id:'toolbarPlugin16',title:'Disabled14',html:jcTabs[3],closable: true, disabled:false,icon:'allCss'}
+        ]
+    });
+    function clickMe(tabitem){
+    	alert(tabitem.id);
+    //	alert(22);
+		//	tabpanel.refresh(position);
+			//alert(33);
+		}
+}); 
+
+</script>
+</head>
+<body>
+ <div id="tab"></div>
+ <div id='test'>test1111111111111111</div>
+</body>
+</html>

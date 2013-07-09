@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${sysTitle}</title>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script src="plugins/dialog/jquery.artDialog.source.js?skin=black"
+<script src="plugins/dialog/jquery.artDialog.source.js?skin=blue"
 	type="text/javascript"></script>
 <script type="text/javascript"
 	src="plugins/dialog/plugins/iframeTools.js"></script>
@@ -68,7 +68,7 @@
 		return "确定离开当前页面吗？";//
 	} */
 	
-	window.onbeforeunload   =   function(e){
+	/* window.onbeforeunload   =   function(e){
 			e = e || window.event;
 			
 	      var   n   =   window.event.screenX   -   window.screenLeft;   
@@ -89,7 +89,7 @@
         	 return "你确认要退出吗？";// For Safari  and Chrome 
         }
 	     
-	}
+	} */
 	
 </script>
 <script type="text/javascript">

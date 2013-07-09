@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>tabPanel添加tab</title>
+<style type="text/css"  >
+html, body { 
+	width : 100%;
+	height : 100%;
+	padding : 0; 
+	margin-left : 5px; 
+	font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif; /* MAIN BODY FONTS */
+}
+.jcTab { width:100%; height:100%;}
+</style>
+<!-- link href="css/core.css" rel="stylesheet" type="text/css"/ -->
+<link href="css/TabPanel.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/Plugins/TabPanel.js"></script>
+<script type="text/javascript" src="src/Plugins/Math.uuid.js"></script>
+<script type="text/javascript" >
+	var tabpanel;
+$(document).ready(function(){ 
+     tabpanel=  new TabPanel({
+        renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab
+        width:600,  //tabpanel宽度
+        height:300,  //tabpanel高度
+        border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框
+        active : 1,//默认激活的tab索引数，此处为第二个，索引从0开始
+        tabWidth:114,//顶上tab标签页的宽度
+			  maxLength:10,//可添加的tab元素的最大个数
+        items : [
+            {
+            	id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一
+            	title:'Closable0',//顶上标签的标题
+            	html:"toolbarPlugin0"//标签的内容
+            },
+            {id:'toolbarPlugin1',title:'Closable1',html:"toolbarPlugin1"},
+            {id:'toolbarPlugin2',title:'Closable2',html:"toolbarPlugin2"},
+            {id:'toolbarPlugin3',title:'Closable3',html:"toolbarPlugin3"},
+            {id:'toolbarPlugin4',title:'Closable4',html:"toolbarPlugin4"}
+        ]
+    });
+}); 
+//添加tab
+function addTab(i){
+	//item元素
+	var item={
+							loadnow:true,//立即显示并激活
+            	id:'toolbarPlugin',//标签的id，此id必须在该html中唯一
+            	title:'Closable',//顶上标签的标题
+            	html:"toolbarPlugin"//标签的内容
+            };
+  //设置id，title，html等
+  item.id=item.id+i;
+  item.title=item.title+i;
+  item.html=item.html+i;
+  //调用组件中的tabpanel的addTab方法添加tab
+  tabpanel.addTab(item);
+}
+</script>
+</head>
+<body>
+
+	<div style='width:600px;float:left'>
+		<div style="font-size: 12px;">
+			<button onclick="addTab(5);">添加tab5</button><button onclick="addTab(6);">添加tab6</button><button onclick="addTab(7);">添加tab7</button><button onclick="addTab(8);">添加tab8</button>
+		</div>
+	 	<div id="tab" ></div>
+		<div style="border: 1px solid yellow;font-size: 12px;">
+			添加tab，如果该tab已经被添加，则将其设置为激活状态，addTab按钮点击后执行的方法：<br/>
+	<font color='red'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function addTab(i){<br/>
+  </font>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//item元素<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var item={<br/>
+	<font color='red'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loadnow:true,//立即显示并激活<br/>
+  </font>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:'toolbarPlugin',//标签的id，此id必须在该html中唯一<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:'Closable',//顶上标签的标题<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html:"toolbarPlugin"//标签的内容<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//设置id，title，html等<br/>
+  <font color='red'>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.id=item.id+i;<br/>
+  </font>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.title=item.title+i;<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.html=item.html+i;<br/>
+  <font color='red'>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//调用组件中的tabpanel的addTab方法添加tab<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabpanel.addTab(item);<br/>
+  </font>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+		</div>
+	</div>
+	<div style='float:left'>
+	 $(document).ready(function(){ <br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabpanel=  new TabPanel({<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:600,  //tabpanel宽度<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:300,  //tabpanel高度<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active : 1,//默认激活的tab索引数，此处为第二个，索引从0开始<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabWidth:114,//顶上tab标签页的宽度<br/>
+	<font color='red'>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxLength:10,//可添加的tab元素的最大个数<br/>
+  </font>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items : [<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:'Closable0',//顶上标签的标题<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;html:"toolbarPlugin0"//标签的内容<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin1',title:'Closable1',html:"toolbarPlugin1"},<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin2',title:'Closable2',html:"toolbarPlugin2"},<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin3',title:'Closable3',html:"toolbarPlugin3"},<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin4',title:'Closable4',html:"toolbarPlugin4"}<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br/>
+	}); <br/>
+	</div>
+</body>
+</html>

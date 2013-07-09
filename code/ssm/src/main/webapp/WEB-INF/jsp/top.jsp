@@ -115,8 +115,13 @@
 </head>
 <body leftmargin="0" topmargin="0">
 	<!-- bg color BDDEE3 -->
+	<!-- 
+		D8E7ED
+		D6EDFF
+		306DA4
+	 -->
 	<!-- 顶部区域 -->
-	<div style="width:100%;height:34px;background-color:#D8E7ED; background-repeat: repeat-x;">
+	<div style="width:100%;height:34px;background-color:#D6EDFF; background-repeat: repeat-x;">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td width="38%">
@@ -124,10 +129,10 @@
 						${sys_params.SYS_TITLE}
 					</div>
 				</td>
-				<td width="40%" height="38" class="admin_txt" align="right">
+				<td width="30%" height="38" class="admin_txt" align="right">
 					欢迎你[<b style="color:red">${user.userName}</b>]
 				</td>
-				<td style="padding-left:20px;text-align:right;font-size: 12px;" width="20%">
+				<td style="padding-left:20px;text-align:right;font-size: 12px;" width="30%">
 					<a href="main.do" target="main" class="a">首页</a>|
 					<a href="#" target="_self" onClick="openUpdatePassword();" class="a">修改密码</a>|
 					<a href="#" target="_self" onClick="locks();" class="a">锁屏</a>|
@@ -139,8 +144,24 @@
 		</table>
 	</div>
 	
+	<!-- 
+		好看的蓝色背景色：
+			1977B0
+			3777BC
+			3398CC
+			285B85
+			2A689D
+		绿色：
+			74C862
+		红色：
+			B10606
+			E50039
+		黄色：
+			ECAD81
+	-->
 	<!-- 顶级菜单条 -->
-	<div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
+	<!-- <div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;"> -->
+	<div style="width:100%;height:36px;background-color:#295E8B; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
 		<marquee scrollamount="2" onmouseover="this.stop();"
 				onmouseout="this.start();">
 			<pre><b style="color:red">公告</b>: 系统升级啦!         -2013年07月05日</pre>

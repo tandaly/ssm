@@ -963,7 +963,7 @@ try {
 // 使用uglifyjs压缩能够预先处理"+"号合并字符串
 // uglifyjs: http://marijnhaverbeke.nl/uglifyjs
 artDialog._templates =
-'<div class="aui_outer">'
+'<div class="">' //tanfei romove class="aui_outer"
 +	'<table class="aui_border">'
 +		'<tbody>'
 +			'<tr>'

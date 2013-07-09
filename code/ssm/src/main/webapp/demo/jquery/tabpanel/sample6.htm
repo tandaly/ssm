@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>loader方式配置，tab嵌入iframe方式的tabPanel</title>
+<style type="text/css"  >
+html, body { 
+	width : 100%;
+	height : 100%;
+	padding : 0; 
+	margin : 5px; 
+	font-family:"Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif; /* MAIN BODY FONTS */
+}
+.jcTab { width:100%; height:100%;}
+</style>
+<!-- link href="css/core.css" rel="stylesheet" type="text/css"/ -->
+<link href="css/TabPanel.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="src/jquery.js"></script>
+<script type="text/javascript" src="src/Plugins/TabPanel.js"></script>
+<script type="text/javascript" src="src/Plugins/Math.uuid.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){ 
+     tabpanel=  new TabPanel({
+        renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab
+        width:600,  //tabpanel宽度
+        height:300,  //tabpanel高度
+        border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框
+        active : 0,//默认激活的tab索引数，此处为第二个，索引从0开始
+        tabWidth:114,//顶上tab标签页的宽度
+        items : [
+            {
+            	id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一
+            	title:'Closable0',//顶上标签的标题
+            	loader: {//loader配置
+            				iframeFlag:true,//以iframe方式加载url内容
+                    url: 'test2.html',//url
+										activateFresh:true//当标签激活时，是否重新刷新页面
+              }
+            },
+            {id:'toolbarPlugin1',title:'Closable1',html:'toolbarPluginDiv1'},
+            {id:'toolbarPlugin2',title:'Closable2',html:'toolbarPluginDiv2'},
+            {id:'toolbarPlugin3',title:'Closable3',html:'toolbarPluginDiv3'},
+            {id:'toolbarPlugin4',title:'Closable4',html:'toolbarPluginDiv4'}
+        ]
+    });
+}); 
+
+</script>
+</head>
+<body>
+<div style='width:600px;float:left' >
+ 	<div id="tab" ></div>
+	<div>
+		在该示例中使用了loader配置，且iframeFlag是true配置选项，<br/>
+		是否选择iframeFlag为true，要看具体情况，如果被请求的页面<br/>
+		有较复杂的js要加载，且有window的onload事件或者jquery的ready<br/>
+		方法要加载，则用iframeFlag为true的配置，若只是简单的html元素，<br/>
+		则无需iframeFlag或iframeFlag为false
+	</div>
+</div>
+ <div style='float:left'>
+ $(document).ready(function(){ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabpanel=  new TabPanel({<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;renderTo:'tab',  //把tabpanel放在一个div中，div的id为tab<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:600,  //tabpanel宽度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:300,  //tabpanel高度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:'5',  //tabpanel的边框，不为'none'即可，若为'none'则没有边框<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active : 1,//默认激活的tab索引数，此处为第二个，索引从0开始<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tabWidth:114,//顶上tab标签页的宽度<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items : [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:'toolbarPlugin0',//标签的id，此id必须在该html中唯一<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:'Closable0',//顶上标签的标题<br/>
+<font color='red'>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loader: {//loader配置<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iframeFlag:true,//以iframe方式加载url内容<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: 'test1.html',//url<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activateFresh:true//当标签激活时，是否重新刷新页面<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin1',title:'Closable1',html:'toolbarPluginDiv1'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin2',title:'Closable2',html:'toolbarPluginDiv2'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin3',title:'Closable3',html:'toolbarPluginDiv3'},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id:'toolbarPlugin4',title:'Closable4',html:'toolbarPluginDiv4'}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br/>
+}); <br/>
+</body>
+</html>
