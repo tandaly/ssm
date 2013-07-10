@@ -18,7 +18,8 @@
 		config['fixed'] = true;
 		config['okVal'] = '确定';
 		config['cancelVal'] = '取消';
-		config['background'] = '#FFFFFF';//设置遮罩层背景颜色
+		config['background'] = '#000';//设置遮罩层背景颜色
+		config['opacity'] = '0.5';//遮罩透明度
 		// [more..]
 	})(art.dialog.defaults);
 

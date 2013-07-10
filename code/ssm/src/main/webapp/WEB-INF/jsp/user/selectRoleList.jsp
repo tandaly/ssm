@@ -6,26 +6,21 @@
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<!-- 分页插件 -->
-	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="plugins/page/page.js"></script>
+	<script type="text/javascript" src="plugins/page/fTable.js"></script>
 
 	<script type="text/javascript">
 	
 		$(function(){
-			var url = "user/ajaxSelectRoleList.do";
-			initPageTable(url, callback);
+			fTable = new FTable({
+				fields: ['roleName','remark'],
+				url: 'user/ajaxSelectRoleList.do'
+			});
 		});
-		
-		function callback(data)
-		{
-			var list = data.list;
-			buildTable('datatable',list,['roleName', 'remark'],true,'id','cbx_',true);
-		}
 		
 		//分配角色
 		function allotRole()
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids)
 			{
 				top.art.dialog.alert("请选择记录");
@@ -64,22 +59,22 @@
 	</script>
 </head>
 <body>
-		<div style="text-align: center;">
-			<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
-				<input type="hidden" name="userId" value="${user.id}"/>
-				角色名称：<input name="roleName" /> 
-				&nbsp;
-				<input value="查询" type="submit" class="btn_gray btn_space"/>
-			</form>
-		</div>
-		<div>
-			<input type="hidden" id="submit" value="提交" onclick="allotRole();"/>
-			<table width="100%" border="1" cellpadding="0" cellspacing="0"
-				class="content-right-column-tb" id="datatable">
-				<tr style="background-color: #a9c4e8;" class="content-right-column-tb-topbg">
+	<div style="text-align: center;">
+		<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
+			<input type="hidden" name="userId" value="${user.id}"/>
+			角色名称：<input name="roleName" /> 
+			&nbsp;
+			<input value="查询" type="submit" class="button_highlight"/>
+		</form>
+	</div>
+	<div>
+		<input type="hidden" id="submit" value="提交" onclick="allotRole();"/>
+		<div class="fTableContent">
+			<table id="fTable" cellpadding="0" cellspacing="0" class="fTable">
+				<tr>
 					<th></th>
 					<th>
-						<input type="checkbox" id="ckall" />
+						<input type="checkbox"/>
 					</th>
 					<th width="200px">
 						角色名称
@@ -87,15 +82,10 @@
 					<th>
 						描述
 					</th>
-
 				</tr>
 			</table>
 		</div>
-		<br/>
-		<div style="height: 80px;">
-			<div id="pageDiv"></div>
-		</div>
-	
-
+		<div id="fPage"></div>
+	</div>
 </body>
 </html>

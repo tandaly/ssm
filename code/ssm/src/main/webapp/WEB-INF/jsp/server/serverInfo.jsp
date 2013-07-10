@@ -4,9 +4,8 @@
 <html>
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
-	<!-- 分页插件 -->
-	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="plugins/page/page.js"></script>
+	<!--表格插件 -->
+	<script type="text/javascript" src="plugins/page/fTable.js"></script>
 	
 	<script type="text/javascript">
 	$(function(){
@@ -23,7 +22,16 @@
 		list.push({name:"<font color=green>主机物理内存</font>", value:"${serverSwapSpace }"});
 		list.push({name:"<font color=green>JVM可用最大内存</font>", value:"${jvmMaxMemory }"});
 		
-		buildTable('datatable',list,['name', 'value'],false,null,null,true);
+		//buildTable('datatable',list,['name', 'value'],false,null,null,true);
+		
+		fTable = new FTable({
+			isCheckbox: false,
+			isBuild: false,
+			fields: ['name', 'value']
+		});
+		
+		fTable.build(list);
+		
 	});
 	
 	function formatStr(str, limit)
@@ -46,9 +54,8 @@
 </script>
 </head>
 <body>
-	<table width="100%" border="1" cellpadding="0" cellspacing="0"
-		class="content-right-column-tb" id="datatable" >
-		<tr style="background-color: #a9c4e8;" class="content-right-column-tb-topbg">
+	<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+		<tr>
 			<th></th>
 			<th width="120px">
 				名称

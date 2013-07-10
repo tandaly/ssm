@@ -5,9 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<%@ include file="/WEB-INF/jsp/common/header.jsp"%>	
-	<!-- 分页插件 -->
-	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="plugins/page/page.js"></script>
+	<!-- 表格插件 -->
+	<script type="text/javascript" src="plugins/page/fTable.js"></script>
 	
 	<!-- 单选下拉框 start (需jquery支持,必须在之前引入)-->
 	<link style="text/css" rel="stylesheet" href="plugins/select/skins/style.css"/>
@@ -16,16 +15,37 @@
 	<!-- 单选下拉框 end -->
 	
 	<script type="text/javascript">
-	
+		var fTable;
+		var fTable2;
 		$(function(){
-			var url = "user/ajaxUserList.do";
-			initPageTable(url, callback);
+			/* var url = "user/ajaxUserList.do";
+			initPageTable(url, callback); */
+			/* $().fTable({
+				url: 'user/ajaxUserList.do',
+				callback:callback
+			}); */
+			
+			
+			
+			fTable = new FTable({
+				fields: ['userName','password','registerDate','status', 'remark'],
+				url: 'user/ajaxUserList.do',
+				callback:callback
+			});
+			
+			fTable2 = new FTable({
+				id: 'fTable2',
+				page: '#fPage2',
+				pageSize: 5,
+				fields: ['userName','password','registerDate','status', 'remark'],
+				url: 'user/ajaxUserList.do'
+			});
+			
 		});
 		
 		function callback(data)
 		{
 			var list = data.list;
-			
 			if(list){
 				for(var i = 0 ; i < list.length ; i++){
 					var registerDate = list[i].registerDate;
@@ -43,13 +63,12 @@
 					//list[i].options = "<a title='删除' href='javascript:deleteUser("+list[i].id+")'>删除</a>";
 				}
 			}
-			
-			buildTable('datatable',list,['userName','password','registerDate','status', 'remark'],true,'id','cbx_',true);
+			fTable.build(list);
 		}
 		
 		function deleteUsers()
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids)
 			{
 				top.art.dialog.alert("请选择记录");
@@ -75,7 +94,7 @@
 						}else
 						{
 							top.art.dialog.alert(data.info);
-							queryFrom();
+							fTable.queryForm();
 						}
 					},
 					error:function()
@@ -89,7 +108,7 @@
 		//打开修改用户页面
 		function openUpdateUser()
 		{	
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids || ids.indexOf(",") > 0)
 			{
 				top.art.dialog.alert("请选择一条记录!");
@@ -142,7 +161,7 @@
 		//打开用户角色表
 		function openUserRole()
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids || ids.indexOf(",") > 0)
 			{
 				top.art.dialog.alert("请选择一条记录!");
@@ -158,7 +177,7 @@
 		//启用和禁用帐号 1为启用 0为禁用
 		function changeUserStatus(status)
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids)
 			{
 				top.art.dialog.alert("请选择记录");
@@ -179,7 +198,7 @@
 						}else
 						{
 							top.art.dialog.alert(data.info);
-							queryFrom();
+							fTable.queryForm();
 						}
 					},
 					error:function()
@@ -192,8 +211,8 @@
 	</script>
 </head>
 <body >
-	<div id="content">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<div class="mainContent">
+	<!-- <table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="17" valign="top" background="images/mail_leftbg.gif"><img
 				src="images/left-top-right.gif" width="17" height="29" /></td>
@@ -218,12 +237,11 @@
 						<td valign="top">&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="4" valign="top" style="">
+						<td colspan="4" valign="top" style=""> -->
 							
 							<div style="text-align: center;">
-								<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
+								<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 									用户名：<input name="userName" /> 
-									<input type="hidden" name="pageSize" value="10"/>
 									状态：
 									<select name="status">
 										<option value="">--请选择--</option>
@@ -243,37 +261,63 @@
 									<input type="button" value="启用" onclick="changeUserStatus('启用');" class="button"/>
 									<input type="button" value="禁用" onclick="changeUserStatus('禁用');" class="button"/>
 								</div>
-								<table width="100%" border="1" cellpadding="0" cellspacing="0"
-									class="content-right-column-tb" id="datatable">
-									<tr style="background-color: #a9c4e8;" class="content-right-column-tb-topbg">
-										<th></th>
-										<th>
-											<input type="checkbox" id="ckall" />
-										</th>
-										<th width="20%">
-											用户名
-										</th>
-										<th width="20%">
-											密码
-										</th>
-										<th width="20%">
-											注册日期
-										</th>
-										<th width="10%">
-											状态
-										</th>
-										<th>
-											备注
-										</th>
-				
-									</tr>
-								</table>
-							</div>
-							<br/>
-							<div>
-								<div id="pageDiv"></div>
+								<div class="fTableContent">
+									<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+										<tr>
+											<th></th>
+											<th>
+												<input type="checkbox"/>
+											</th>
+											<th width="20%">
+												用户名
+											</th>
+											<th width="20%">
+												密码
+											</th>
+											<th width="20%">
+												注册日期
+											</th>
+											<th width="10%">
+												状态
+											</th>
+											<th>
+												备注
+											</th>
+					
+										</tr>
+									</table>
+								</div>
+								<div id="fPage"></div>
 							</div>
 							
+							<div class="fTableContent">
+									<table id="fTable2" class="fTable" cellpadding="0" cellspacing="0">
+										<tr>
+											<th></th>
+											<th>
+												<input type="checkbox"/>
+											</th>
+											<th width="20%">
+												用户名
+											</th>
+											<th width="20%">
+												密码
+											</th>
+											<th width="20%">
+												注册日期
+											</th>
+											<th width="10%">
+												状态
+											</th>
+											<th>
+												备注
+											</th>
+					
+										</tr>
+									</table>
+								</div>
+								<div id="fPage2"></div>
+						<!-- 	
 						</td>
 					</tr>
 				</table>
@@ -288,7 +332,7 @@
 			<td valign="bottom" background="images/mail_rightbg.gif"><img
 				src="images/buttom_right2.gif" width="16" height="17" /></td>
 		</tr>
-	</table>
+	</table> -->
 	</div>
 </body>
 </html>

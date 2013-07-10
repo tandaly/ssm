@@ -109,7 +109,7 @@
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.window.queryFrom();
+							top.topFrame.main.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
 							//top.art.dialog.confirm(data.info + ",是否要现在给该用户分配角色?", function(){
 								openUserRole(data.id);

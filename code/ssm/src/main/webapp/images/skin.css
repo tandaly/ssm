@@ -1,5 +1,5 @@
 html,body{height:100%;}
-#content{
+.mainContent{
 	height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
 	height:100%; /*修复IE6,all browser*/
 	min-height:99.5%; /*for ie6 bug and ie7+,moz,webkit 正确*/

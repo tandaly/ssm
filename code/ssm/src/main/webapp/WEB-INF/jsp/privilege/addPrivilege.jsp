@@ -63,7 +63,7 @@
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.contentFrame.leftFrame.window.queryFrom();
+							top.topFrame.main.contentFrame.leftFrame.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
 							openMenuTree(data.id);
 							top.art.dialog({id: 'addPrivilege'}).close();

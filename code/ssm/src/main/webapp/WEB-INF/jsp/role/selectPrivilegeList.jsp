@@ -5,26 +5,21 @@
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<!-- 分页插件 -->
-	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="plugins/page/page.js"></script>
+	<script type="text/javascript" src="plugins/page/fTable.js"></script>
 	
 	<script type="text/javascript">
 	
 		$(function(){
-			var url = "role/ajaxSelectPrivilegeList.do";
-			initPageTable(url, callback);
+			fTable = new FTable({
+				fields: ['privilegeName','remark'],
+				url: 'role/ajaxSelectPrivilegeList.do'
+			});
 		});
-		
-		function callback(data)
-		{
-			var list = data.list;
-			buildTable('datatable',list,['privilegeName', 'remark'],true,'id','cbx_',true);
-		}
 		
 		//分配权限
 		function allotPrvilege()
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids)
 			{
 				top.art.dialog.alert("请选择记录");
@@ -64,7 +59,7 @@
 </head>
 <body>
 		<div style="text-align: center;">
-			<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
+			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" name="roleId" value="${role.id}"/>
 				权限名称：<input name="privilegeName" /> 
 				&nbsp;
@@ -73,26 +68,23 @@
 		</div>
 		<div>
 			<input type="hidden" id="submit" value="提交" onclick="allotPrvilege();"/>
-			<table width="100%" border="1" cellpadding="0" cellspacing="0"
-				class="content-right-column-tb" id="datatable">
-				<tr style="background-color: #a9c4e8;" class="content-right-column-tb-topbg">
-					<th></th>
-					<th>
-						<input type="checkbox" id="ckall" />
-					</th>
-					<th width="200px">
-						权限名称
-					</th>
-					<th>
-						描述
-					</th>
-
-				</tr>
-			</table>
-		</div>
-		<br/>
-		<div style="height: 80px;">
-			<div id="pageDiv"></div>
+			<div class="fTableContent">
+				<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+					<tr>
+						<th></th>
+						<th>
+							<input type="checkbox" id="ckall" />
+						</th>
+						<th width="200px">
+							权限名称
+						</th>
+						<th>
+							描述
+						</th>
+					</tr>
+				</table>
+			</div>
+			<div id="fPage"></div>
 		</div>
 	
 

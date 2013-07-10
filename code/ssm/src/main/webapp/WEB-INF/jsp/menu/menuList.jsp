@@ -5,25 +5,20 @@
 <head>
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<!-- 分页插件 -->
-	<link href="plugins/page/page.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="plugins/page/page.js"></script>
+	<script type="text/javascript" src="plugins/page/fTable.js"></script>
 	
 	<script type="text/javascript">
 	
 		$(function(){
-			var url = "menu/ajaxMenuList.do";
-			initPageTable(url, callback);
+			fTable = new FTable({
+				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo'],
+				url: 'menu/ajaxMenuList.do'
+			});
 		});
-		
-		function callback(data)
-		{
-			var list = data.list;
-			buildTable('datatable',list,['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo'],true,'id','cbx_',true);
-		}
 		
 		function deleteMenus()
 		{
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids)
 			{
 				top.art.dialog.alert("请选择记录");
@@ -93,7 +88,7 @@
 		//打开修改菜单页面
 		function openUpdateMenu()
 		{	
-			var ids = checkedValue("cbx_");
+			var ids = fTable.getCheckedValue();
 			if("" == ids || ids.indexOf(",") > 0)
 			{
 				top.art.dialog.alert("请选择一条记录!");
@@ -125,7 +120,7 @@
 <body>
 
 		<div style="text-align: center;">
-			<form id="queryForm" name="queryForm" onsubmit="return queryFrom()">
+			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" id="parentNo" name="parentNo" value="${parentNo}"/>
 				<input type="hidden" id="menuNo" name="menuNo" value="${menuNo}"/>
 				菜单名称：<input id="menuName" name="menuName" /> 
@@ -139,36 +134,32 @@
 				<input type="button" value="修改" onclick="openUpdateMenu();"/>
 				<input  type="button" value="删除" onclick="deleteMenus()"/>
 			</div>
-			<table width="100%" border="1" cellpadding="0" cellspacing="0"
-				class="content-right-column-tb" id="datatable">
-				<tr style="background-color: #a9c4e8;" class="content-right-column-tb-topbg">
-					<th></th>
-					<th>
-						<input type="checkbox" id="ckall" />
-					</th>
-					<th width="150px">
-						菜单编号
-					</th>
-					<th width="150px">
-						父菜单编号
-					</th>
-					<th width="20%">
-						菜单名称
-					</th>
-					<th>
-						菜单地址
-					</th>
-					<th>
-						排序编号
-					</th>
-				</tr>
-			</table>
+			<div class="fTableContent">
+				<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+					<tr>
+						<th></th>
+						<th>
+							<input type="checkbox" />
+						</th>
+						<th width="150px">
+							菜单编号
+						</th>
+						<th width="150px">
+							父菜单编号
+						</th>
+						<th width="20%">
+							菜单名称
+						</th>
+						<th>
+							菜单地址
+						</th>
+						<th>
+							排序编号
+						</th>
+					</tr>
+				</table>
+			</div>
+			<div id="fPage"></div>
 		</div>
-		<br/>
-		<div>
-			<div id="pageDiv"></div>
-		</div>
-		
-
 </body>
 </html>

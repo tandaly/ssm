@@ -581,7 +581,15 @@ div.yahoo2 a.prev:hover {
 
 
 /*表格样式 2013-06-26 tandaly*/
-.content-right-column-tb {
+.fTableContent {
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;	
+	padding-bottom: 10px;
+}
+
+.fTable {
+	width:100%;
 	font-size: 12px;
 	border: 1px solid #c8dcf0;
 	border-collapse: collapse;
@@ -589,23 +597,22 @@ div.yahoo2 a.prev:hover {
 	text-overflow:ellipsis;
 	text-align:left;
 	padding-left:5px;
+	margin:0px auto;
 }
 
-.content-right-column-tb tbody tr th
+.fTable tr th
 {
 	border: 1px solid #C8DCF0;
 	text-align:left;
 	padding-left:5px;
-}
-
-.content-right-column-tb tbody tr td
-{
-	border: 1px solid #C8DCF0;
-	text-align:left;
-	padding-left:5px;
-}
-
-.content-right-column-tb-topbg {
-	background: url(tb_bg.jpg) repeat-x;
+	background: url(tab-bg.gif) repeat-x;
 	height: 26px;
+}
+
+.fTable tr td
+{
+	width:*;
+	border: 1px solid #C8DCF0;
+	text-align:left;
+	padding-left:5px;
 }

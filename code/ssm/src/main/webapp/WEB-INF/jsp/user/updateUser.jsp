@@ -101,7 +101,7 @@
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.window.queryFrom();
+							top.topFrame.main.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
 							top.art.dialog({id: 'updateUser'}).close();
 							

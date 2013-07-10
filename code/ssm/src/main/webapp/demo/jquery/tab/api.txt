@@ -1,0 +1,59 @@
+1.帮助： 
+TabPanel(选项卡组件)
+参数说明
+renderTo<string | jQuery object | NULL> 渲染到某容器
+将选项卡组件渲染到某容器，参数类型可以为字符串，也可以为jQuery所加载的对象，如果为声明该参数，组件默认的承载容器为BODY。
+items<array> 选项卡元素集合
+选项卡组件渲染后就会显示的选项卡元素集合，具体参数请查看选项卡元素。
+width<number> 宽度
+选项卡组件的总宽度，默认400px。
+height<number> 高度
+选项卡组件中页面显示层的高度，默认300px。
+border<string> 是否显示边框
+嵌套显示选项卡时，会出现重复边框的情况，影响美观，将border设置为”none”，则可以避免，默认显示边框，不接受除”none”之外的参数值。
+active<number> 渲染后默认激活哪个选项卡元素
+下标以0为开始，默认为0。
+maxLength<number> 最多显示几个选项卡元素
+-1为无限，默认为-1。
+tabs<return array> 获得选项卡组件所有的选项卡元素
+可根据需要获得选项卡组件的所有选项卡元素。
+公共方法
+addTab(object) 添加一个选项卡元素
+动态向选项卡组件中添加一个选项卡元素。
+flush(string | number) 刷新选项卡元素的内容
+将选项卡元素的内容刷新，参数可以为选项卡元素的ID或下标。
+show(string | number) 显示选项卡元素
+显示制定选项卡元素，参数可以为选项卡元素的ID或下标。
+Kill(string | number) 关闭选项卡元素
+关闭选项卡元素，参数可以为选项卡元素的ID或下标。
+getTabsCount()<return number> 获得选项卡元素数量
+getTitle(string | number) <return string> 获得选项卡元素的标题
+setTitle(string | number, string) 设置选项卡元素的标题
+getContent(string | number) <return string> 获得选项卡元素的内容
+setContent(string | number, string) 设置选项卡元素的内容
+getDisable(string | number) <return boolean> 选项卡元素是否禁用
+setDisable(string | number) 设置选项卡元素是否禁用
+getCloseable(string | number) <return boolean> 选项卡元素是否可关闭
+setCloseable(string | number, boolean) 设置选项卡元素是否可关闭
+getActiveTab()<return object> 获得被激活的选项卡元素
+使用方法
+页面引入jQuery.js、TabPanel.js、Fader.js、TabPanel.css
+new TabPanel({
+  renderTo:'tabs',
+  width: '100%',
+  height: '500px',
+  active: 0,
+  items: [{
+    title:'工作中心',
+    html:'<iframe width="100%" height="100%" frameborder="0"></iframe>',
+    closable: false
+  }]
+});
+TabPanel item(选项卡元素)
+参数说明
+id<string> 元素ID
+必须唯一，或者不设置该参数，否则将无法添加到选项卡组件中，默认自动生成。
+title<string> 元素标题
+可以动态设置。
+closeable<boolean> 是否可关闭
+true可关闭，false不可关闭，默认为true。

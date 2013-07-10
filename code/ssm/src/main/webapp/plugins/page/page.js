@@ -57,7 +57,7 @@ var selectedBG = "#DCF8A8";//表格被选中行的背景色FFE48A
  * num	是否显示序号
  * cbxname 多选框名称
  */
-function buildTable(tableId,list,fields,checkbox,boxid,prefix,num,cbxname){
+function buildFTable(tableId,list,fields,checkbox,boxid,prefix,num,cbxname){
 	$("#" + tableId).find("tr").not(":first").each(function(){
 		$(this).remove();
 	});

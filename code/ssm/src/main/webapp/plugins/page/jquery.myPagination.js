@@ -110,9 +110,9 @@
 			
 			//开始请求
 			function onRequest(){
-				debug(opts.id);
-				debug("ajax请求参数列表:");
-				debug(getParam());
+				//debug(opts.id);
+				//debug("ajax请求参数列表:");
+				//debug(getParam());
 				if(opts.ajax.on){
 					//开启了ajax请求有效
 					opts.ajax.ajaxStart();
@@ -132,7 +132,7 @@
 					  timeout: 60000,
 					  // 超时时间
 					  error: function() {
-						alert("访问服务器超时，请重试，谢谢！");
+						alert("获取数据失败！");
 					  },
 					  success: function(data) {
 						responseHandle(data);
@@ -174,8 +174,8 @@
 				  resultPageCount = $(data).find(":hidden[id='"+pageCountId+"']").val();
                   break;
                 }
-				debug(opts.id);
-				debug("返回总页数:"+resultPageCount);
+				//debug(opts.id);
+				//debug("返回总页数:"+resultPageCount);
 				opts.pageCount = resultPageCount;
 				opts.countRecord = resultCountRecord;
 				opts.ajax.callback(data);
@@ -257,9 +257,9 @@
 			  }
 			  
 			  str += getPanelTipInfo(); 
-			  debug(opts.id);
-			  debug("最终生成菜单：");
-			  debug(str);
+			  //debug(opts.id);
+			  //debug("最终生成菜单：");
+			  //debug(str);
 			  
 			  obj.html(str);
 			  
@@ -310,9 +310,9 @@
             }
 			
 			//debug 调试
-			function debug(str){
-				$.fn.debug(str);
-			}
+//			function debug(str){
+//				$.fn.debug(str);
+//			}
 			
 		 	//目标对象拥有了所有源对象所拥有的特性，可理解为继承
 		  	// true 为深度拷贝，将子对象进行合并
@@ -333,14 +333,14 @@
 			  }
 			  
 			  method.onReload = function(){
-				  debug("reload()");
+				  //debug("reload()");
 				  onRequest();
 			  }
 			  
 			  //指定加载数据
 			  method.onLoad = function(param){
 				  if(param && param instanceof Object ){
-					  debug(param);
+					  //debug(param);
 					  opts.currPage = 1;
 					  opts.ajax.param = param.param;
 					  onRequest();
@@ -349,7 +349,7 @@
 			  
 			  //跳转指定页面
 			  method.jumpPage = function(page){
-				  debug("jumpPage()");
+				  //debug("jumpPage()");
 				  page = page < 1 ? 1 : page;	//如果page小于1，就为1
 				  page = page > opts.pageCount ? opts.pageCount : page;	//如果page大于pageCount则为pageCount
 				  opts.currPage = page;
@@ -359,10 +359,10 @@
 			return method;
 		}
 		
-		$.fn.debug = function(str){
-			if(window.console && window.console.log){
-				console.log(str);
-			}
-		}
+//		$.fn.debug = function(str){
+//			if(window.console && window.console.log){
+//				console.log(str);
+//			}
+//		}
 			
       })(jQuery);
