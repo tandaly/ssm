@@ -125,11 +125,11 @@
 </script>
 
 	<style type="text/css">
-		html,body{height:100%;}
+		html,body{height:100%;overflow-y: hidden;}
 		#topFrame{
 			height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
 			height:100%; /*修复IE6,all browser*/
-			min-height:99%; /*for ie6 bug and ie7+,moz,webkit 正确*/
+			min-height:100%; /*for ie6 bug and ie7+,moz,webkit 正确*/
 		}
 		
 		.BScreen_omBtn {

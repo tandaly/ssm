@@ -40,7 +40,13 @@
 		});
 	</script>
 <body>
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<div id="mainContent">
+		<!-- 导航条 -->
+		<div class="box-positon">
+			<div class="rpos">当前位置: 首页</div>
+			<div class="clear"></div>
+		</div>
+	<!-- <table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td width="17" valign="top" background="images/mail_leftbg.gif"><img
 				src="images/left-top-right.gif" width="17" height="29" /></td>
@@ -56,7 +62,9 @@
 		</tr>
 		<tr>
 			<td valign="middle" background="images/mail_leftbg.gif">&nbsp;</td>
-			<td valign="top" bgcolor="#F7F8F9"><table width="98%" border="0"
+			<td valign="top" bgcolor="#F7F8F9">
+			-->
+				<table width="98%" border="0"
 					align="center" cellpadding="0" cellspacing="0">
 					<tr>
 						<td colspan="2" valign="top">&nbsp;</td>
@@ -64,7 +72,8 @@
 						<td valign="top">&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan="2" valign="top"><span class="left_bt">感谢您使用
+						<td colspan="2" valign="top"> 
+							<span class="left_bt">感谢您使用
 								网站管理系统程序</span><br> <br> <span class="left_txt">&nbsp;<img
 								src="images/ts.gif" width="16" height="16"> 提示：<br>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您现在使用的是tandaly开发的一套用于构建网站的专业系统！如果您有任何疑问请点左下解的
@@ -447,7 +456,9 @@
 						<td><input type="button" id="create1" value="^_^"></td>
 						<td>&nbsp;</td>
 					</tr>
-				</table></td>
+				</table>
+				
+				<!-- </td>
 			<td background="images/mail_rightbg.gif">&nbsp;</td>
 		</tr>
 		<tr>
@@ -458,5 +469,6 @@
 			<td valign="bottom" background="images/mail_rightbg.gif"><img
 				src="images/buttom_right2.gif" width="16" height="17" /></td>
 		</tr>
-	</table>
+	</table> -->
+	</div>
 </body>

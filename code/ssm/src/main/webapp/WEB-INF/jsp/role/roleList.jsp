@@ -127,6 +127,12 @@
 </head>
 <body>
 	<div class="mainContent">
+		<!-- 导航条 -->
+		<div class="box-positon">
+			<div class="rpos">当前位置: 系统管理 &gt; 角色管理 &gt; 列表</div>
+			<div class="clear"></div>
+		</div>
+		
 		<div style="text-align: center;">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				角色名：<input name="roleName" /> 

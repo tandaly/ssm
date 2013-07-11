@@ -1,8 +1,40 @@
-html,body{height:100%;}
+html,body{
+	height:100%;
+	font-size: 12px;
+}
+
+.body {
+	background-color: #FFF;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+.clear {
+	clear: both;
+}
+
+/*页面最外层*/
 .mainContent{
 	height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
 	height:100%; /*修复IE6,all browser*/
 	min-height:99.5%; /*for ie6 bug and ie7+,moz,webkit 正确*/
+}
+
+/*页面导航*/
+.box-positon {
+	background: url(box-bg.png) repeat-x 0px -42px;
+	height: 30px;
+	padding-bottom: 10px;
+}
+.rpos {
+	float: left;
+	line-height: 34px;
+	font-weight: normal;
+	background: url(box-icon.png) no-repeat 24px -257px;
+	text-indent: 50px;
+	color: #000;
 }
 
 .login_top_bg {
@@ -10,18 +42,13 @@ html,body{height:100%;}
 	background-image: url(top-bg.gif);
 	background-repeat: repeat-x;
 }
-.body {
-	#background-color: #EEF2FB;
-	left: 0px;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-}
+
 
 .login-buttom-bg {
 	background-image: url(login-buttom-bg.gif);
 	background-repeat: repeat-x;
 }
+
 .login-buttom-txt {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -30,12 +57,7 @@ html,body{height:100%;}
 	line-height: 20px;
 	font-weight: bold;
 }
-.login_txt {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	line-height: 25px;
-	color: #333333;
-}
+
 .Submit {
 	padding-top:8px;
 	padding-bottom:5px;
@@ -66,13 +88,7 @@ html,body{height:100%;}
 	height: 38px;
 	line-height: 38px;
 }
-.login_txt_bt {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 30px;
-	line-height: 90px;
-	color: #666666;
-	font-weight: bold;
-}
+
 .admin_topbg {
 	background-image: url(bg.gif);
 	background-repeat: repeat-x;
@@ -238,12 +254,6 @@ a:visited {
 	list-style-image: none;
 }
 
-.toolGroup {
-	margin:10px;
-}
-
-
-
 /*******************tanfei add********************/
 
 /* .button {
@@ -258,38 +268,20 @@ a:visited {
 	background: url(bg_button_search.png) left top no-repeat;
 } */
 
-.toolGroup input {
-	font: 12px/1.11 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
-	margin-left: 0px;
-	padding: 6px 8px;
-	cursor: pointer;
-	display: inline-block;
+
+/*查询表单层*/
+.form {
+	font-size: 12px;
 	text-align: center;
-	line-height: 1;
-	letter-spacing: 2px;
-	font-family: Tahoma, Arial/9!important;
-	width: auto;
-	overflow: visible;
-	color: #333;
-	border: solid 1px #999;
-	border-radius: 5px;
-	background: #DDD;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD');
-	background: linear-gradient(top, #FFF, #DDD);
-	background: -moz-linear-gradient(top, #FFF, #DDD);
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
-	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
-	box-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 -1px 0 rgba(0, 0, 0, .09);
-	-moz-transition: -moz-box-shadow linear .2s;
-	-webkit-transition: -webkit-box-shadow linear .2s;
-	transition: box-shadow linear .2s;
+	margin:15px;
+}
+.form .input-text {
+	height: 20px;
 }
 
-.toolGroup input:hover {
-	color: #000;
-	border-color: #666;
-}
 
+
+/*查询按钮高亮状态*/
 .button_highlight {
 	font: 12px/1.11 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
 	margin-left: 15px;
@@ -318,12 +310,46 @@ a:visited {
 	-webkit-transition: -webkit-box-shadow linear .2s;
 	transition: box-shadow linear .2s;
 }
-
 .button_highlight:hover {
 	color: #FFF;
 	border-color: #1c6a9e;
 }
 
-form {
-	font-size:12px;
+/*工具组*/
+.toolGroup {
+	margin-bottom:10px;
+	margin-left: 10px;
+	margin-right: 10;
+	margin-bottom:0px;
 }
+.toolGroup input {
+	font: 12px/1.11 'Microsoft Yahei', Tahoma, Arial, Helvetica, STHeiti;
+	margin-left: 0px;
+	padding: 6px 8px;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	line-height: 1;
+	letter-spacing: 2px;
+	font-family: Tahoma, Arial/9!important;
+	width: auto;
+	overflow: visible;
+	color: #333;
+	border: solid 1px #999;
+	border-radius: 5px;
+	background: #DDD;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD');
+	background: linear-gradient(top, #FFF, #DDD);
+	background: -moz-linear-gradient(top, #FFF, #DDD);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#DDD));
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0 -1px 0 rgba(0, 0, 0, .09);
+	-moz-transition: -moz-box-shadow linear .2s;
+	-webkit-transition: -webkit-box-shadow linear .2s;
+	transition: box-shadow linear .2s;
+}
+.toolGroup input:hover {
+	color: #000;
+	border-color: #666;
+}
+

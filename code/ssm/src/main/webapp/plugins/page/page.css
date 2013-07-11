@@ -588,7 +588,39 @@ div.yahoo2 a.prev:hover {
 	padding-bottom: 10px;
 }
 
-.fTable {
+/*表格默认皮肤*/
+.fTable_skin1 {
+	width:100%;
+	font-size: 12px;
+	border: 1px solid #C8C8CA;
+	border-collapse: collapse;
+	color: #023266;
+	text-overflow:ellipsis;
+	text-align:left;
+	padding-left:5px;
+	margin:0px auto;
+}
+.fTable_skin1 tr th
+{
+	font-size: 14px;
+	height: 34px;
+	background: url(tb-skin1.gif) repeat-x;
+	border: 1px solid #C8C8CA;
+	text-align:left;
+	padding-left:5px;
+}
+.fTable_skin1  tr td
+{
+	width:*;
+	border: 1px solid #C8C8CA;
+	text-align:left;
+	padding-left:5px;
+}
+
+
+
+/*表格皮肤2*/
+.fTable_skin2 {
 	width:100%;
 	font-size: 12px;
 	border: 1px solid #c8dcf0;
@@ -599,20 +631,49 @@ div.yahoo2 a.prev:hover {
 	padding-left:5px;
 	margin:0px auto;
 }
-
-.fTable tr th
+.fTable_skin2 tr th
 {
+	height: 26px;
+	background: url(tb-skin2.gif) repeat-x;
 	border: 1px solid #C8DCF0;
 	text-align:left;
 	padding-left:5px;
-	background: url(tab-bg.gif) repeat-x;
-	height: 26px;
 }
-
-.fTable tr td
+.fTable_skin2 tr td
 {
 	width:*;
 	border: 1px solid #C8DCF0;
 	text-align:left;
 	padding-left:5px;
 }
+
+
+/*表格皮肤3*/
+.fTable_skin3 {
+	width:100%;
+	font-size: 12px;
+	border: 1px solid #c8dcf0;
+	border-collapse: collapse;
+	color: #023266;
+	text-overflow:ellipsis;
+	text-align:left;
+	padding-left:5px;
+	margin:0px auto;
+}
+.fTable_skin3 tr th
+{
+	height: 26px;
+	background: url(tb-skin3.jpg) repeat-x;
+	border: 1px solid #c8dcf0;
+	text-align:left;
+	padding-left:5px;
+}
+.fTable_skin3 tr td
+{
+	width:*;
+	border: 1px solid #c8dcf0;
+	text-align:left;
+	padding-left:5px;
+}
+
+

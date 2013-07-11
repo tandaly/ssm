@@ -18,15 +18,6 @@
 		var fTable;
 		var fTable2;
 		$(function(){
-			/* var url = "user/ajaxUserList.do";
-			initPageTable(url, callback); */
-			/* $().fTable({
-				url: 'user/ajaxUserList.do',
-				callback:callback
-			}); */
-			
-			
-			
 			fTable = new FTable({
 				fields: ['userName','password','registerDate','status', 'remark'],
 				url: 'user/ajaxUserList.do',
@@ -35,6 +26,7 @@
 			
 			fTable2 = new FTable({
 				id: 'fTable2',
+				skin: 'skin2',
 				page: '#fPage2',
 				pageSize: 5,
 				fields: ['userName','password','registerDate','status', 'remark'],
@@ -212,127 +204,91 @@
 </head>
 <body >
 	<div class="mainContent">
-	<!-- <table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td width="17" valign="top" background="images/mail_leftbg.gif"><img
-				src="images/left-top-right.gif" width="17" height="29" /></td>
-			<td valign="top" background="images/content-bg.gif"><table
-					width="100%" height="31" border="0" cellpadding="0" cellspacing="0"
-					class="left_topbg" id="table2">
-					<tr>
-						<td height="31"><div class="titlebt">用户管理</div></td>
-					</tr>
-				</table></td>
-			<td width="16" valign="top" background="images/mail_rightbg.gif"><img
-				src="images/nav-right-bg.gif" width="16" height="29" /></td>
-		</tr>
-		<tr>
-			<td valign="middle" background="images/mail_leftbg.gif">&nbsp;</td>
-			<td valign="top" bgcolor="#F7F8F9">
-				<table width="98%" border="0" align="center"
-					cellpadding="0" cellspacing="0">
-					<tr>
-						<td colspan="2" valign="top">&nbsp;</td>
-						<td>&nbsp;</td>
-						<td valign="top">&nbsp;</td>
-					</tr>
-					<tr>
-						<td colspan="4" valign="top" style=""> -->
-							
-							<div style="text-align: center;">
-								<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
-									用户名：<input name="userName" /> 
-									状态：
-									<select name="status">
-										<option value="">--请选择--</option>
-										<option value="启用">启用</option>
-										<option value="禁用">禁用</option>
-									</select>
-									&nbsp;
-									<input value="查询" type="submit" class="button_highlight"/>
-								</form>
-							</div>
-							<div>
-								<div class="toolGroup">
-									<input type="button" value="新增" onclick="openAddUser();" class="button"/>
-									<input type="button" value="修改" onclick="openUpdateUser()" class="button"/>
-									<input  type="button" value="删除" onclick="deleteUsers()" class="button"/>
-									<input type="button" value="分配角色" onclick="openUserRole();" class="button"/>
-									<input type="button" value="启用" onclick="changeUserStatus('启用');" class="button"/>
-									<input type="button" value="禁用" onclick="changeUserStatus('禁用');" class="button"/>
-								</div>
-								<div class="fTableContent">
-									<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
-										<tr>
-											<th></th>
-											<th>
-												<input type="checkbox"/>
-											</th>
-											<th width="20%">
-												用户名
-											</th>
-											<th width="20%">
-												密码
-											</th>
-											<th width="20%">
-												注册日期
-											</th>
-											<th width="10%">
-												状态
-											</th>
-											<th>
-												备注
-											</th>
-					
-										</tr>
-									</table>
-								</div>
-								<div id="fPage"></div>
-							</div>
-							
-							<div class="fTableContent">
-									<table id="fTable2" class="fTable" cellpadding="0" cellspacing="0">
-										<tr>
-											<th></th>
-											<th>
-												<input type="checkbox"/>
-											</th>
-											<th width="20%">
-												用户名
-											</th>
-											<th width="20%">
-												密码
-											</th>
-											<th width="20%">
-												注册日期
-											</th>
-											<th width="10%">
-												状态
-											</th>
-											<th>
-												备注
-											</th>
-					
-										</tr>
-									</table>
-								</div>
-								<div id="fPage2"></div>
-						<!-- 	
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td background="images/mail_rightbg.gif">&nbsp;</td>
-		</tr>
-		<tr>
-			<td valign="bottom" background="images/mail_leftbg.gif"><img
-				src="images/buttom_left2.gif" width="17" height="17" /></td>
-			<td background="images/buttom_bgs.gif"><img
-				src="images/buttom_bgs.gif" width="17" height="17"></td>
-			<td valign="bottom" background="images/mail_rightbg.gif"><img
-				src="images/buttom_right2.gif" width="16" height="17" /></td>
-		</tr>
-	</table> -->
+		
+		<!-- 导航条 -->
+		<div class="box-positon">
+			<div class="rpos">当前位置: 系统管理 &gt; 用户管理 &gt; 列表</div>
+			<div class="clear"></div>
+		</div>
+	
+	<div class="form">
+		<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
+			用户名：<input name="userName" class="input-text"/> 
+			状态：
+			<select name="status">
+				<option value="">--请选择--</option>
+				<option value="启用">启用</option>
+				<option value="禁用">禁用</option>
+			</select>
+			&nbsp;
+			<input value="查询" type="submit" class="button_highlight"/>
+		</form>
+	</div>
+	<div>
+		<div class="toolGroup">
+			<input type="button" value="新增" onclick="openAddUser();" class="button"/>
+			<input type="button" value="修改" onclick="openUpdateUser()" class="button"/>
+			<input  type="button" value="删除" onclick="deleteUsers()" class="button"/>
+			<input type="button" value="分配角色" onclick="openUserRole();" class="button"/>
+			<input type="button" value="启用" onclick="changeUserStatus('启用');" class="button"/>
+			<input type="button" value="禁用" onclick="changeUserStatus('禁用');" class="button"/>
+		</div>
+		<div class="fTableContent">
+			<table id="fTable">
+				<tr>
+					<th></th>
+					<th>
+						<input type="checkbox"/>
+					</th>
+					<th width="20%">
+						用户名
+					</th>
+					<th width="20%">
+						密码
+					</th>
+					<th width="20%">
+						注册日期
+					</th>
+					<th width="10%">
+						状态
+					</th>
+					<th>
+						备注
+					</th>
+
+				</tr>
+			</table>
+		</div>
+		<div id="fPage"></div>
+	</div>
+	
+	<div class="fTableContent">
+			<table id="fTable2">
+				<tr>
+					<th></th>
+					<th>
+						<input type="checkbox"/>
+					</th>
+					<th width="20%">
+						用户名
+					</th>
+					<th width="20%">
+						密码
+					</th>
+					<th width="20%">
+						注册日期
+					</th>
+					<th width="10%">
+						状态
+					</th>
+					<th>
+						备注
+					</th>
+
+				</tr>
+			</table>
+		</div>
+		<div id="fPage2"></div>
 	</div>
 </body>
 </html>

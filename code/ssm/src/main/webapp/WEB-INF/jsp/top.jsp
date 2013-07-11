@@ -152,6 +152,7 @@
 			285B85
 			2A689D
 			1C3C78
+			024BA0
 		绿色：
 			74C862
 		红色：
@@ -160,12 +161,12 @@
 		黄色：
 			ECAD81
 	-->
-	<!-- 顶级菜单条 -->
+	<!-- 系统顶部菜单条 -->
 	<!-- <div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;"> -->
-	<div style="width:100%;height:36px;background-color:#1C3C78; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
+	<div style="width:100%;height:36px;background-color:#024BA0; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
 		<marquee scrollamount="2" onmouseover="this.stop();"
-				onmouseout="this.start();">
-			<pre><b style="color:red">公告</b>: 系统升级啦!         -2013年07月05日</pre>
+				onmouseout="this.start();" style="color:#E3C387">
+			<pre><b style="color:red">系统公告</b>: ${sys_params.SYS_MSG}</pre>
 		</marquee>
 	</div> 
 	

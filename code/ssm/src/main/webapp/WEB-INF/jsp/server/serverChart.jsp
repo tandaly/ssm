@@ -105,7 +105,7 @@
 	}
 		</script>
 </head>
-<body>
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+<body style="height:90%;">
+	<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 </body>
 </html>

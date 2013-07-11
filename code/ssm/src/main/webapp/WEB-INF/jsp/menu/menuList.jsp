@@ -117,13 +117,13 @@
 		
 	</script>
 </head>
-<body>
-
-		<div style="text-align: center;">
+<body style="height:90%;">
+	<div>
+		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" id="parentNo" name="parentNo" value="${parentNo}"/>
 				<input type="hidden" id="menuNo" name="menuNo" value="${menuNo}"/>
-				菜单名称：<input id="menuName" name="menuName" /> 
+				菜单名称：<input id="menuName" name="menuName" class="form-text"/> 
 				&nbsp;
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
@@ -161,5 +161,6 @@
 			</div>
 			<div id="fPage"></div>
 		</div>
+	</div>
 </body>
 </html>

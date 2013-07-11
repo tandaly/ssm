@@ -38,8 +38,13 @@ public class IndexController
 	private MenuService menuService;
 	
 	@RequestMapping("login") 
-	public void login()
+	public String login(Model model)
 	{
+		//系统标题
+		model.addAttribute("sysTitle", 
+			ParamsConstants.SYSTEM_PARAMS.get(ParamsConstants.SYS_TITLE));
+		
+		return "login";
 	}
 	
 	@RequestMapping("image")
@@ -114,7 +119,7 @@ public class IndexController
 		} catch (ServiceException e)
 		{//登录失败
 			redirectAttrs.addFlashAttribute("msg", e.getMessage());
-			viewName = "redirect:login.do";
+			viewName = "redirect:/login.do";
 		}
 		
 		return viewName;
@@ -136,10 +141,11 @@ public class IndexController
 	 * 退出登录
 	 * @param session
 	 */
-	@RequestMapping(value="logout")
+	@RequestMapping(value="logout", method = RequestMethod.GET)
 	public String logout(HttpSession session)
 	{
 		session.invalidate();
-		return "login";
+		
+		return "forward:/login.do";
 	}
 }

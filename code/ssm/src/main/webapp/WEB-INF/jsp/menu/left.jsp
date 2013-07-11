@@ -81,7 +81,7 @@
 		</script>
 		
 </head>
-<body>
+<body style="height:90%;">
 	
 	<div style="float:left; overflow-y: auto; overflow-x: auto;">
 		<ul id="menusTree" class="ztree"></ul>

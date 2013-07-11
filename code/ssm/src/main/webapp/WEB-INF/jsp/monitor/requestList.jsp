@@ -86,48 +86,55 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: center;">
-		<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
-			<input type="hidden" name="pageSize" value="15"/>
-			用户名：<input name="userName" /> 
-			&nbsp;
-			<input value="查询" type="submit" class="button_highlight"/>
-		</form>
-	</div>
-	<div>
-		<div class="toolGroup">
-			<input  type="button" value="删除" onclick="deleteRows()"/>
-			<input  type="button" value="清空" onclick="clearEvent()"/>
+	<div class="mainContent">
+		<!-- 导航条 -->
+		<div class="box-positon">
+			<div class="rpos">当前位置: 运行监控 &gt; 事件日志 &gt; 列表</div>
+			<div class="clear"></div>
 		</div>
-		<div class="fTableContent">
-			<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
-				<tr>
-					<th></th>
-					<th>
-						<input type="checkbox"/>
-					</th>
-					<th width="120px">
-						激活时间
-					</th>
-					<th>
-						用户名
-					</th>
-					<th>
-						耗时(毫秒)
-					</th>
-					<th>
-						描述
-					</th>
-					<th>
-						请求路径
-					</th>
-					<th>
-						请求方法
-					</th>
-				</tr>
-			</table>
+		<div class="form">
+			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
+				<input type="hidden" name="pageSize" value="15"/>
+				用户名：<input name="userName" class="form-text"/> 
+				&nbsp;
+				<input value="查询" type="submit" class="button_highlight"/>
+			</form>
 		</div>
-		<div id="fPage"></div>
+		<div>
+			<div class="toolGroup">
+				<input  type="button" value="删除" onclick="deleteRows()"/>
+				<input  type="button" value="清空" onclick="clearEvent()"/>
+			</div>
+			<div class="fTableContent">
+				<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+					<tr>
+						<th></th>
+						<th>
+							<input type="checkbox"/>
+						</th>
+						<th width="120px">
+							激活时间
+						</th>
+						<th>
+							用户名
+						</th>
+						<th>
+							耗时(毫秒)
+						</th>
+						<th>
+							描述
+						</th>
+						<th>
+							请求路径
+						</th>
+						<th>
+							请求方法
+						</th>
+					</tr>
+				</table>
+			</div>
+			<div id="fPage"></div>
+		</div>
 	</div>
 
 </body>

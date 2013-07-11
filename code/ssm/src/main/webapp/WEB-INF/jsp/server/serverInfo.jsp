@@ -25,13 +25,14 @@
 		//buildTable('datatable',list,['name', 'value'],false,null,null,true);
 		
 		fTable = new FTable({
+			skin: 'skin2',
+			trHeight: '40px',
+			isPage: false,
 			isCheckbox: false,
 			isBuild: false,
 			fields: ['name', 'value']
 		});
-		
 		fTable.build(list);
-		
 	});
 	
 	function formatStr(str, limit)
@@ -53,7 +54,7 @@
 	}
 </script>
 </head>
-<body>
+<body style="height:90%;">
 	<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
 		<tr>
 			<th></th>

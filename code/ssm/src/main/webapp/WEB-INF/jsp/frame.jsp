@@ -15,7 +15,7 @@
 			target="main" />
 		<frame src="changeScreen.do" name="changeFrame" noresize="noresize"
 			marginwidth="0" marginheight="0" frameborder="0" scrolling="no" />
-		<frame src="main.do" name="main" marginwidth="0" marginheight="0"
+		<frame src="main.do" name="main" marginwidth="0" marginheight="0" style="border: 1px #B9D4E9 solid;"
 			frameborder="0" scrolling="auto" target="_self" />
 	</frameset>
 </frameset>

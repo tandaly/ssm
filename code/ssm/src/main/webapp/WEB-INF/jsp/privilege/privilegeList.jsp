@@ -136,38 +136,44 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: center;">
-		<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm()">
-			权限名：<input name="privilegeName" /> 
-			&nbsp;
-			<input value="查询" type="submit" class="button_highlight"/>
-		</form>
-	</div>
-	<div>
-		<div class="toolGroup">
-			<input type="button" value="新增" onclick="openAddPrivilege();"/>
-			<input type="button" value="修改" onclick="openUpdatePrivilege()"/>
-			<input  type="button" value="删除" onclick="deletePrivileges()"/>
-			<input type="button" value="分配菜单" onclick="openMenuTree();"/>
+	<div class="mainContent">
+		<!-- 导航条 -->
+		<div class="box-positon">
+			<div class="rpos">当前位置: 权限中心 &gt; 权限管理 &gt; 列表</div>
+			<div class="clear"></div>
 		</div>
-		<div class="fTableContent">
-			<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
-				<tr>
-					<th></th>
-					<th>
-						<input type="checkbox"/>
-					</th>
-					<th width="200px">
-						权限名称
-					</th>
-					<th>
-						描述
-					</th>
-				</tr>
-			</table>
+		<div class="form">
+			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm()">
+				权限名：<input name="privilegeName" class="form-text"/> 
+				&nbsp;
+				<input value="查询" type="submit" class="button_highlight"/>
+			</form>
 		</div>
-		<div id="fPage"></div>
+		<div>
+			<div class="toolGroup">
+				<input type="button" value="新增" onclick="openAddPrivilege();"/>
+				<input type="button" value="修改" onclick="openUpdatePrivilege()"/>
+				<input  type="button" value="删除" onclick="deletePrivileges()"/>
+				<input type="button" value="分配菜单" onclick="openMenuTree();"/>
+			</div>
+			<div class="fTableContent">
+				<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">
+					<tr>
+						<th></th>
+						<th>
+							<input type="checkbox"/>
+						</th>
+						<th width="200px">
+							权限名称
+						</th>
+						<th>
+							描述
+						</th>
+					</tr>
+				</table>
+			</div>
+			<div id="fPage"></div>
+		</div>
 	</div>
-
 </body>
 </html>
