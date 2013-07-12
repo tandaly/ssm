@@ -152,7 +152,7 @@
 									<span class="login_txt">&nbsp;</span>
 								</td>
 								<td> 
-									<font color="red" style="font-size:12px;line-height:40px;">${msg}&nbsp;</font>
+									<font color="red" style="font-size:12px;line-height:40px;">${msg} &nbsp;</font>
 								</td>
 							</tr>
 							<tr>

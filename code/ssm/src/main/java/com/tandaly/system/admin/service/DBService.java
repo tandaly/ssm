@@ -12,6 +12,8 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.tandaly.core.db.DBManagerUtil;
+import com.tandaly.core.page.Pagination;
+import com.tandaly.core.util.StringUtil;
 
 /**
  * 数据库业务操作
@@ -31,31 +33,70 @@ public class DBService
 	 * 查询所有的表
 	 * @return
 	 */
-	public List<Map<String, Object>> queryDBTables()
+	public void queryDBTables(Pagination pagination)
 	{
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Map<String, Object> paramMap = pagination.getParamMap();
 		
 		Connection conn = DBManagerUtil.fetchJDBCConnection();
 		try
 		{
-			String sql = "SELECT t.* FROM tables t";
-			
 			Statement st = conn.createStatement();
+			
+			String sql = "SELECT COUNT(1) FROM tables t WHERE 1 = 1";
+			if(StringUtil.isNotEmpty(paramMap.get("tableSchema")))
+				sql += " AND t.table_schema = '"+paramMap.get("tableSchema")+"'";
+			
 			ResultSet rs = st.executeQuery(sql);
 			
-			while (rs.next()) { 
-				Map<String, Object> map = new HashMap<String, Object>();
+			rs.next();
+			Integer count = rs.getInt(1);
+			if(count > 0)
+			{
+				rs = null;
+				sql = "SELECT t.* FROM tables t WHERE 1 =1 ";
 				
-				map.put("id", rs.getObject("TABLE_NAME"));//id
-				map.put("dbName", rs.getObject("TABLE_SCHEMA"));//库名
-				map.put("tableUserName", rs.getObject("TABLE_NAME"));//表所属用户名
-				map.put("tableName", rs.getObject("TABLE_NAME"));//表名
-				map.put("tableType", rs.getObject("TABLE_TYPE") );//类型（table）
-				map.put("remark",rs.getObject("TABLE_NAME"));
+				if(StringUtil.isNotEmpty(paramMap.get("tableSchema")))
+					sql += " AND t.table_schema = '"+paramMap.get("tableSchema")+"' ";
 				
-				list.add(map);
-			} 
+				sql += " ORDER BY t.table_name LIMIT " + pagination.getParamMap().get("startRow") + ", " + pagination.getParamMap().get("pageSize");
+				
+				rs = st.executeQuery(sql);
+				
+				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				while (rs.next()) { 
+					Map<String, Object> map = new HashMap<String, Object>();
+					
+					map.put("id", rs.getObject("table_name"));//id
+					map.put("tableSchema", rs.getObject("table_schema"));//库名
+					map.put("tableName", rs.getObject("table_name"));//表名
+					map.put("tableRows",rs.getObject("table_rows"));//记录数
+					
+					if(Integer.valueOf(rs.getInt("data_length")/1024) < 10)
+					{
+						map.put("dataLength", Integer.valueOf(rs.getInt("data_length")) + "B");//大小
+					}else if(Integer.valueOf(rs.getInt("data_length")/1024/1024) < 10)
+					{
+						map.put("dataLength", Integer.valueOf(rs.getInt("data_length")/1024) + "KB");//大小
+					} else
+					{
+						map.put("dataLength", Integer.valueOf(rs.getInt("data_length")/1024/1024) + "M");//大小
+					}
+					
+					map.put("tableType", rs.getObject("table_type") );//类型（table）
+					
+					map.put("autoIncrement",rs.getObject("auto_increment"));//自动增长值
+					map.put("createTime",rs.getObject("create_time"));//创建时间
+					map.put("tableComment",rs.getObject("table_comment"));//表备注
+					
+					list.add(map);
+				} 
+				
+				pagination.setList(list);
+			}
+			pagination.setTotalCount(count);
 			
+			rs.close();
+			st.close();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -69,8 +110,6 @@ public class DBService
 				e.printStackTrace();
 			}  
 		}
-		
-		return list;
 	}
 	
 	/**
@@ -102,6 +141,8 @@ public class DBService
 			} 
 			
 			
+			rs.close();
+			st.close();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();

@@ -15,12 +15,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public class DBManagerUtil
 {
-
-	/**
-	 * 获取jdbc连接
-	 * @return
-	 */
-	public static Connection fetchJDBCConnection()
+	private static SqlSessionFactory sqlSessionFactory = init();
+	
+	public static SqlSessionFactory init() 
 	{
 		String resource = "mybatis-config-db.xml";
 		InputStream inputStream = null;
@@ -31,8 +28,19 @@ public class DBManagerUtil
 		{
 			e.printStackTrace();
 		}
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		
+		return new SqlSessionFactoryBuilder().build(inputStream);
+	}
+	
+	/**
+	 * 获取jdbc连接
+	 * @return
+	 */
+	public static Connection fetchJDBCConnection()
+	{
+		if(null == sqlSessionFactory)
+		{
+			sqlSessionFactory = init();
+		}
 		//SqlSessionFactory sqlSessionFactory = SpringFactory.getBean("sqlSessionFactory2");
 		SqlSession session = sqlSessionFactory.openSession();
 		Connection conn = session.getConnection();

@@ -118,7 +118,7 @@ public class IndexController
 			
 			session.setAttribute(SystemConstants.LOGIN_USER_SESSION, user);
 			session.setAttribute(SystemConstants.SYS_PARAMS, ParamsConstants.SYSTEM_PARAMS);
-			viewName = "redirect:index.do";
+			viewName = "redirect:/index.do";
 			
 		} catch (ServiceException e)
 		{//登录失败

@@ -110,6 +110,8 @@
 			
 			//开始请求
 			function onRequest(){
+				$("#_maskLayer").show();
+				$("#_maskLayerTip").show();
 				//debug(opts.id);
 				//debug("ajax请求参数列表:");
 				//debug(getParam());

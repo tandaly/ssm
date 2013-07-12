@@ -466,6 +466,9 @@ FTable.prototype = {
 				$("#" + tableId).children().first().append(tr);
 			}
 			
+			$("#_maskLayer").hide();
+			$("#_maskLayerTip").hide();
+			
 		},
 		
 		/**
