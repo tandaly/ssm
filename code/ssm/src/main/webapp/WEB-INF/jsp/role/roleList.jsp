@@ -133,10 +133,12 @@
 			<div class="clear"></div>
 		</div>
 		
-		<div style="text-align: center;">
+		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
-				角色名：<input name="roleName" /> 
-				&nbsp;
+				<span class="input-line">
+					<span class="input-label">角色名</span>
+					<input name="roleName" class="input-text" /> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

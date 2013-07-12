@@ -24,13 +24,13 @@
 			{
 				for(var i = 0; i < list.length; i++)
 				{
-					list[i].description = "<font color=red>" + formatStr(list[i].description, 50) +"</font>";
+					list[i].description = "<font color=red>" + cutFormatStr(list[i].description, 50) +"</font>";
 					list[i].options = '<a href="javascript:openDetailExceptions('+list[i].id+')">详情</a>';
 				}
 			}
 			fTable.build(list);
 		}
-		
+		/* 
 		function formatStr(str, limit)
 		{
 			var result = "";
@@ -43,13 +43,13 @@
 				result = str;
 			}
 			return result;
-		}
+		} */
 		
 		//打开详情页面
 		function openDetailExceptions(id)
 		{	
 			top.art.dialog.open('monitor/detailExceptions.do?id=' + id,
-				    {id: 'detailDialog', title: '查看异常', width:700, height:400, lock: true,
+				    {id: 'detailDialog', title: '查看异常', width:'100%', height:'100%', lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -147,8 +147,10 @@
 		</div>
 		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
-				类名：<input name="userName" class="form-text"/> 
-				&nbsp;
+				<span class="input-line">
+					<span class="input-label">类名</span>
+					<input name="className" class="input-text"/> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

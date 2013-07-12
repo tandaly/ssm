@@ -59,6 +59,24 @@
 	                    		class="inputxt"/></td>
 	                    <td><div class="Validform_checktip">为空时，系统取菜单编号</div></td>
 	            	</tr>
+	            	 <tr>
+	                	<td class="need">*</td>
+	                	<td style="width:205px;">状&nbsp;&nbsp;态：</td>
+	                	<td>
+	                		<select name="status" datatype="*" nullmsg="请选择状态！" class="Validform_error">
+	                			<option value="">--请选择--</option>
+	                			<c:if test="${menu.status == '启用' }">
+		                			<option value="启用" selected>启用</option>
+		                			<option value="禁用">禁用</option>
+	                			</c:if>
+	                			<c:if test="${menu.status == '禁用'}">
+		                			<option value="启用">启用</option>
+		                			<option value="禁用" selected>禁用</option>
+	                			</c:if>
+	                		</select>
+	                	</td>
+	                	<td><div class="Validform_checktip"></div></td>
+	                </tr>
 	                <tr>
 	                    <td class="need"></td>
 	                    <td></td>

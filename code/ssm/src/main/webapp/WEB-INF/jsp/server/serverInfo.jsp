@@ -37,6 +37,7 @@
 	
 	function formatStr(str, limit)
 	{
+		return str;
 		var result = "";
 		if(limit < str.length)
 		{

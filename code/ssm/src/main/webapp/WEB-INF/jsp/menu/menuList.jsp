@@ -11,10 +11,31 @@
 	
 		$(function(){
 			fTable = new FTable({
-				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo'],
-				url: 'menu/ajaxMenuList.do'
+				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo', 'status'],
+				url: 'menu/ajaxMenuList.do',
+				callback: callback
 			});
 		});
+		
+		function callback(data)
+		{
+			var list = data.list;
+			
+			if(list)
+			{
+				for(var i = 0; i < list.length; i++)
+				{
+					if(list[i].status == '启用')
+					{
+						list[i].status = '<font color=green>' + list[i].status + '</font>';
+					}else
+					{
+						list[i].status = '<font color=red>' + list[i].status + '</font>';
+					}
+				}
+			}
+			fTable.build(list);
+		}
 		
 		function deleteMenus()
 		{
@@ -123,8 +144,18 @@
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" id="parentNo" name="parentNo" value="${parentNo}"/>
 				<input type="hidden" id="menuNo" name="menuNo" value="${menuNo}"/>
-				菜单名称：<input id="menuName" name="menuName" class="form-text"/> 
-				&nbsp;
+				<span class="input-line">	
+					<span class="input-label">菜单名称</span>
+					<input id="menuName" name="menuName" class="input-text"/> 
+				</span>
+				<span class="input-line">
+					<span class="input-label">状态</span>
+					<select name="status" class="select">
+						<option value="">全部</option>
+						<option value="启用">启用</option>
+						<option value="禁用">禁用</option>
+					</select>
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>
@@ -141,10 +172,10 @@
 						<th>
 							<input type="checkbox" />
 						</th>
-						<th width="150px">
+						<th width="100px">
 							菜单编号
 						</th>
-						<th width="150px">
+						<th width="100px">
 							父菜单编号
 						</th>
 						<th width="20%">
@@ -155,6 +186,9 @@
 						</th>
 						<th>
 							排序编号
+						</th>
+						<th>
+							状态
 						</th>
 					</tr>
 				</table>

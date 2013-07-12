@@ -107,4 +107,30 @@
     <!--自定义 实现BeanFactoryAware接口，把该接口配置到spring中，然后把getbean方法写成静态的，就可以动态获取-->
 	<bean class="com.tandaly.core.spring.SpringFactory"/>
 	
+	
+	
+	<!--***********数据库管理配置start**************** -->
+	
+	<!-- 数据库管理数据源 
+  	<bean id="dbDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+     	<property name="driverClassName">
+	   		<value>com.mysql.jdbc.Driver</value>
+	  	</property>
+	  	<property name="url">
+	   		<value>jdbc:MYSQL://127.0.0.1:3307/information_schema?characterEncoding=utf8</value>
+	  	</property>
+	  	<property name="username">
+	   		<value>root</value>
+	  	</property>
+	  	<property name="password">
+	   		<value>root</value>
+	  	</property>
+    </bean>
+    -->
+    <!-- 定义 SqlSessionFactory 
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dbDataSource" />
+    </bean>-->
+	<!--***********数据库管理配置end**************** -->
+	
 </beans>

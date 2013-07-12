@@ -249,7 +249,20 @@ FTable.prototype = {
 //				return $("<td>").css("text-align", "center").html(getBytesCount(value)>20?value.substring(0,10)+"...":value).attr("title", value);
 //			}else
 //			{
-				return $("<td>").css("text-align", "left").html(value);
+			
+				//value = "<div class='dealTxt'>"+value+"</div>";
+			
+				//value = "<div class='zan-text-1'><p>"+value+"</p></div>";
+				//value = '<div style="overflow:hidden;text-overflow:ellipsis;">'+value+'<div>';
+				var td = $("<td>").css("text-align", "left").html(value);
+				td.attr("title", td.text());
+				
+				if(!/<[^>]*>/.test(td.html()))
+				{
+					td.html(cutFormatStr(td.html(), 50));
+				}
+				
+				return td;
 //			}
 		},
 		
@@ -452,6 +465,7 @@ FTable.prototype = {
 				tr.append("<td colspan="+(fields.length+2)+" style='text-align:center;'><font color=red>没有数据！！！</font></td>");
 				$("#" + tableId).children().first().append(tr);
 			}
+			
 		},
 		
 		/**
@@ -518,4 +532,26 @@ function getBytesCount(str)
 		} 
 	} 
 	return bytesCount; 
+}
+
+//截取中英字符串并用...代替
+function cutFormatStr(str,cutLen){
+    var returnStr = '',    //返回的字符串
+    reCN = /[^\x00-\xff]/,    //中文字符
+    strCNLen = str.replace(/[^\x00-\xff]/g,'**').length;//一个中文字符算2个字节
+
+    if(cutLen>=strCNLen){
+        return str;
+    }
+
+    for(var i=0,len=0;len<cutLen;i++){
+        returnStr += str.charAt(i);
+        if(reCN.test(str.charAt(i))){
+            len+=2;
+        }else{
+            len++;
+        }
+    }
+
+    return returnStr + "...";
 }

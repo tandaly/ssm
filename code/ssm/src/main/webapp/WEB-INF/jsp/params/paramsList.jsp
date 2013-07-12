@@ -144,8 +144,10 @@
 		</div>
 		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
-				名称：<input name="name" class="form-text"/> 
-				&nbsp;
+				<span class="input-line">
+					<span class="input-label">名称</span>
+					<input name="name" class="input-text"/> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

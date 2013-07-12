@@ -16,6 +16,7 @@ public class Menu implements Serializable
 	private String menuName;//菜单名称
 	private String menuUrl;//菜单地址
 	private String orderNo;//排序号
+	private String status;//状态 启用/禁用
 	
 	/************以下属性是树形菜单使用*************/
 	/**
@@ -102,6 +103,14 @@ public class Menu implements Serializable
 	public void setChecked(boolean checked)
 	{
 		this.checked = checked;
+	}
+	public String getStatus()
+	{
+		return status;
+	}
+	public void setStatus(String status)
+	{
+		this.status = status;
 	}
 	
 	

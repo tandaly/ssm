@@ -588,6 +588,14 @@ div.yahoo2 a.prev:hover {
 	padding-bottom: 10px;
 }
 
+.dealTdTxt {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+}
+
 /*表格默认皮肤*/
 .fTable_skin1 {
 	width:100%;

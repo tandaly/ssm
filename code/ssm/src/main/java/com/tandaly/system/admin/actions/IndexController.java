@@ -8,13 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tandaly.core.exception.ServiceException;
+import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.beans.User;
 import com.tandaly.system.admin.service.MenuService;
@@ -76,13 +76,17 @@ public class IndexController
 	}
 	
 	@RequestMapping("left")
-	public Object left(HttpServletResponse response, ModelMap model, HttpSession session)
+	public void left()
+	{
+	}
+	
+	@RequestMapping("ajaxLeftMenus")
+	public void ajaxLeftMenus(HttpServletResponse response, HttpSession session)
 	{
 		User user = (User)session.getAttribute(SystemConstants.LOGIN_USER_SESSION);
 		List<Menu> menus = this.menuService.queryMenusByUserId(user.getId());
-		model.addAttribute("menus", menus);
 		
-		return model;
+		WebUtil.writerJson(response, menus);
 	}
 	
 	@RequestMapping("main")

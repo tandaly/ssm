@@ -144,8 +144,10 @@
 		</div>
 		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm()">
-				权限名：<input name="privilegeName" class="form-text"/> 
-				&nbsp;
+				<span class="input-line">
+					<span class="input-label">权限名</span>
+					<input name="privilegeName" class="input-text"/> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

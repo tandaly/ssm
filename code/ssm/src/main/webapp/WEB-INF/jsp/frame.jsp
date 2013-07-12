@@ -11,7 +11,7 @@
 		scrolling="no" marginwidth="0" marginheight="0" target="main" />
 	<frameset cols="190,10,*" id="contentFrameset" framespacing="0">
 		<frame src="left.do" name="leftFrame" noresize="noresize" style="border: 1px #B9D4E9 solid;"
-			marginwidth="0" marginheight="0" frameborder="0" scrolling="yes"
+			marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
 			target="main" />
 		<frame src="changeScreen.do" name="changeFrame" noresize="noresize"
 			marginwidth="0" marginheight="0" frameborder="0" scrolling="no" />

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
 import com.tandaly.core.service.BaseService;
+import com.tandaly.core.util.StringUtil;
 import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.dao.MenuDao;
 import com.tandaly.system.admin.dao.PrivilegeDao;
@@ -40,6 +41,20 @@ public class MenuService extends BaseService
 			throw new ServiceException("该菜单名已存在");
 		}
 		
+		//判断修改的菜单父级菜单是否为禁用，如果为禁用是不能启用该菜单的
+		if("启用".equals(menu.getStatus().trim()))
+		{
+			Menu qmenu = new Menu();
+			qmenu.setMenuNo(menu.getParentNo());
+			qmenu.setStatus("禁用");
+			
+			List<Menu> menus = this.menuDao.queryMenusByMenu(qmenu);
+			if(StringUtil.isNotEmpty(menus))
+			{
+				throw new ServiceException("父级菜单处于禁用状态,不能启用该菜单");
+			}
+		}
+		
 		this.menuDao.insertMenu(menu);
 		if(null == menu.getId())
 		{
@@ -58,13 +73,13 @@ public class MenuService extends BaseService
 	{
 		//级联删除菜单及其关联权限
 		/*****处理递归查询start*****/
-		StringBuffer dIds = new StringBuffer();
 		if(ids.endsWith(","))
 		{
 			ids.substring(0, ids.length() - 1);
 		}
 		
 		String[] idArr = ids.split(",");
+		StringBuffer dIds = new StringBuffer();
 		for(String id:idArr)
 		{
 			dmenu(Integer.valueOf(id), dIds);
@@ -117,6 +132,42 @@ public class MenuService extends BaseService
 		{
 			throw new ServiceException("传入的参数错误");
 		}
+		
+		//判断修改的菜单父级菜单是否为禁用，如果为禁用是不能启用该菜单的
+		if("启用".equals(menu.getStatus().trim()))
+		{
+			Menu qmenu = new Menu();
+			qmenu.setMenuNo(menu.getParentNo());
+			qmenu.setStatus("禁用");
+			
+			List<Menu> menus = this.menuDao.queryMenusByMenu(qmenu);
+			if(StringUtil.isNotEmpty(menus))
+			{
+				throw new ServiceException("父级菜单处于禁用状态,不能启用该菜单");
+			}
+		}
+		
+		//如果修改的菜单为禁用，则需要将该菜单下的所有菜单都设置为禁用
+		if("禁用".equals(menu.getStatus().trim()))
+		{
+			StringBuffer dIds = new StringBuffer();
+			dmenu(menu.getId(), dIds);
+			if(!"".equals(dIds.toString().trim()))
+			{
+				String[] idArr = dIds.toString().split(",");
+				for(String id: idArr)
+				{
+					Integer uid = Integer.valueOf(id);
+					
+					Menu m = new Menu();
+					m.setId(uid);
+					m.setStatus("禁用");
+					
+					this.menuDao.updateMenu(m);
+				}
+			}
+		}
+		
 		Integer result = this.menuDao.updateMenu(menu);
 		if(null == result || 1 > result)
 		{
@@ -159,7 +210,9 @@ public class MenuService extends BaseService
 	 */
 	public List<Menu> queryMenuTree(Integer privilegeId)
 	{
-		List<Menu> menus = this.menuDao.queryMenusByMenu(null);//查询所有的菜单
+		Menu pmenu = new Menu();
+		pmenu.setStatus("启用");
+		List<Menu> menus = this.menuDao.queryMenusByMenu(pmenu);//查询所有的菜单
 		
 		List<Menu> pMenus = this.menuDao.queryMenusByPrivilegeId(privilegeId);//根据角色查询菜单
 		

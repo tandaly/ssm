@@ -95,8 +95,10 @@
 		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" name="pageSize" value="15"/>
-				用户名：<input name="userName" class="form-text"/> 
-				&nbsp;
+				<span class="input-line">
+					<span class="input-label">用户名</span>
+					<input name="userName" class="input-text"/> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

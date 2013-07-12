@@ -16,6 +16,7 @@
 			<if test="menuName != null">menuName,</if>
 			<if test="menuUrl != null">menuUrl,</if>
 			orderNo,
+			<if test="status != null and status != ''">status,</if>
 		</trim>
 		VALUES
 		<trim prefix="(" suffixOverrides="," suffix=")">
@@ -26,6 +27,7 @@
 			<if test="menuUrl != null">#{menuUrl},</if>
 			<if test="orderNo == null or orderNo == ''">#{menuNo},</if>
 			<if test="orderNo != null and orderNo != ''">#{orderNo},</if>
+			<if test="status != null and status != ''">#{status},</if>
 		</trim>
 		
 	</insert>
@@ -49,6 +51,7 @@
 			<if test="menuUrl != null and menuUrl != ''">menuUrl = #{menuUrl},</if>
 			<if test="orderNo == null or orderNo == ''">orderNo = #{menuNo},</if>
 			<if test="orderNo != null and orderNo != ''">orderNo = #{orderNo},</if>
+			<if test="status != null and status != ''">status = #{status},</if>
 		</set>
 		WHERE id = #{id}
 	</update>
@@ -90,6 +93,9 @@
 				<if test="menu.parentNo != null and menu.parentNo != ''">
 					AND t.parentNo = #{menu.parentNo}
 				</if>
+				<if test="menu.status != null and menu.status != ''">
+					AND t.status = #{menu.status}
+				</if>
 			</trim>
 		</where>
 	</select>
@@ -111,6 +117,9 @@
 				<if test="menu.parentNo != null and menu.parentNo != ''">
 					AND t.parentNo = #{menu.parentNo}
 				</if>
+				<if test="menu.status != null and menu.status != ''">
+					AND t.status = #{menu.status}
+				</if>
 			</trim>
 		</where>
 		ORDER BY t.orderNo
@@ -120,7 +129,7 @@
 	<!--根据菜单查询菜单集合-->
 	<select id="queryMenusByMenu" parameterType="Menu" resultType="Menu">
 		SELECT
-			t.*
+			t.*, 'false' open
 		FROM
 			t_sys_menu t
 		<where>
@@ -134,6 +143,9 @@
 				<if test="parentNo != null and parentNo != ''">
 					AND t.parentNo = #{parentNo}
 				</if>
+				<if test="status != null and status != ''">
+					AND t.status = #{status}
+				</if>
 			</trim>
 		</where>
 		ORDER BY t.orderNo
@@ -142,7 +154,7 @@
 	<!--根据用户id查询权限菜单-->
 	<select id="queryMenusByUserId" parameterType="integer" resultType="Menu">
 		SELECT 
-			DISTINCT m.*
+			DISTINCT m.*, 'false' open
 		FROM 
 			t_sys_menu m, 
 			t_sys_role r, 
@@ -158,6 +170,7 @@
 		AND p.id = pm.privilegeId 
 		AND u.id = ur.userId
 		AND r.id = ur.roleId
+		AND m.status = '启用'
 		AND u.id = #{userId}
 		ORDER BY m.orderNo
 	</select>

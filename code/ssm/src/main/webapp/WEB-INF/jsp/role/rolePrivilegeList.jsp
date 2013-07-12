@@ -71,11 +71,13 @@
 	</script>
 </head>
 <body >
-		<div style="text-align: center;">
+		<div class="form">
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<input type="hidden" name="roleId" value="${role.id}"/>
-				权限名称：<input name="privilegeName" id="privilegeName"/> 
-				&nbsp;
+				<span class="input-line">	
+					<span class="input-label">权限名称</span>
+					<input name="privilegeName" id="privilegeName" class="input-text"/> 
+				</span>
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>
 		</div>

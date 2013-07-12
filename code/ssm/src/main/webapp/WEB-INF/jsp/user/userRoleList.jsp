@@ -72,11 +72,13 @@
 	</script>
 </head>
 <body >
-	<div style="text-align: center;">
+	<div class="form">
 		<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 			<input type="hidden" name="userId" value="${user.id}"/>
-			角色名称：<input name="roleName" id="roleName"/> 
-			&nbsp;
+			<span class="input-line">
+				<span class="input-label">角色名称</span>
+				<input name="roleName" id="roleName" class="input-text"/> 
+			</span>
 			<input value="查询" type="submit" class="button_highlight"/>
 		</form>
 	</div>

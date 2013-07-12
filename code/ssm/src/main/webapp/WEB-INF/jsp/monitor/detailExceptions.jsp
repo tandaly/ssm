@@ -40,7 +40,7 @@
 	            		<td style="width:70px;">描&nbsp;&nbsp;述：</td>
 	                    <td style="width:205px;">
 	                    	<!-- <div style="width:600px;height:300px; border: 1px solid #999; word-break: keep-all; overflow-y: scroll; margin-left: 1px;"> -->
-	                    	<textarea cols="80" rows="20" style="color: red" readonly="readonly">${exceptions.description}</textarea>
+	                    	<textarea cols="138" rows="40" style="color: red" readonly="readonly">${exceptions.description}</textarea>
 	                    <td></td>
 	            	</tr>
 	            </table>

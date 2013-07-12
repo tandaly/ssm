@@ -32,6 +32,28 @@ function getBytesCount(str)
 	return bytesCount; 
 }
 
+//截取中英字符串
+function cutStr(str,cutLen){
+    var returnStr = '',    //返回的字符串
+    reCN = /[^\x00-\xff]/,    //中文字符
+    strCNLen = str.replace(/[^\x00-\xff]/g,'**').length;//一个中文字符算2个字节
+
+    if(cutLen>=strCNLen){
+        return str;
+    }
+
+    for(var i=0,len=0;len<cutLen;i++){
+        returnStr += str.charAt(i);
+        if(reCN.test(str.charAt(i))){
+            len+=2;
+        }else{
+            len++;
+        }
+    }
+
+    return returnStr;
+}
+
 /**
  * 获取反色方法1
  * @param color #FFCC00
