@@ -35,9 +35,10 @@
 						selectTreeNode = treeNode;
 						//turnPage(treeNode.linkUrl);
 						//$("#rightFrame").contents().find("#parentNo");
-						var mNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#menuNo"));
-						var pNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#parentNo"));
-						var mName = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#menuName"));
+						var rightFrame = parent.contentFrame.rightFrame;
+						var mNo = $(rightFrame.$.find("#menuNo"));
+						var pNo = $(rightFrame.$.find("#parentNo"));
+						var mName = $(rightFrame.$.find("#menuName"));
 						mName.val("");
 						if(treeNode.isParent)
 						{//是父节点
@@ -48,7 +49,7 @@
 							pNo.val("");
 							mNo.val(treeNode.menuNo);
 						}
-						$(top.topFrame.main.menuFrame.menuListFrame.$.find("#queryForm")).submit();
+						$(rightFrame.$.find("#queryForm")).submit();
 						
 						//$("#rightFrame").attr("src", "menu/menuList.do?parentNo="+(treeNode.menuNo == null?"-1":treeNode.menuNo));
 						

@@ -116,7 +116,8 @@ FTable = function(config) {
 	this.trHeight = config.trHeight || "30px";
 	
 	//分页背景颜色
-	this.pageBG = config.pageBG || "#FFF";
+	this.pageBG = config.pageBG || "transparent";
+	this.pageAlign = config.pageAlign || "right";
 	
 	//目标对象拥有了所有源对象所拥有的特性，可理解为继承
   	// true 为深度拷贝，将子对象进行合并
@@ -142,7 +143,10 @@ FTable.prototype = {
 			if(this.isPage)
 			{//分页操作
 				
-				$(_obj.page).css("background-color", _obj.pageBG);//设置分页背景颜色
+				//设置分页背景颜色
+				$(_obj.page).css("background-color", _obj.pageBG)
+					.attr("align", _obj.pageAlign).css("padding-left", "5px")
+					.css("padding-right", "5px");
 				
 				this.myPagination = this._initFPage(this.form, this.page, 
 						this.url, this.callback, this.checkboxAll, this.pageSize);

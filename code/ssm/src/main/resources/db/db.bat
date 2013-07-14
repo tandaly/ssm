@@ -1,0 +1,1 @@
+mysqldump -h localhost -P3307 -uroot -proot ssm > E:/tools/eclipse/project/ssm/code/ssm/src/main/resources/db/ssm.sql

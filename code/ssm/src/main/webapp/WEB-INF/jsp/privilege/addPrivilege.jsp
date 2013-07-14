@@ -63,10 +63,9 @@
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.contentFrame.leftFrame.window.fTable.queryForm();
+							top.topFrame.main.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
-							openMenuTree(data.id);
-							top.art.dialog({id: 'addPrivilege'}).close();
+							confirmOption(data.id);
 							
 						}else
 						{
@@ -87,6 +86,17 @@
 	});
 	
 	//打开权限菜单树
+	function confirmOption(privilegeId)
+	{
+		top.art.dialog.confirm("现在要分配权限菜单吗", function(){
+			
+			openMenuTree(privilegeId);
+			top.art.dialog({id: 'addPrivilege'}).close();
+		}, function(){
+			top.art.dialog({id: 'addPrivilege'}).close();
+		});
+	}
+	
 	function openMenuTree(privilegeId)
 	{
 		top.art.dialog.open('privilege/menuTree.do?id=' + privilegeId,

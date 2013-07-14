@@ -30,7 +30,9 @@ public class Menu implements Serializable
 	/**
 	 * 显示图标
 	 */
-	private String icon;
+	private String icon = "images/tree/leaf.gif";
+	private String iconOpen = "images/tree/folder-open.gif";
+	private String iconClose = "images/tree/folder.gif";
 	
 	public Integer getId()
 	{
@@ -111,6 +113,18 @@ public class Menu implements Serializable
 	public void setStatus(String status)
 	{
 		this.status = status;
+	}
+	public String getIconOpen() {
+		return iconOpen;
+	}
+	public void setIconOpen(String iconOpen) {
+		this.iconOpen = iconOpen;
+	}
+	public String getIconClose() {
+		return iconClose;
+	}
+	public void setIconClose(String iconClose) {
+		this.iconClose = iconClose;
 	}
 	
 	

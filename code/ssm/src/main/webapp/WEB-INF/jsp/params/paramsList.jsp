@@ -88,7 +88,7 @@
 				return;
 			}
 				
-			top.art.dialog.open('params/updateParams.do?id=' + ids,
+			top.art.dialog.open('${base}params/updateParams.do?id=' + ids,
 				    {id: 'updateDialog', title: '修改参数', width:500, height:400, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;

@@ -66,7 +66,7 @@ public class DBService
 				while (rs.next()) { 
 					Map<String, Object> map = new HashMap<String, Object>();
 					
-					map.put("id", rs.getObject("table_name"));//id
+					map.put("id", rs.getObject("table_schema") + ";" + rs.getObject("table_name"));//id
 					map.put("tableSchema", rs.getObject("table_schema"));//库名
 					map.put("tableName", rs.getObject("table_name"));//表名
 					map.put("tableRows",rs.getObject("table_rows"));//记录数
@@ -125,7 +125,7 @@ public class DBService
 		{
 			Statement st = conn.createStatement();
 			
-			String sql = "SELECT t.* FROM columns t WHERE t.TABLE_NAME = '" + tableName + "'";
+			String sql = "SELECT t.* FROM columns t WHERE t.TABLE_NAME = '" + tableName.split(";")[1] + "' AND t.table_schema = '"+tableName.split(";")[0]+"'";
 			System.out.println("执行的sql=" + sql);
 			ResultSet rs = st.executeQuery(sql);
 			

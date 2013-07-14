@@ -5,7 +5,7 @@
 	<base  href="${base}"/>
 </head>
 <frameset cols="220,*">
-	<frame src="menu/left.do" name="leftMenuFrame" frameborder="0" scrolling="auto" style="border:1px #CCCCCC solid;padding:12px;" marginWidth=0 marginHeight=0 >
-	<frame src="menu/menuList.do" name="menuListFrame" frameborder="0" scrolling="auto" style="border:1px #CCCCCC solid;padding:12px;" marginWidth=0 marginHeight=0 >
+	<frame src="menu/left.do" name="leftFrame" frameborder="0" scrolling="auto" style="border:1px #CCCCCC solid;padding:12px;" marginWidth=0 marginHeight=0 >
+	<frame src="menu/menuList.do" name="rightFrame" frameborder="0" scrolling="auto" style="border:1px #CCCCCC solid;padding:12px;" marginWidth=0 marginHeight=0 >
 </frameset>
 </html>

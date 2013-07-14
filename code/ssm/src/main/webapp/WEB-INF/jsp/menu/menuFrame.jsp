@@ -13,7 +13,7 @@
 	
 	<!-- 主体 start -->
 	<div style="width: 100%;height:92%">
-		<iframe name="menuFrame" id="menuFrame" src="menu/frame.do"
+		<iframe name="contentFrame" id="contentFrame" src="menu/frame.do"
 			style="margin: 0px;" frameborder="0" width="100%" height="100%"></iframe>
 	</div> 
 	<!-- 主体 end -->

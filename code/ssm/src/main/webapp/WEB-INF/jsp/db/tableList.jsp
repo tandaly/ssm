@@ -26,7 +26,7 @@
 			{
 				for(var i = 0; i < list.length; i++)
 				{
-					list[i].tableName = '<a href="javascript:openTableColumnList(\''+list[i].tableName+'\');">'+list[i].tableName+'</a>'; 
+					list[i].tableName = '<a href="javascript:openTableColumnList(\''+list[i].id+'\');">'+list[i].tableName+'</a>'; 
 				}
 			}
 			fTable.build(list);
@@ -66,7 +66,7 @@
 			<form id="queryForm" name="queryForm" onsubmit="return fTable.queryForm();">
 				<span class="input-line">
 					<span class="input-label">库名</span>
-					<input type="text" name="tableSchema" class="input-text" value="share"/> 
+					<input type="text" name="tableSchema" class="input-text" value="ssm"/> 
 				</span>
 				
 				<input value="查询" type="submit" class="button_highlight"/>

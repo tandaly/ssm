@@ -76,7 +76,7 @@ public class RequestFilter implements Filter {
 			saveEvent(request, new BigDecimal(System.currentTimeMillis() - startTime));
 		}
 		
-		response.setHeader("P3P","CP=CAO PSA OUR");//解决iframe 下 session 失效解决办法记录(google)
+		//response.setHeader("P3P","CP=CAO PSA OUR");//解决iframe 下 session 失效解决办法记录(google)
 	}
 	
 	/**

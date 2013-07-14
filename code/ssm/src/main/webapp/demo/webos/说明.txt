@@ -1,0 +1,18 @@
+webos 1.0 
+静态html比较多 完全JQUERY模拟效果 
+@2012.2.24
+
+
+webos 1.1 
+JS采用面向对象编写
+仿webQQ基本功能
+支持拖拽 桌面切换 右键 1级栏布局切换 应用自适应布局
+@xiaofan
+@2012.3.9 
+
+webos 1.2
+新增全局模式 
+
+
+@只支持Firefox chrome Safari 不支持IE  代码借鉴1kb.js
+

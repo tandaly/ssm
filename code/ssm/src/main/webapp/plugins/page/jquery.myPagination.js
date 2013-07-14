@@ -80,7 +80,7 @@
                 msg = "输入值不能大于总页数";
               }
 			  if(msg){
-				  alert(msg);
+				  top.art.dialog.alert(msg);
 				  return false;
 			  }
               return true;
@@ -134,7 +134,7 @@
 					  timeout: 60000,
 					  // 超时时间
 					  error: function() {
-						alert("获取数据失败！");
+						top.art.dialog.alert("获取数据失败！");
 					  },
 					  success: function(data) {
 						responseHandle(data);

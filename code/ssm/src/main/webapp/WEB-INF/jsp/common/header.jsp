@@ -24,8 +24,8 @@ body {
 //
 分页背景
 	#pageDiv {
-	background-color: #EEF2FB;
-}
+	//background-color: #EEF2FB;
+	}
 
 
 

@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,7 @@ import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.metatype.ResponseMap;
 import com.tandaly.core.metatype.impl.HashResponseMap;
 import com.tandaly.core.page.Pagination;
+import com.tandaly.core.util.StringUtil;
 import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.service.MenuService;
@@ -28,6 +31,8 @@ import com.tandaly.system.admin.service.MenuService;
 public class MenuController
 {
 
+	Logger log = Logger.getLogger(getClass());
+	
 	@Autowired
 	MenuService menuService;
 	
@@ -63,9 +68,95 @@ public class MenuController
 	 * @return
 	 */
 	@RequestMapping("addMenu")
-	public Object addMenu(Menu menu)
+	public void addMenu(Model model, Menu menu)
 	{
-		return menu;
+		if(StringUtil.isNotEmpty(menu.getMenuNo()))
+		{
+			if("-1".equals(menu.getMenuNo()))
+			{
+				menu.setMenuName("根节点");
+			} else
+			{
+				menu = this.menuService.queryMenusByMenu(menu).get(0);
+			}
+		}
+		
+		model.addAttribute("newMenuNo", createNewMenuNo(menu.getMenuNo()));
+		
+		model.addAttribute("menu", menu);
+	}
+	
+	/**
+	 * 异步表单菜单名称验证(新增和修改)
+	 * @param response
+	 * @param param
+	 * @param name
+	 */
+	@RequestMapping("ajaxCreateNewMenuNo")
+	public void ajaxCreateNewMenuNo(HttpServletResponse response, 
+			String menuNo)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+
+		responseMap.put("newMenuNo", this.createNewMenuNo(menuNo));
+		
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+	/**
+	 * 根据父菜单编号生成新的菜单编号(公用)
+	 * @param menuNo
+	 * @return
+	 */
+	private String createNewMenuNo(String menuNo)
+	{
+		String newMenuNo = "";
+		//生成新的菜单编号
+		if(StringUtil.isNotEmpty(menuNo))
+		{
+			if(!"-1".equals(menuNo))
+			{
+				Integer iter = 1;
+				while(true)
+				{
+					StringBuffer suffix = new StringBuffer("" + iter);
+					while(suffix.length() < 3)
+					{
+						suffix.insert(0, "0");
+					}
+					
+					newMenuNo = menuNo + suffix;
+					try
+					{
+						this.menuService.checkMenuNo(newMenuNo);
+						break;
+					}catch(ServiceException e)
+					{
+						iter ++;
+						continue;
+					}
+				}
+			}
+		}
+		
+		if(StringUtil.isEmpty(menuNo) || "-1".equals(menuNo)){
+			Integer iter = 1;
+			while(true)
+			{
+				newMenuNo = "" + iter;
+				try
+				{
+					this.menuService.checkMenuNo(newMenuNo);
+					break;
+				}catch(ServiceException e)
+				{
+					iter ++;
+					continue;
+				}
+			}
+		}
+		
+		return newMenuNo;
 	}
 	
 	/**
@@ -134,6 +225,29 @@ public class MenuController
 			this.menuService.updateMenu(menu);
 			responseMap.setStatus(true);
 			responseMap.setInfo("修改菜单成功");
+		} catch (ServiceException e)
+		{
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
+	
+	/**
+	 * 修改菜单的子菜单状态
+	 * @param response
+	 * @param menu
+	 */
+	@RequestMapping(value = "ajaxUpdateChildMenuStatus", method = RequestMethod.POST)
+	public void ajaxUpdateChildMenuStatus(HttpServletResponse response, Menu menu)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try
+		{
+			this.menuService.updateChildMenuStatus(menu.getId(), "启用");
+			responseMap.setStatus(true);
+			responseMap.setInfo("启用子菜单成功");
 		} catch (ServiceException e)
 		{
 			responseMap.setStatus(false);

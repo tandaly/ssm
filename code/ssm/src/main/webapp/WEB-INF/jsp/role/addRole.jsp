@@ -65,8 +65,7 @@
 						{
 							top.topFrame.main.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
-							openRolePrivilege(data.id);
-							top.art.dialog({id: 'addRole'}).close();
+							confirmOption(data.id);
 							
 						}else
 						{
@@ -85,6 +84,16 @@
 			return false;
 		};
 	});
+	
+	function confirmOption(roleId)
+	{
+		top.art.dialog.confirm("现在要给新增角色分配权限吗", function(){
+			openRolePrivilege(roleId);
+			top.art.dialog({id: 'addRole'}).close();
+		}, function(){
+			top.art.dialog({id: 'addRole'}).close();
+		});
+	}
 	
 	//打开角色权限列表
 	function openRolePrivilege(roleId)
