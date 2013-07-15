@@ -14,10 +14,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tandaly.core.exception.ServiceException;
+import com.tandaly.core.util.DateUtil;
 import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.beans.Menu;
+import com.tandaly.system.admin.beans.Notice;
 import com.tandaly.system.admin.beans.User;
 import com.tandaly.system.admin.service.MenuService;
+import com.tandaly.system.admin.service.NoticeService;
 import com.tandaly.system.admin.service.UserService;
 import com.tandaly.system.common.util.ParamsConstants;
 import com.tandaly.system.common.util.SystemConstants;
@@ -36,6 +39,9 @@ public class IndexController
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private NoticeService noticeService;
 	
 	@RequestMapping("login") 
 	public String login(Model model)
@@ -64,9 +70,20 @@ public class IndexController
 	{
 	}
 	
+	/**
+	 * 顶部页面
+	 * @param model
+	 */
 	@RequestMapping("top")
-	public void top()
+	public void top(Model model)
 	{
+		Notice notice = this.noticeService.queryNewNotice();
+		if(null != notice)
+		{
+			notice.setCreateTime(DateUtil.getDateShortLongTimeCn(
+					DateUtil.parseFromFormats(notice.getCreateTime())));
+			model.addAttribute("notice", notice);
+		}
 	}
 	
 	@RequestMapping("changeScreen")
@@ -75,6 +92,12 @@ public class IndexController
 		
 	}
 	
+	/**
+	 * 左菜单页面
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("left")
 	public String left(Model model, HttpSession session)
 	{
@@ -92,6 +115,11 @@ public class IndexController
 		
 	}
 	
+	/**
+	 * 异步查询系统左菜单树
+	 * @param response
+	 * @param session
+	 */
 	@RequestMapping("ajaxLeftMenus")
 	public void ajaxLeftMenus(HttpServletResponse response, HttpSession session)
 	{

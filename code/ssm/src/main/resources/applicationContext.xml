@@ -17,21 +17,50 @@
 		</list> </property> </bean> -->
 	<context:property-placeholder location="classpath:jdbc.properties, classpath:properties/project.properties" />
 	
-	<!-- 配置C3P0数据源 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	<!--数据源 boneCP连接池-->
+	<bean id="boneCpDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        
+       <property name="idleConnectionTestPeriod" value="60"/>
+	   <property name="idleMaxAge" value="240"/>
+	   <property name="maxConnectionsPerPartition" value="30"/>
+	   <property name="minConnectionsPerPartition" value="10"/>
+	   <property name="partitionCount" value="3"/>
+	   <property name="acquireIncrement" value="5"/>
+	   <property name="statementsCacheSize" value="100"/>
+    </bean>
+	
+	<!--数据源 druid连接池-->
+	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}" />
+		
+		<property name="maxActive" value="20"/>
+		<property name="initialSize" value="1"/>
+		<property name="maxWait" value="60000"/>
+		<property name="minIdle" value="1"/>
+		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+		<property name="validationQuery" value="SELECT 'x'"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+		<property name="poolPreparedStatements" value="true"/>
+		<property name="maxOpenPreparedStatements" value="20"/>
+	</bean> 
+	
+	<!-- 数据源 C3P0连接池 -->
+	<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass">
-			<value>${jdbc.driverClassName}</value>
-		</property>
-		<property name="jdbcUrl">
-			<value>${jdbc.url}</value>
-		</property>
-		<property name="user">
-			<value>${jdbc.username}</value>
-		</property>
-		<property name="password">
-			<value>${jdbc.password}</value>
-		</property>
+		<property name="driverClass" value="${jdbc.url}"/>
+        <property name="jdbcUrl" value="${jdbc.driverClassName}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+		
 		<!--连接池中保留的最小连接数。 -->
 		<property name="minPoolSize">
 			<value>5</value>
@@ -76,10 +105,39 @@
 			<value>false</value>
 		</property>
 	</bean>
+	
+     <!--
+    <bean id="dataSourceDbcp" class="org.apache.commons.dbcp.BasicDataSource"  
+        destroy-method="close">  
+  
+        <property name="driverClassName" value="${driverClassName}" />  
+        <property name="url" value="${url}" />  
+        <property name="username" value="${username}" />  
+        <property name="password" value="${password}" />  
+          
+        <property name="maxActive" value="${maxActive}" />  
+        <property name="minIdle" value="${minIdle}" />  
+        <property name="maxWait" value="${maxWait}" />  
+        <property name="defaultAutoCommit" value="true" />  
+          
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />  
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />  
+          
+        <property name="validationQuery" value="${validationQuery}" />  
+        <property name="testWhileIdle" value="${testWhileIdle}" />  
+        <property name="testOnBorrow" value="${testOnBorrow}" />  
+        <property name="testOnReturn" value="${testOnReturn}" />  
+        <property name="maxOpenPreparedStatements"  
+            value="${maxOpenPreparedStatements}" />  
+        <property name="removeAbandoned" value="${removeAbandoned}" />   
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />  
+        <property name="logAbandoned" value="${logAbandoned}" />  
+    </bean> 
+	-->
 
     <!-- 事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="druidDataSource" />
     </bean>
 
     <!-- 开启组件扫描-->    
@@ -93,8 +151,8 @@
 
     <!-- 定义 SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis-config.xml"/>  
+        <property name="dataSource" ref="druidDataSource" />
+        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->  
         <property name="typeAliasesPackage" value="com.tandaly.system.admin.beans" />
     </bean>
 

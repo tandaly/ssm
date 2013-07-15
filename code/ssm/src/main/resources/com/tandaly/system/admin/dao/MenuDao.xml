@@ -15,7 +15,7 @@
 			parentNo,
 			<if test="menuName != null">menuName,</if>
 			<if test="menuUrl != null">menuUrl,</if>
-			<if test="icon != null">icon,</if>
+			<if test="icon != null and icon != ''">icon,</if>
 			orderNo,
 			<if test="status != null and status != ''">status,</if>
 		</trim>
@@ -26,7 +26,7 @@
 			#{parentNo},
 			<if test="menuName != null">#{menuName},</if>
 			<if test="menuUrl != null">#{menuUrl},</if>
-			<if test="icon != null">#{icon},</if>
+			<if test="icon != null and icon != ''">#{icon},</if>
 			<if test="orderNo == null or orderNo == ''">#{menuNo},</if>
 			<if test="orderNo != null and orderNo != ''">#{orderNo},</if>
 			<if test="status != null and status != ''">#{status},</if>

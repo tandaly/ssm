@@ -9,7 +9,7 @@
 <script src="plugins/dialog/jquery.artDialog.source.js?skin=blue"
 	type="text/javascript"></script>
 <script type="text/javascript"
-	src="plugins/dialog/plugins/iframeTools.js"></script>
+	src="plugins/dialog/plugins/iframeTools.source.js"></script>
 <script type="text/javascript" src="plugins/dialog/artDialog.notice.js"></script>
 <script type="text/javascript">
 	//配置artDialog全局默认参数

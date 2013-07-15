@@ -33,7 +33,7 @@ public class DateUtil
 	static java.text.SimpleDateFormat sdfLongU = new java.text.SimpleDateFormat("MMM dd,yyyy",Locale.ENGLISH);
 	static java.text.SimpleDateFormat sdfLongTime = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
 	static java.text.SimpleDateFormat sdfLongTimePlus = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	static java.text.SimpleDateFormat sdfShortLongTimePlusCn = new java.text.SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+	static java.text.SimpleDateFormat sdfShortLongTimePlusCn = new java.text.SimpleDateFormat("yyyy年MM月dd日 HH时mm分");
 	static java.text.SimpleDateFormat sdfLongTimePlusMill = new java.text.SimpleDateFormat("yyyyMMddHHmmssSSSS");
 	static java.text.SimpleDateFormat sdfMd = new java.text.SimpleDateFormat("MM月dd日");
 	private static long DAY_IN_MILLISECOND = 0x5265c00L;

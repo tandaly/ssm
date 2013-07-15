@@ -181,7 +181,7 @@ public class PrivilegeController
 	 * 查询权限列表
 	 * @param response
 	 * @param pagination
-	 * @param user
+	 * @param privilege
 	 */
 	@RequestMapping(value = "ajaxPrivilegeList", method = RequestMethod.POST)
 	public void ajaxPrivilegeList(HttpServletResponse response, Pagination pagination, Privilege privilege)

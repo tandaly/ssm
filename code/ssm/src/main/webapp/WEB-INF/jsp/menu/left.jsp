@@ -35,7 +35,7 @@
 						selectTreeNode = treeNode;
 						//turnPage(treeNode.linkUrl);
 						//$("#rightFrame").contents().find("#parentNo");
-						var rightFrame = parent.contentFrame.rightFrame;
+						var rightFrame = parent.parent.contentFrame.rightFrame;
 						var mNo = $(rightFrame.$.find("#menuNo"));
 						var pNo = $(rightFrame.$.find("#parentNo"));
 						var mName = $(rightFrame.$.find("#menuName"));

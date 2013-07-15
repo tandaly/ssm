@@ -134,7 +134,7 @@
 					  timeout: 60000,
 					  // 超时时间
 					  error: function() {
-						top.art.dialog.alert("获取数据失败！");
+						top.art.dialog.tips("获取数据失败！");
 					  },
 					  success: function(data) {
 						responseHandle(data);
@@ -282,6 +282,9 @@
                     });
                     opts.currPage = page;
                     onRequest();	//发送请求
+                  }else
+                  {
+                	  $(this).focus();
                   }
                 }
               });

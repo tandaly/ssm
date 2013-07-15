@@ -409,7 +409,7 @@ artDialog.tips = function (content, time) {
 		fixed: true,
 		lock: false
 	})
-	.content('<div style="padding: 0 1em;">' + content + '</div>')
+	.content('<div style="padding: 0 1em;font-size:12px;color: #222;">' + content + '</div>')
 	.time(time || 1.5);
 };
 

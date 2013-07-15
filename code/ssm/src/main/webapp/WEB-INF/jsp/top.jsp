@@ -165,10 +165,12 @@
 	<!-- <div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;"> -->
 	<div style="width:100%;height:36px;background-color:#024BA0; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
 		<div style="margin:0 auto;width:500px;">
-		<marquee scrollamount="2" onmouseover="this.stop();"
-				onmouseout="this.start();" style="color:#E3C387;">
-			<pre><b style="color:red">系统公告</b>: ${sys_params.SYS_MSG}</pre>
-		</marquee>
+			<span style="cursor:pointer;" onclick="javascript:alert('${notice.id}');" >
+				<marquee scrollamount="2" onmouseover="this.stop();"
+						onmouseout="this.start();" style="color:#E3C387;">
+					<pre><b style="color:red">系统公告</b>: ${notice.title} -${notice.createTime}发布</pre>
+				</marquee>
+			</span>
 		</div>
 	</div> 
 	

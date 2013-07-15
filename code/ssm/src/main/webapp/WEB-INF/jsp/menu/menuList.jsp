@@ -105,7 +105,7 @@
 		//打开添加菜单页面
 		function openAddMenu()
 		{	
-			var menuNode = top.topFrame.main.contentFrame.leftFrame.selectTreeNode;
+			var menuNode = parent.parent.contentFrame.leftFrame.selectTreeNode;
 			/* if(!menuNode)
 			{
 				top.art.dialog.alert("请选择左侧菜单树作为父级菜单!");
@@ -117,7 +117,7 @@
 			var url = 'menu/addMenu.do?menuNo=' + menuNo;
 			
 			top.art.dialog.open(url,
-				    {id: 'addMenu', title: '添加菜单', width:500, height:410, lock: true,
+				    {id: 'addMenu', title: '添加菜单', width:500, height:450, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
