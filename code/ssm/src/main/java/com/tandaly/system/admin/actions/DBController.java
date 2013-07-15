@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tandaly.core.page.Pagination;
 import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.service.DBService;
 
@@ -35,12 +36,14 @@ public class DBController
 	 * @param response
 	 */
 	@RequestMapping("ajaxTableList")
-	public void ajaxTableList(HttpServletResponse response)
+	public void ajaxTableList(HttpServletResponse response, Pagination pagination, String tableSchema)
 	{
-		List<Map<String, Object>> resultMap = dbService.queryDBTables();
+		pagination.getParamMap().put("tableSchema", tableSchema);
+		dbService.queryDBTables(pagination);
 		
-		WebUtil.writerJson(response, resultMap);
+		WebUtil.writerPagination(response, pagination);
 	}
+	
 	
 	/**
 	 * 数据库字段列表页面

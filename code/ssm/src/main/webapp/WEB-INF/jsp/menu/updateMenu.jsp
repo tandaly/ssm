@@ -51,6 +51,14 @@
 	                    		class="inputxt" /></td>
 	                    <td><div class="Validform_checktip">为空时,表示为父节点</div></td>
 	            	</tr>
+	            	<tr>
+	            		<td class="need" style="width:10px;"></td>
+	            		<td style="width:70px;">菜单图标：</td>
+	                    <td style="width:205px;">
+	                    	<input type="text" name="icon" value="${menu.icon }"
+	                    		class="inputxt" /></td>
+	                    <td><div class="Validform_checktip">为空时,系统默认</div></td>
+	            	</tr>
 	                <tr>
 	            		<td class="need" style="width:10px;">&nbsp;</td>
 	            		<td style="width:70px;">排序编号：</td>
@@ -63,7 +71,7 @@
 	                	<td class="need">*</td>
 	                	<td style="width:205px;">状&nbsp;&nbsp;态：</td>
 	                	<td>
-	                		<select name="status" datatype="*" nullmsg="请选择状态！" class="Validform_error">
+	                		<select id="status" name="status" datatype="*" nullmsg="请选择状态！" class="Validform_error">
 	                			<option value="">--请选择--</option>
 	                			<c:if test="${menu.status == '启用' }">
 		                			<option value="启用" selected>启用</option>
@@ -108,9 +116,17 @@
 					{
 						if("y" == data.status)
 						{
-							top.topFrame.main.document.location.href=top.topFrame.main.document.location.href;
-							top.art.dialog.tips(data.info);
-							top.art.dialog({id: 'updateMenu'}).close();
+							if($("#status").val() == '启用')
+							{
+								updateChildMenuStatus(data.info);
+							}
+							else
+							{
+								top.topFrame.main.contentFrame.leftFrame.window.initTree();//重新加载树
+								top.topFrame.main.contentFrame.rightFrame.window.fTable.queryForm();//查询列表
+								top.art.dialog.tips(data.info);
+								top.art.dialog({id: 'updateMenu'}).close();
+							}
 							
 						}else
 						{
@@ -129,6 +145,39 @@
 			return false;
 		};
 	});
+	
+	function updateChildMenuStatus(msg)
+	{
+		top.art.dialog.confirm(msg + ",是否启用该菜单下的所有菜单", function(){
+			$.ajax({
+				type: 'POST',
+				url: 'menu/ajaxUpdateChildMenuStatus.do',
+				data: $(".registerform").serialize(),
+				success: function(data)
+				{
+					if("y" == data.status)
+					{
+						top.topFrame.main.contentFrame.leftFrame.window.initTree();//重新加载树
+						top.topFrame.main.contentFrame.rightFrame.window.fTable.queryForm();//查询列表
+						top.art.dialog.tips(data.info);
+						top.art.dialog({id: 'updateMenu'}).close();
+						
+					}else
+					{
+						top.art.dialog.alert(data.info);
+					}
+				},
+				error: function()
+				{
+					top.art.dialog.alert("连接服务器失败");
+				}
+			});
+		},function(){
+			top.topFrame.main.contentFrame.leftFrame.window.initTree();//重新加载树
+			top.topFrame.main.contentFrame.rightFrame.window.fTable.queryForm();//查询列表
+			top.art.dialog({id: 'updateMenu'}).close();
+		});
+	}
 	</script>
 </body>
 </html>

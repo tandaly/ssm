@@ -1,5 +1,8 @@
 <%@page contentType="text/html;charset=UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ include file="/WEB-INF/jsp/common/taglib.jsp"%>
+<%
+	response.setHeader("P3P", "CP=\"IDC DSP COR CURa ADMa OUR IND PHY ONL COM STA\"");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,16 +35,17 @@
 				}, */
 				callback: {
 					onClick: function (event, treeId, treeNode){
-						selectTreeNode = treeNode;
+						//selectTreeNode = treeNode;
 						//turnPage(treeNode.linkUrl);
 						//$("#rightFrame").contents().find("#parentNo");
 						
 						if($.trim(treeNode.menuUrl) != '')
 						{
+							//document.domain="baidu.com";
 							top.topFrame.main.window.location.href = treeNode.menuUrl;
 						}
 						
-						return;
+						/* return;
 						var mNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#menuNo"));
 						var pNo = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#parentNo"));
 						var mName = $(top.topFrame.main.menuFrame.menuListFrame.$.find("#menuName"));
@@ -56,7 +60,7 @@
 							mNo.val(treeNode.menuNo);
 						}
 						$(top.topFrame.main.menuFrame.menuListFrame.$.find("#queryForm")).submit();
-						
+						 */
 						//$("#rightFrame").attr("src", "menu/menuList.do?parentNo="+(treeNode.menuNo == null?"-1":treeNode.menuNo));
 						
 					}

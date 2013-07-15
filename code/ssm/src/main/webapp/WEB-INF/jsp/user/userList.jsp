@@ -25,6 +25,7 @@
 			});
 			
 			fTable2 = new FTable({
+				pageAlign: 'center',
 				id: 'fTable2',
 				skin: 'skin2',
 				page: '#fPage2',

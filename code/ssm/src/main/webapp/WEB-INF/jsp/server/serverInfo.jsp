@@ -6,21 +6,29 @@
 	<%@include file="/WEB-INF/jsp/common/header.jsp"%>	
 	<!--表格插件 -->
 	<script type="text/javascript" src="plugins/page/fTable.js"></script>
-	
+	<style type="text/css">
+		.tb_list_ed_txt {
+			border: 0px;
+			height: 30px;
+			width:220px;
+			background-color: transparent; //背景色透明
+		}
+	</style>
 	<script type="text/javascript">
 	$(function(){
 		var list = [];
-		list.push({name:"<font color=green>操作系统</font>", value:"${osSystem}"});
-		list.push({name:"<font color=green>主机IP</font>", value:"${serverIP}"});
-		list.push({name:"<font color=green>应用服务器信息</font>", value:"${appServer }"});
-		list.push({name:"<font color=green>监听端口</font>", value:"${serverPort }"});
-		list.push({name:"<font color=green>WEB根路径</font>", value: formatStr("${webPath }", 40)});
-		list.push({name:"<font color=green>servlet版本</font>", value:"${servletVersion}"});
-		list.push({name:"<font color=green>JVM版本</font>", value:"${jvmVersion }"});
-		list.push({name:"<font color=green>JVM提供商</font>", value:"${jvmVendor }"});
-		list.push({name:"<font color=green>JVM安装路径</font>", value:formatStr("${JVMHome }", 40)});
-		list.push({name:"<font color=green>主机物理内存</font>", value:"${serverSwapSpace }"});
-		list.push({name:"<font color=green>JVM可用最大内存</font>", value:"${jvmMaxMemory }"});
+		list.push({name:"<font color=green>操作系统</font>", value: "<input type='text' class='tb_list_ed_txt' value='${osSystem}' title='' />"});
+		list.push({name:"<font color=green>主机IP</font>", value:"<input type='text' value='${serverIP}' title='${serverIP}' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>应用服务器信息</font>", value:"<input type='text' value='${appServer }' title='${appServer }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>监听端口</font>", value:"<input type='text' value='${serverPort }' title='${serverPort }' class='tb_list_ed_txt'/>"});
+//		list.push({name:"<font color=green>WEB根路径</font>", value: formatStr("${webPath }", 40)});
+		list.push({name:"<font color=green>WEB根路径</font>", value: "<input type='text' value='${webPath }' title='${webPath }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>servlet版本</font>", value:"<input type='text' value='${servletVersion}' title='${servletVersion}' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>JVM版本</font>", value:"<input type='text' value='${jvmVersion }' title='${jvmVersion }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>JVM提供商</font>", value:"<input type='text' value='${jvmVendor }' title='${jvmVendor }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>JVM安装路径</font>", value:"<input type='text' value='${JVMHome }' title='${JVMHome }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>主机物理内存</font>", value:"<input type='text' value='${serverSwapSpace }' title='${serverSwapSpace }' class='tb_list_ed_txt'/>"});
+		list.push({name:"<font color=green>JVM可用最大内存</font>", value:"<input type='text' value='${jvmMaxMemory }' title='${jvmMaxMemory }' class='tb_list_ed_txt'/>"});
 		
 		//buildTable('datatable',list,['name', 'value'],false,null,null,true);
 		

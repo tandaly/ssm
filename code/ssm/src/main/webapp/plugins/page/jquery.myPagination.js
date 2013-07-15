@@ -80,7 +80,7 @@
                 msg = "输入值不能大于总页数";
               }
 			  if(msg){
-				  alert(msg);
+				  top.art.dialog.alert(msg);
 				  return false;
 			  }
               return true;
@@ -110,6 +110,8 @@
 			
 			//开始请求
 			function onRequest(){
+				$("#_maskLayer").show();
+				$("#_maskLayerTip").show();
 				//debug(opts.id);
 				//debug("ajax请求参数列表:");
 				//debug(getParam());
@@ -132,7 +134,7 @@
 					  timeout: 60000,
 					  // 超时时间
 					  error: function() {
-						alert("获取数据失败！");
+						top.art.dialog.alert("获取数据失败！");
 					  },
 					  success: function(data) {
 						responseHandle(data);

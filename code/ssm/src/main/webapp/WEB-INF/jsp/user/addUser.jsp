@@ -112,9 +112,9 @@
 							top.topFrame.main.window.fTable.queryForm();
 							top.art.dialog.tips(data.info);
 							//top.art.dialog.confirm(data.info + ",是否要现在给该用户分配角色?", function(){
-								openUserRole(data.id);
+								confirmOption(data.id);
 							//s});
-							top.art.dialog({id: 'addUser'}).close();
+							
 						}else
 						{
 							top.art.dialog.alert(data.info);
@@ -132,6 +132,17 @@
 			return false;
 		};
 	});
+	
+
+	function confirmOption(userId)
+	{
+		top.art.dialog.confirm("现在要给新增用户角色吗", function(){
+			openUserRole(userId);
+			top.art.dialog({id: 'addUser'}).close();
+		}, function(){
+			top.art.dialog({id: 'addUser'}).close();
+		});
+	}
 	
 	//打开用户角色表
 	function openUserRole(userId)

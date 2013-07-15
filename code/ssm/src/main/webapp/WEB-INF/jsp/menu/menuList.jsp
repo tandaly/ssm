@@ -11,7 +11,7 @@
 	
 		$(function(){
 			fTable = new FTable({
-				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo', 'status'],
+				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo', 'status', 'options'],
 				url: 'menu/ajaxMenuList.do',
 				callback: callback
 			});
@@ -32,9 +32,33 @@
 					{
 						list[i].status = '<font color=red>' + list[i].status + '</font>';
 					}
+					list[i].options = '<a href="javascript:openDetailMenu('+list[i].id+')">详情</a>';
 				}
 			}
 			fTable.build(list);
+		}
+		
+		//打开详情页面
+		function openDetailMenu(id)
+		{	
+			top.art.dialog.open('monitor/detailExceptions.do?id=' + id,
+				    {id: 'detailDialog', title: '查看菜单', width:'100%', height:'100%', lock: true,
+					 ok: function () {
+				    	var iframe = this.iframe.contentWindow;
+				    	if (!iframe.document.body) {
+				        	return false;
+				        };
+				        iframe.$("#submit").click();
+				       	return false;
+					 },
+					 button:[{
+						    name: '关闭',
+						    callback: function() {
+						    	return true;
+						    }
+						}]
+					 
+				    });
 		}
 		
 		function deleteMenus()
@@ -65,7 +89,9 @@
 						}else
 						{
 							top.art.dialog.alert(data.info);
-							top.topFrame.main.document.location.href=top.topFrame.main.document.location.href;
+							//top.topFrame.main.document.location.href=top.topFrame.main.document.location.href;
+							top.topFrame.main.contentFrame.leftFrame.window.initTree();//重新加载树
+							top.topFrame.main.contentFrame.rightFrame.window.fTable.queryForm();//查询列表
 						}
 					},
 					error:function()
@@ -79,14 +105,18 @@
 		//打开添加菜单页面
 		function openAddMenu()
 		{	
-			var menuNode = top.topFrame.main.menuFrame.leftMenuFrame.selectTreeNode;
-			if(!menuNode)
+			var menuNode = top.topFrame.main.contentFrame.leftFrame.selectTreeNode;
+			/* if(!menuNode)
 			{
 				top.art.dialog.alert("请选择左侧菜单树作为父级菜单!");
 				return;
-			}
-				
-			top.art.dialog.open('menu/addMenu.do?parentNo=' + menuNode.menuNo,
+			} */
+			var menuNo = '';
+			if(menuNode)
+				menuNo = menuNode.menuNo;
+			var url = 'menu/addMenu.do?menuNo=' + menuNo;
+			
+			top.art.dialog.open(url,
 				    {id: 'addMenu', title: '添加菜单', width:500, height:410, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
@@ -189,6 +219,9 @@
 						</th>
 						<th>
 							状态
+						</th>
+						<th>
+							操作
 						</th>
 					</tr>
 				</table>

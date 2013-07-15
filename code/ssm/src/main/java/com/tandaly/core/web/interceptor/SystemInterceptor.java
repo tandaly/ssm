@@ -39,8 +39,21 @@ public class SystemInterceptor implements HandlerInterceptor {
 		
 		long responseTime = endTime - startTimeThreadLocal.get();
 		if(null != model)
+		{
 			model.getModel().put("responseTime", responseTime);
+		}
+		else
+		{
+			model = new ModelAndView();
+		}
 		
+		if(null != model.getViewName() 
+				&& !model.getViewName().equals("redirect:/index.do"))
+		{
+			//项目根路径
+			String base = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+			model.addObject("base", base);
+		}
 	}
 	
 	@Override

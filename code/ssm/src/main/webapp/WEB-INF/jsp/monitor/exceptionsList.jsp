@@ -48,7 +48,7 @@
 		//打开详情页面
 		function openDetailExceptions(id)
 		{	
-			top.art.dialog.open('monitor/detailExceptions.do?id=' + id,
+			top.art.dialog.open('${base}monitor/detailExceptions.do?id=' + id,
 				    {id: 'detailDialog', title: '查看异常', width:'100%', height:'100%', lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;

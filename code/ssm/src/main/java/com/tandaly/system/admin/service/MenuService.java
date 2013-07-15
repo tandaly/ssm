@@ -121,6 +121,48 @@ public class MenuService extends BaseService
 	}
 	
 	/**
+	 * 切换该菜单以下的子菜单状态
+	 * @param menuId
+	* @throws ServiceException
+	 */
+	private void switchChildMenuStatus(Integer menuId, String status)  throws ServiceException
+	{
+		StringBuffer dIds = new StringBuffer();
+		dmenu(menuId, dIds);
+		if(!"".equals(dIds.toString().trim()))
+		{
+			String[] idArr = dIds.toString().split(",");
+			for(String id: idArr)
+			{
+				Integer uid = Integer.valueOf(id);
+				
+				Menu m = new Menu();
+				m.setId(uid);
+				m.setStatus(status);
+				
+				Integer rows = this.menuDao.updateMenu(m);
+				if(null == rows || rows < 1)
+				{
+					throw new ServiceException("启用子菜单失败");
+				}
+			}
+		}
+	}
+	
+
+	/**
+	 * 启用子菜单状态
+	 * @param menuId
+	 * @param status
+	 * @throws ServiceException
+	 */
+	@Transactional
+	public void updateChildMenuStatus(Integer menuId, String status)  throws ServiceException
+	{
+		this.switchChildMenuStatus(menuId, status);
+	}
+	
+	/**
 	 * 修改菜单
 	 * @param menu
 	 * @throws ServiceException
@@ -150,22 +192,7 @@ public class MenuService extends BaseService
 		//如果修改的菜单为禁用，则需要将该菜单下的所有菜单都设置为禁用
 		if("禁用".equals(menu.getStatus().trim()))
 		{
-			StringBuffer dIds = new StringBuffer();
-			dmenu(menu.getId(), dIds);
-			if(!"".equals(dIds.toString().trim()))
-			{
-				String[] idArr = dIds.toString().split(",");
-				for(String id: idArr)
-				{
-					Integer uid = Integer.valueOf(id);
-					
-					Menu m = new Menu();
-					m.setId(uid);
-					m.setStatus("禁用");
-					
-					this.menuDao.updateMenu(m);
-				}
-			}
+			this.switchChildMenuStatus(menu.getId(), "禁用");//禁用该菜单下的所有菜单
 		}
 		
 		Integer result = this.menuDao.updateMenu(menu);

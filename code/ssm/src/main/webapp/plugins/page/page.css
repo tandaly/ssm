@@ -423,6 +423,7 @@ div.youtube span.disabled {
 div.msdn {
 	padding-right: 6px; padding-left: 0px; font-size: 13px; padding-bottom: 4px; color: #313031; padding-top: 4px; font-family: verdana,tahoma,arial,helvetica,sans-serif; 
 	/*background-color: #fff;*/
+	background-color: transparent; //背景透明
 	text-align: right
 }
 div.msdn a {
@@ -602,7 +603,8 @@ div.yahoo2 a.prev:hover {
 	font-size: 12px;
 	border: 1px solid #C8C8CA;
 	border-collapse: collapse;
-	color: #023266;
+	/*color: #023266;*/
+	color: #005EAC;
 	text-overflow:ellipsis;
 	text-align:left;
 	padding-left:5px;

@@ -15,6 +15,7 @@
 			parentNo,
 			<if test="menuName != null">menuName,</if>
 			<if test="menuUrl != null">menuUrl,</if>
+			<if test="icon != null">icon,</if>
 			orderNo,
 			<if test="status != null and status != ''">status,</if>
 		</trim>
@@ -25,6 +26,7 @@
 			#{parentNo},
 			<if test="menuName != null">#{menuName},</if>
 			<if test="menuUrl != null">#{menuUrl},</if>
+			<if test="icon != null">#{icon},</if>
 			<if test="orderNo == null or orderNo == ''">#{menuNo},</if>
 			<if test="orderNo != null and orderNo != ''">#{orderNo},</if>
 			<if test="status != null and status != ''">#{status},</if>
@@ -46,10 +48,13 @@
 	<update id="updateMenu" parameterType="Menu">
 		UPDATE t_sys_menu
 		<set>
-			<if test="menuNo != null and menuNo != ''">menuNo = #{menuNo},</if>
+			<if test="menuNo != null and menuNo != ''">
+				menuNo = #{menuNo},
+				<if test="orderNo == null or orderNo == ''">orderNo = #{menuNo},</if>
+			</if>
 			<if test="menuName != null">menuName = #{menuName},</if>
 			<if test="menuUrl != null and menuUrl != ''">menuUrl = #{menuUrl},</if>
-			<if test="orderNo == null or orderNo == ''">orderNo = #{menuNo},</if>
+			<if test="icon != null and icon != ''">icon = #{icon},</if>
 			<if test="orderNo != null and orderNo != ''">orderNo = #{orderNo},</if>
 			<if test="status != null and status != ''">status = #{status},</if>
 		</set>
@@ -129,7 +134,7 @@
 	<!--根据菜单查询菜单集合-->
 	<select id="queryMenusByMenu" parameterType="Menu" resultType="Menu">
 		SELECT
-			t.*, 'false' open
+			t.*, 'true' open
 		FROM
 			t_sys_menu t
 		<where>
@@ -154,7 +159,7 @@
 	<!--根据用户id查询权限菜单-->
 	<select id="queryMenusByUserId" parameterType="integer" resultType="Menu">
 		SELECT 
-			DISTINCT m.*, 'false' open
+			DISTINCT m.*, 'true' open
 		FROM 
 			t_sys_menu m, 
 			t_sys_role r, 

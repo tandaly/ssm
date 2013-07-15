@@ -76,8 +76,20 @@ public class IndexController
 	}
 	
 	@RequestMapping("left")
-	public void left()
+	public String left(Model model, HttpSession session)
 	{
+		String menuStyle = "" + ParamsConstants.SYSTEM_PARAMS.get("MENU_STYLE");
+		if("list".equals(menuStyle))
+		{
+			User user = (User)session.getAttribute(SystemConstants.LOGIN_USER_SESSION);
+			List<Menu> menus = this.menuService.queryMenusByUserId(user.getId());
+			model.addAttribute("menus", menus);
+			return "left2";
+		} else 
+		{
+			return "left";
+		}
+		
 	}
 	
 	@RequestMapping("ajaxLeftMenus")
@@ -118,7 +130,7 @@ public class IndexController
 			
 			session.setAttribute(SystemConstants.LOGIN_USER_SESSION, user);
 			session.setAttribute(SystemConstants.SYS_PARAMS, ParamsConstants.SYSTEM_PARAMS);
-			viewName = "redirect:index.do";
+			viewName = "redirect:/index.do";
 			
 		} catch (ServiceException e)
 		{//登录失败
@@ -134,11 +146,20 @@ public class IndexController
 	 * @return
 	 */
 	@RequestMapping("index")
-	public void index(Model model)
+	public String index(Model model)
 	{
 		//系统标题
 		model.addAttribute("sysTitle", 
 				ParamsConstants.SYSTEM_PARAMS.get(ParamsConstants.SYS_TITLE));
+		String systemStyle = "" + ParamsConstants.SYSTEM_PARAMS.get("SYSTEM_STYLE");
+		if("webos".equals(systemStyle))
+		{
+			return "index2";
+		} else
+		{
+			return "index";
+		}
+		
 	}
 	
 	/**
