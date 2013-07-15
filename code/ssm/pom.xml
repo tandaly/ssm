@@ -60,7 +60,7 @@
 	<dependency>
 		<groupId>com.alibaba</groupId>
 		<artifactId>druid</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.22</version>
 	</dependency>
 	
 	<!-- log4j日志 -->

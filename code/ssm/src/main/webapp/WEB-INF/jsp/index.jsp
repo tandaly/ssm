@@ -41,10 +41,10 @@
 	$(function() {
 		art.dialog
 				.notice({
-					title : '系统提示',
+					title : '系统公告',
 					width : 200,// 必须指定一个像素宽度值或者百分比，否则浏览器窗口改变可能导致artDialog收缩
 					height : 100,
-					content : '<p style="font-size:12px;">你好[<font color=red>${user.userName}</font>]</p>',
+					content : '<p style="font-size:12px;">[系统公告]${notice.title}</font></p>',
 					icon : 'face-smile',
 					time : 5,
 					init : function() {

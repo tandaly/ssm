@@ -176,6 +176,15 @@ public class IndexController
 	@RequestMapping("index")
 	public String index(Model model)
 	{
+		//查询最新系统公告
+		Notice notice = this.noticeService.queryNewNotice();
+		if(null != notice)
+		{
+			notice.setCreateTime(DateUtil.getDateShortLongTimeCn(
+					DateUtil.parseFromFormats(notice.getCreateTime())));
+			model.addAttribute("notice", notice);
+		}
+		
 		//系统标题
 		model.addAttribute("sysTitle", 
 				ParamsConstants.SYSTEM_PARAMS.get(ParamsConstants.SYS_TITLE));
