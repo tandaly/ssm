@@ -1,4 +1,10 @@
 
+项目从github下clone下来以后需要手动添加几个文件夹 
+	/target
+	/src/test/resources
+	还需要加入server lib...
+	
+
 1、如发现启动tomcat后找不到类，但又确认加入了，那么就要修改.classpath文件了，操作如下：
 	在更新maven后，需要在项目跟路径下修改.classpath文件，找到path=org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER并加入
 <attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

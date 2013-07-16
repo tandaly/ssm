@@ -5,9 +5,8 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-
-import com.tandaly.core.util.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 
 /**
@@ -24,7 +23,7 @@ public class HtmlUtil {
 	 * 
 	 * <br>
 	 * <b>功能：</b>输出json格式<br>
-	 * <b>作者：</b>罗泽军<br>
+	 * <b>作者：</b><br>
 	 * <b>日期：</b> Dec 14, 2011 <br>
 	 * @param response
 	 * @param jsonStr
@@ -35,19 +34,27 @@ public class HtmlUtil {
 	}
 	
 	public static void writerJson(HttpServletResponse response,Object object){
-			try {
-				response.setContentType("application/json;charset=UTF-8");
-				writer(response,JSONUtil.toJSONString(object));
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+		response.setContentType("application/json;charset=UTF-8");
+//		try
+//		{
+//			System.out.println("jsonutil=" + JSONUtil.toJSONString(object));
+//			writer(response, JSONUtil.toJSONString(object));
+//		} catch (JSONException e)
+//		{
+//			e.printStackTrace();
+//		}
+		
+		SerializerFeature[] features = {
+								SerializerFeature.WriteMapNullValue //保留null};
+								};
+		writer(response,JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd HH:mm:ss", features));
 	}
 	
 	/**
 	 * 
 	 * <br>
 	 * <b>功能：</b>输出HTML代码<br>
-	 * <b>作者：</b>罗泽军<br>
+	 * <b>作者：</b><br>
 	 * <b>日期：</b> Dec 14, 2011 <br>
 	 * @param response
 	 * @param htmlStr

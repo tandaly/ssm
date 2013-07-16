@@ -33,7 +33,7 @@
 		//buildTable('datatable',list,['name', 'value'],false,null,null,true);
 		
 		fTable = new FTable({
-			skin: 'skin2',
+			//skin: 'skin2',
 			trHeight: '40px',
 			isPage: false,
 			isCheckbox: false,

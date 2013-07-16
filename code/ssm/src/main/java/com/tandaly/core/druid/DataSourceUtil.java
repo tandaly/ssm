@@ -10,9 +10,11 @@ import javax.sql.DataSource;
   
 import com.alibaba.druid.pool.DruidDataSourceFactory;  
   
-/** 
- * The Class DataSourceUtil. 
- */  
+/**
+ * 数据源辅助类
+ * @author Tandaly
+ * @date 2013-7-16 下午2:37:39
+ */
 public class DataSourceUtil {  
   
     /** 使用配置文件构建Druid数据源. */  
@@ -23,7 +25,7 @@ public class DataSourceUtil {
   
     /** 使用配置文件构建Dbcp数据源. */  
     public static final int DBCP_SOURCE = 4;  
-    public static String confile = "jdbc.properties";  
+    public static String confile = "druid.properties";  
     public static Properties p = null;  
   
     static {  
@@ -33,7 +35,7 @@ public class DataSourceUtil {
             //java应用  
             confile = DataSourceUtil.class.getClassLoader().getResource("").getPath()  
                     + confile;  
-            System.out.println(confile);  
+            System.out.println("druid配置文件：" + confile);  
             File file = new File(confile);  
             inputStream = new BufferedInputStream(new FileInputStream(file));  
             p.load(inputStream);  
@@ -68,10 +70,12 @@ public class DataSourceUtil {
         case DRUID_MYSQL_SOURCE2:  
             dataSource = DruidDataSourceFactory.createDataSource(p);  
             break;  
-        case DBCP_SOURCE:  
-            // dataSource = BasicDataSourceFactory.createDataSource(  
-            // MySqlConfigProperty.getInstance().getProperties());  
-            break;  
+       // case DBCP_SOURCE:  
+//             dataSource = BasicDataSourceFactory.createDataSource(  
+//             MySqlConfigProperty.getInstance().getProperties());  
+           // break;  
+        default: 
+        	dataSource = DruidDataSourceFactory.createDataSource(p);
         }  
         return dataSource;  
     }  

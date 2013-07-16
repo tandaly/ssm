@@ -37,7 +37,7 @@ public class DBService
 	{
 		Map<String, Object> paramMap = pagination.getParamMap();
 		
-		Connection conn = DBManagerUtil.fetchJDBCConnection();
+		Connection conn = DBManagerUtil.fetchDruidConnection();
 		try
 		{
 			Statement st = conn.createStatement();
@@ -45,6 +45,9 @@ public class DBService
 			String sql = "SELECT COUNT(1) FROM tables t WHERE 1 = 1";
 			if(StringUtil.isNotEmpty(paramMap.get("tableSchema")))
 				sql += " AND t.table_schema = '"+paramMap.get("tableSchema")+"'";
+			if(StringUtil.isNotEmpty(paramMap.get("tableName")))
+				sql += " AND t.table_name = '"+paramMap.get("tableName")+"'";
+			
 			
 			ResultSet rs = st.executeQuery(sql);
 			
@@ -57,6 +60,8 @@ public class DBService
 				
 				if(StringUtil.isNotEmpty(paramMap.get("tableSchema")))
 					sql += " AND t.table_schema = '"+paramMap.get("tableSchema")+"' ";
+				if(StringUtil.isNotEmpty(paramMap.get("tableName")))
+					sql += " AND t.table_name = '"+paramMap.get("tableName")+"'";
 				
 				sql += " ORDER BY t.table_name LIMIT " + pagination.getParamMap().get("startRow") + ", " + pagination.getParamMap().get("pageSize");
 				
@@ -120,7 +125,7 @@ public class DBService
 	{
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
-		Connection conn = DBManagerUtil.fetchJDBCConnection();
+		Connection conn = DBManagerUtil.fetchDruidConnection();
 		try
 		{
 			Statement st = conn.createStatement();

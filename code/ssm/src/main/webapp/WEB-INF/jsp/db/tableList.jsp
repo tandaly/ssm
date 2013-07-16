@@ -68,6 +68,10 @@
 					<span class="input-label">库名</span>
 					<input type="text" name="tableSchema" class="input-text" value="ssm"/> 
 				</span>
+				<span class="input-line">
+					<span class="input-label">表名</span>
+					<input type="text" name="tableName" class="input-text" value=""/> 
+				</span>
 				
 				<input value="查询" type="submit" class="button_highlight"/>
 			</form>

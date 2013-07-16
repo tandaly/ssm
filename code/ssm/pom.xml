@@ -165,6 +165,15 @@
  		<artifactId>servlet-api</artifactId>
  		<version>2.5</version>
  	</dependency>
+ 	
+ 	<!-- fastjson -->
+ 	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.1.33</version>
+	</dependency>
+	            
+ 	
   </dependencies>
   
   <build>

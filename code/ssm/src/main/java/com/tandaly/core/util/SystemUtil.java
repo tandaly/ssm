@@ -6,7 +6,11 @@ import com.tandaly.core.spring.SpringFactory;
 import com.tandaly.system.admin.beans.Params;
 import com.tandaly.system.admin.service.ParamsService;
 import com.tandaly.system.common.util.ParamsConstants;
-
+/**
+ * 系统辅助类
+ * @author Tandaly
+ * @date 2013-7-16 下午2:03:10
+ */
 public class SystemUtil
 {
 

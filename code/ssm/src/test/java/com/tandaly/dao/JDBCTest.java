@@ -20,7 +20,7 @@ public class JDBCTest extends BaseTest
 	@Test
 	public void testFecthDBTables()
 	{
-		Connection conn = JDBCUtil.fetchJDBCConnection();
+		Connection conn = JDBCUtil.fetchSystemConnection();
 		
 		assertNotNull(conn);
 		
@@ -56,7 +56,7 @@ public class JDBCTest extends BaseTest
 	@Test
 	public void testFecthTableColumns()
 	{
-		Connection conn = JDBCUtil.fetchJDBCConnection();
+		Connection conn = JDBCUtil.fetchSystemConnection();
 		assertNotNull(conn);
 		
 		try

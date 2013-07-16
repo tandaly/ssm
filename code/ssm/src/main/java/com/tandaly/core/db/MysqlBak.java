@@ -1,14 +1,18 @@
 package com.tandaly.core.db;
 
 import java.io.IOException;
-
+/**
+ * mysql数据库备份程序
+ * @author Tandaly
+ * @date 2013-7-16 下午2:38:34
+ */
 public class MysqlBak
 {
 
 	public static void main(String[] args)
 	{
 		try {
-            String cmd ="mysqldump -h localhost -P3307 -uroot -proot share > E:/tools/eclipse/project/ssm/code/ssm/src/main/resources/db/share.sql"; //一定要加 -h localhost(或是服务器IP地址)
+            String cmd ="mysqldump -h localhost -P3307 -uroot -proot ssm > E:/tools/eclipse/project/ssm/code/ssm/src/main/resources/db/ssm.sql"; //一定要加 -h localhost(或是服务器IP地址)
 			
             Runtime rt = Runtime.getRuntime();
             

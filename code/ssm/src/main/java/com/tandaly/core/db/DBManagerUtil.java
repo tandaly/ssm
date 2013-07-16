@@ -1,13 +1,8 @@
 package com.tandaly.core.db;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.tandaly.core.druid.DataSourceUtil;
 /**
  * DB数据库管理辅助类
  * @author Tandaly
@@ -15,35 +10,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public class DBManagerUtil
 {
-	private static SqlSessionFactory sqlSessionFactory = init();
-	
-	public static SqlSessionFactory init() 
-	{
-		String resource = "mybatis-config-db.xml";
-		InputStream inputStream = null;
-		try
-		{
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		return new SqlSessionFactoryBuilder().build(inputStream);
-	}
 	
 	/**
 	 * 获取jdbc连接
 	 * @return
 	 */
-	public static Connection fetchJDBCConnection()
+	public static Connection fetchDruidConnection()
 	{
-		if(null == sqlSessionFactory)
+		Connection conn = null;
+		try
 		{
-			sqlSessionFactory = init();
+			conn = DataSourceUtil.getDataSource(0).getConnection();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
 		}
-		//SqlSessionFactory sqlSessionFactory = SpringFactory.getBean("sqlSessionFactory2");
-		SqlSession session = sqlSessionFactory.openSession();
-		Connection conn = session.getConnection();
 		
 		return conn;
 	}

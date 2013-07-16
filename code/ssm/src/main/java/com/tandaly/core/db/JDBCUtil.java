@@ -18,7 +18,7 @@ public class JDBCUtil
 	 * 获取jdbc连接
 	 * @return
 	 */
-	public static Connection fetchJDBCConnection()
+	public static Connection fetchSystemConnection()
 	{
 		SqlSessionFactory sqlSessionFactory = SpringFactory.getBean("sqlSessionFactory");
 		SqlSession session = sqlSessionFactory.openSession();

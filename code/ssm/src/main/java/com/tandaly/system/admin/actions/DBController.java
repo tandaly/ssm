@@ -36,9 +36,10 @@ public class DBController
 	 * @param response
 	 */
 	@RequestMapping("ajaxTableList")
-	public void ajaxTableList(HttpServletResponse response, Pagination pagination, String tableSchema)
+	public void ajaxTableList(HttpServletResponse response, Pagination pagination, String tableSchema, String tableName)
 	{
 		pagination.getParamMap().put("tableSchema", tableSchema);
+		pagination.getParamMap().put("tableName", tableName);
 		dbService.queryDBTables(pagination);
 		
 		WebUtil.writerPagination(response, pagination);

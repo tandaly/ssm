@@ -66,6 +66,7 @@ var fTable;
 //FTable相关参数配置
 FTable = function(config) {
 	var _obj = this;
+	
 /*********以下是表格配置参数***********/
 	//表格id
 	this.id = config.id || 'fTable';	
@@ -85,6 +86,16 @@ FTable = function(config) {
 	this.checkboxValueField = config.checkboxValueField || "id";
 	//表格列字段名称
 	this.fields = config.fields || []; 
+	
+	//表格颜色配置
+	this.oddBG = config.oddBG || "#F5F5F5";//表格奇数行背景色
+	this.evenBG = config.evenBG || "#FFFFFF";//表格偶数行背景色
+	this.hoverBG = config.hoverBG || "#EAEAEA";//鼠标经过表格行背景色
+	this.selectedBG = config.selectedBG || "#DCF8A8";//表格被选中行的背景色FFE48A
+	
+	//表格行高
+	this.trHeight = config.trHeight || "30px";
+	
 /**********以下是分页配置参数*********/
 	//是否分页  默认分页
 	this.isPage = typeof config.isPage == 'boolean'?config.isPage:true;		
@@ -103,21 +114,12 @@ FTable = function(config) {
 		if(_obj.isBuild)
 			_obj.build(data.list);
 	};
-/*************以下是公共配置参数************/
-	this.myPagination;//分页标签对象
-	
-	//表格颜色配置
-	this.oddBG = config.oddBG || "#F5F5F5";//表格奇数行背景色
-	this.evenBG = config.evenBG || "#FFFFFF";//表格偶数行背景色
-	this.hoverBG = config.hoverBG || "#EAEAEA";//鼠标经过表格行背景色
-	this.selectedBG = config.selectedBG || "#DCF8A8";//表格被选中行的背景色FFE48A
-	
-	//表格行高
-	this.trHeight = config.trHeight || "30px";
 	
 	//分页背景颜色
 	this.pageBG = config.pageBG || "transparent";
 	this.pageAlign = config.pageAlign || "right";
+/*************以下是公共配置参数************/
+	this.myPagination;//分页标签对象
 	
 	//目标对象拥有了所有源对象所拥有的特性，可理解为继承
   	// true 为深度拷贝，将子对象进行合并
