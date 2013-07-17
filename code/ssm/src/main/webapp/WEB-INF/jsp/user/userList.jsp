@@ -109,7 +109,7 @@
 			}
 				
 			top.art.dialog.open('user/updateUser.do?id=' + ids,
-				    {id: 'updateUser', title: '修改用户', width:500, height:410, lock: true,
+				    {id: 'updateUser', title: '修改用户', width:500, height:450, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -132,7 +132,7 @@
 		function openAddUser()
 		{
 			top.art.dialog.open('user/addUser.do',
-				    {id: 'addUser', title: '添加用户', width:500, height:400, lock: true,
+				    {id: 'addUser', title: '添加用户', width:500, height:450, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {

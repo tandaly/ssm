@@ -14,10 +14,39 @@
 	
 		$(function(){
 			fTable = new FTable({
-				fields: ['title', 'content', 'createTime'],
-				url: 'notice/ajaxNoticeList.do'
+				fields: ['title', 'content', 'createTime', 'options'],
+				url: 'notice/ajaxNoticeList.do',
+				callback:callback
 			});
 		});
+		
+		function callback(data)
+		{
+			var list = data.list;
+			if(list)
+			{
+				for(var i = 0; i < list.length; i++)
+				{
+					list[i].options = '<a href="javascript:openDetailNotice('+list[i].id+')">详情</a>';
+				}
+			}
+			fTable.build(list);
+		}
+		
+		//打开详情页面
+		function openDetailNotice(id)
+		{	
+			top.art.dialog.open('${base}notice/detailNotice.do?id=' + id,
+				    {id: 'detailDialog', title: '查看系统公告', width:'100%', height:'100%', lock: true,
+					 button:[{
+						    name: '关闭',
+						    callback: function() {
+						    	return true;
+						    }
+						}]
+					 
+				    });
+		}
 		
 		function deleteNotices()
 		{
@@ -61,7 +90,7 @@
 		function openAddNotice()
 		{
 			top.art.dialog.open('notice/addNotice.do',
-				    {id: 'addDialog', title: '添加系统公告', width:500, height:310, lock: true,
+				    {id: 'addDialog', title: '添加系统公告', width:800, height:650, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -92,7 +121,7 @@
 			}
 				
 			top.art.dialog.open('notice/updateNotice.do?id=' + ids,
-				    {id: 'updateDialog', title: '修改系统公告', width:500, height:410, lock: true,
+				    {id: 'updateDialog', title: '修改系统公告', width:800, height:650, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -158,6 +187,9 @@
 						</th>
 						<th>
 							发布时间
+						</th>
+						<th>
+							详情
 						</th>
 					</tr>
 				</table>

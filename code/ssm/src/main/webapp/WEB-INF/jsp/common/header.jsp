@@ -75,6 +75,11 @@ body {
 }
 -->
 </style>
+<script type="text/javascript">
+<!--
+	var basePath = '${base}';
+//-->
+</script>
 
 <!-- <div id="maskLayer"
 	style="display:none; width: 100%; height: 100%; position: fixed; z-index: 2015; top: 0px; left: 0px; overflow: hidden;">

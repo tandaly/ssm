@@ -32,8 +32,10 @@
 	                    <td class="need" style="width:10px;">*</td>
 	                    <td style="width:70px;">密&nbsp;&nbsp;码：</td>
 	                    <td style="width:205px;">
-	                    	<input type="password" value="" name="password" 
-	                    		class="inputxt" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！" /></td>
+	                    	<input type="password" value="" name="password" plugin="passwordStrength"
+	                    		class="inputxt" datatype="*6-16" nullmsg="请设置密码！" errormsg="密码范围在6~16位之间！" />
+	                    	<div class="passwordStrength">密码强度： <span>弱</span><span>中</span><span class="last">强</span></div>
+	                    </td>
 	                    <td><div class="Validform_checktip">密码范围在6~16位之间！</div></td>
 	                </tr>
 	                <tr>
@@ -41,7 +43,8 @@
 	                    <td style="width:205px;">确认密码：</td>
 	                    <td> 
 	                    	<input type="password" value="" name="password2" 
-	                    		class="inputxt" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" /></td>
+	                    		class="inputxt" datatype="*" recheck="password" nullmsg="请再输入一次密码！" errormsg="您两次输入的账号密码不一致！" />
+	                    </td>
 	                    <td><div class="Validform_checktip"></div></td>
 	                </tr>
 	                <tr>
@@ -87,6 +90,7 @@
 	<!-- 表单验证 -->
 	<script type="text/javascript" src="plugins/validform/Validform.js"></script>
 	<script type="text/javascript" src="plugins/validform/form.js"></script>
+	<script type="text/javascript" src="plugins/validform/plugin/passwordStrength/passwordStrength-min.js"></script><!-- 密码强度验证插件 -->
 	<script type="text/javascript">
 	$(function(){
 		initForm(".registerform", callback);

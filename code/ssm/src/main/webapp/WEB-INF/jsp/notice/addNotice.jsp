@@ -8,6 +8,18 @@
 	<!-- 表单验证插件 -->
 	<link rel="stylesheet" href="plugins/validform/css/style.css" type="text/css" media="all" />
 	<link href="plugins/validform/css/form.css" type="text/css" rel="stylesheet" />
+	<!-- 编辑器控件 -->
+	<link rel="stylesheet" href="plugins/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="plugins/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="plugins/kindeditor/lang/zh_CN.js"></script>
+	<script>
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					allowFileManager : true
+				});
+			});
+	</script>
 </head>
 
 <body style="background-color: #FFF">  
@@ -20,18 +32,19 @@
 	            	<tr>
 	            		<td class="need" style="width:10px;">*</td>
 	            		<td style="width:70px;">标题：</td>
-	                    <td style="width:205px;">
-	                    	<input type="text" value="" name="title" 
-	                    		class="inputxt" datatype="*1-50" nullmsg="请输入标题！" errormsg="标题范围在1~50位之间！" /></td>
-	                    <td><div class="Validform_checktip">标题范围在1~50位之间！</div></td>
+	                    <td style="width:520px;">
+	                    	<input type="text" value="" name="title" style="width:520px"
+	                    		class="inputxt" datatype="*1-255" nullmsg="请输入标题！" errormsg="标题范围在1~255位之间！" />
+	                    </td>
+	                    <td><div class="Validform_checktip">标题范围在1~255位之间！</div></td>
 	            	</tr>
 	            	<tr>
 	            		<td class="need" style="width:10px;">*</td>
 	            		<td style="width:70px;">内容：</td>
-	                    <td style="width:205px;">
-	                    	<textarea rows="3" cols="10" name="content"></textarea>
+	                    <td style="width:520px;">
+	                    	<textarea rows="3" cols="10" name="content" style="width:520px;height:400px;visibility:hidden;"></textarea>
 	                    </td>
-	                    <td><div class="Validform_checktip"></div></td>
+	                    <td></td>
 	            	</tr>
 	                <tr>
 	                    <td class="need"></td>
@@ -54,11 +67,13 @@
 		initForm(".registerform", callback);
 		
 		function callback(form){
+			editor.sync();//提交前同步一下，防止重复两次才能提交 
+
 			top.art.dialog.confirm('你确定要提交吗？', function () {
 				$.ajax({
 					type: "POST",
 					url: "notice/ajaxAddNotice.do",
-					data: $(".registerform").serialize(),
+					data: {"title":$("input[name=title]").val(), "content":editor.html()},
 					success: function(data)
 					{
 						if("y" == data.status)

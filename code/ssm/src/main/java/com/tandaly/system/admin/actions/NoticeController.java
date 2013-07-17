@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -150,6 +151,17 @@ public class NoticeController
 		pagination.setParamEntity(notice);
 		this.noticeService.pageQueryEntityList(pagination);
 		WebUtil.writerPagination(response, pagination);
+	}
+	
+	/**
+	 * 详情系统公告页面
+	 * @param model
+	 * @param id
+	 */
+	@RequestMapping(value="detailNotice", method = RequestMethod.GET)
+	public void detailNotice(Model model, Integer id)
+	{
+		model.addAttribute("notice", this.noticeService.queryNoticeById(id));
 	}
 	
 }
