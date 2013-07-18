@@ -41,8 +41,8 @@
 		//打开详情页面
 		function openDetailMenu(id)
 		{	
-			top.art.dialog.open('monitor/detailExceptions.do?id=' + id,
-				    {id: 'detailDialog', title: '查看菜单', width:'100%', height:'100%', lock: true,
+			top.art.dialog.open('menu/detailMenu.do?id=' + id,
+				    {id: 'detailDialog', title: '查看菜单', width:500, height:450, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {

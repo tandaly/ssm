@@ -7,8 +7,29 @@
 
 
 /**
+ * 获取当前页面地址参数
+ * @param name {String}
+ * @returns {String}
+ */
+function getCurrentLocationParam(name) 
+{
+	return getLocationParam(location.href, name);
+}
+
+/**
+ * 获取指定连接地址参数信息
+ * @param href {String}
+ * @param name {String}
+ * @returns {strings}
+ */
+function getLocationParam(href, name)
+{
+	return href.match(new RegExp('[?&]' + name + '=([^?&]+)', 'i')) ? decodeURIComponent(RegExp.$1) : '';
+}
+
+/**
  * 获得字符串字节数(中文英文都可以)
- * @param str
+ * @param str {String}
  * @returns {Number}
  */
 function getBytesCount(str) 
@@ -32,7 +53,12 @@ function getBytesCount(str)
 	return bytesCount; 
 }
 
-//截取中英字符串
+/**
+ * 截取中英字符串
+ * @param str {String}
+ * @param cutLen {Number}
+ * @returns {String}
+ */
 function cutStr(str,cutLen){
     var returnStr = '',    //返回的字符串
     reCN = /[^\x00-\xff]/,    //中文字符

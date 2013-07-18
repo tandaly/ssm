@@ -18,9 +18,10 @@
 			
 			//默认配置
 			var defaults = {
-              currPage: 1,
-              pageCount: 10,
-              pageNumber: 10,
+              currPage: 1,//当前页
+              pageCount: 10,//总页数
+              pageNumber: 10,//显示的页面序号
+              pageSize: 10,//每页显示数
               cssStyle: "msdn",
               ajax: {
                 on: false,
@@ -50,7 +51,7 @@
                 prev_on: true,
                 links: '#',
                 tipInfo_on: true,
-                tipInfo: '<span>&nbsp;&nbsp;跳{currText}/{sumPage}页,共计{countRecord}条</span>',
+                tipInfo: '<span>&nbsp;&nbsp;跳{currText}/{sumPage}页,显示{pageSize}条,共计{countRecord}条</span>',
                 tipInfo_css: {
                   width: '22px'
                 }
@@ -59,7 +60,8 @@
 						
 			//得到参数
 			function getParam() {
-				var param = "page="+opts.currPage;	//默认发送
+				var param = "page="+opts.currPage + "&pageSize=" + opts.pageSize;	//默认发送
+				
 				if (opts.ajax.param) {
 					param += "&" + opts.ajax.param;
 				}
@@ -96,6 +98,14 @@
 					info = info.replace("{currText}", input);
                 	info = info.replace("{sumPage}", opts.pageCount);
                 	info = info.replace("{countRecord}", opts.countRecord);
+                	var select = "<select>"
+                			+ "<option value='10'>10</option>"
+                			+ "<option value='15'>15</option>"
+                			+ "<option value='20'>20</option>"
+                			+ "<option value='30'>30</option>"
+                			+ "<option value='50'>50</option>"
+                			+"</select>";
+                	info = info.replace("{pageSize}", select);
 					info = $(info);
 					input = info.children(":text:first");
 					var css = opts.panel.tipInfo_css;
@@ -287,6 +297,15 @@
                 	  $(this).focus();
                   }
                 }
+              });
+              
+              obj.children("select").val(opts.pageSize);//给分页下拉框赋值
+              
+              //分页下拉框改变事件
+              obj.children("select").change(function(event){
+            	 opts.currPage = 1;
+            	 opts.pageSize = $(this).val();
+            	 onRequest();//发送请求
               });
 			  
 			  // 增加事件

@@ -10,12 +10,13 @@
 			height:auto!important; /*for ie6 bug and ie7+,moz,webkit 正确*/
 			height:100%; /*修复IE6,all browser*/
 			min-height:100%; /*for ie6 bug and ie7+,moz,webkit 正确*/
-			background-color: #ccc;
+			background-color: #eee;
 		}
-	</style>	
+	</style>
 </head>
 <body>
-
+	<div class="maskLayerTip"  style="left: 382px;top: 200px;display:block;">前方正在施工，恕不接待...</div>
+	
 	<div id="content">
 	<!-- <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>

@@ -134,7 +134,7 @@
 	<!--根据菜单查询菜单集合-->
 	<select id="queryMenusByMenu" parameterType="Menu" resultType="Menu">
 		SELECT
-			t.*, 'true' open
+			t.*, 'false' open
 		FROM
 			t_sys_menu t
 		<where>

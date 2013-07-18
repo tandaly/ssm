@@ -358,4 +358,15 @@ public class MenuController
 		WebUtil.writerJson(response, responseMap);
 	}
 	
+	/**
+	 * 查看菜单明细
+	 * @param model
+	 * @param id
+	 */
+	@RequestMapping("detailMenu")
+	public void detailMenu(Model model, Integer id)
+	{
+		model.addAttribute("menu", this.menuService.queryMenuById(id));
+	}
+	
 }

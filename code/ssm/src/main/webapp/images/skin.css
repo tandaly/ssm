@@ -5,7 +5,7 @@
 
 ::-webkit-scrollbar, ::-webkit-scrollbar-thumb{overflow:visible;border-radius:6px;border:solid 1px #a6a6a6}
 ::-webkit-scrollbar{
-	width:14px;
+	width:10px;
 	background:-webkit-gradient(linear,left top,right top,color-stop(0%,rgba(202,202,202,0.07)),color-stop(100%,rgba(229,229,229,0.07)));
 	background:-webkit-linear-gradient(left,rgba(202,202,202,0.07) 0%,rgba(229,229,229,0.07) 100%);
 	-webkit-box-shadow:0 0 6px 0 rgba(0,0,0,.15) inset;

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.util.DateUtil;
+import com.tandaly.core.util.StringUtil;
 import com.tandaly.core.util.WebUtil;
 import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.beans.Notice;
@@ -43,7 +44,25 @@ public class IndexController
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping("login") 
+	/**
+	 * 代理页面
+	 * @param model
+	 * @param url
+	 */
+	@RequestMapping(value="proxy", method=RequestMethod.GET)
+	public void proxy(Model model, String url)
+	{
+		if(StringUtil.isEmpty(url))
+			url = "build.do";
+		model.addAttribute("url", url);
+	}
+	
+	/**
+	 * 登录页面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="login", method=RequestMethod.GET) 
 	public String login(Model model)
 	{
 		//系统标题
@@ -53,18 +72,29 @@ public class IndexController
 		return "login";
 	}
 	
+	/**
+	 * 验证码页面
+	 * @return
+	 */
 	@RequestMapping("image")
 	public String image()
 	{
 		return "common/image";
 	}
 	
+	/**
+	 * 未开发页面
+	 * @return
+	 */
 	@RequestMapping("build")
 	public String build()
 	{
 		return "common/build";
 	}
 	
+	/**
+	 * 框架集页面
+	 */
 	@RequestMapping("frame")
 	public void frame()
 	{

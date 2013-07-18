@@ -160,10 +160,10 @@ FTable.prototype = {
 		_initFPage: function(form, page, url, callback, checkboxAll, pageSize)
 		{
 			var formData = $(form).serialize(); //序列化表单
-			if(formData)
-			{
-				formData += "&pageSize=" + pageSize;
-			}
+//			if(formData)
+//			{
+//				formData += "&pageSize=" + pageSize;
+//			}
 		    formData = decodeURIComponent(formData, true);	//解码
 			var myPagination = $(page).myPagination({
 				ajax: 

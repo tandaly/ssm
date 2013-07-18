@@ -85,9 +85,101 @@
 		text-shadow: 2px 2px 5px #092334;
 		font-weight: bold;
 	}
+	
+	
+	/*换肤功能
+	------------------------------------*/
+	#ul_skins{
+		float:right;
+	    padding:5px;
+		width:120px;
+	    padding-right:0px;
+		list-style:none;
+		overflow:hidden;
+	    }
+	#ul_skins li{
+		float:left;
+	    margin-right:5px;
+	    width:15px;
+	    height:15px;
+		text-indent:-999px;
+		overflow:hidden;
+		display:block;
+		cursor:pointer;
+		background-image:url(images/theme.gif);
+	}
+	#green{
+		background-position:0px 0px;
+	}
+	#blue{
+		background-position:15px 0px;
+	}
+	#red{
+		background-position:35px 0px;
+	}
+	#pink{
+		background-position:55px 0px;
+	}
+	#gray{
+		background-position:75px 0px;
+	}
+	#brown{
+		background-position:95px 0px;
+	}
+	#green.selected{
+		background-position:0px 15px !important;
+	}
+	#blue.selected{
+		background-position:15px 15px !important;
+	}
+	#red.selected{
+		background-position:35px 15px !important;
+	}
+	#pink.selected{
+		background-position:55px 15px !important;
+	}
+	#gray.selected{
+		background-position:75px 15px !important;
+	}
+	#brown.selected{
+		background-position:95px 15px !important;
+	}
+	
+	#topMenu {
+		background-color: #024BA0;
+	}
+	
+	#topMenu.green{
+		background-color: #4D9016;
+	}
+	
+	#topMenu.blue{
+		background-color: #1B74A2;
+	}
+	
+	#topMenu.pink{
+		background-color: #D13270;
+	}
+	
+	#topMenu.gray{
+		background-color: #5E6369;
+	}
+	
+	#topMenu.red{
+		background-color: #AC1838;
+	}
+	
+	#topMenu.brown{
+		background-color: #75574C;
+	}
 </style>
 
 <script type="text/javascript">
+	
+	$(function(){
+		addChangeSkinEvent();
+	});
+
 	//密码修改弹出框
 	function openUpdatePassword()
 	{
@@ -110,6 +202,21 @@
 			 
 		    });
 	}
+	
+	//添加皮肤选择监听
+	function addChangeSkinEvent() {
+		var $li = $("#ul_skins li");
+		$li.click(function () {
+			switchSkin(this.id);
+		});
+	}
+	
+	//切换皮肤操作
+	function switchSkin(_skinName) {
+		$("#" + _skinName).addClass("selected").siblings().removeClass("selected");  //去掉其他同辈<li>元素的选中
+		
+		$("#topMenu").attr("class", "").addClass(_skinName);//.css("background-color", "#74C862");
+	}
 </script>
 
 </head>
@@ -121,7 +228,7 @@
 		306DA4
 	 -->
 	<!-- 顶部区域 -->
-	<div style="width:100%;height:34px;background-color:#D6EDFF; background-repeat: repeat-x;">
+	<div id="topArea" style="width:100%;height:34px;background-color:#D6EDFF; background-repeat: repeat-x;">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td width="38%">
@@ -131,6 +238,20 @@
 				</td>
 				<td width="30%" height="38" class="admin_txt" align="right">
 					欢迎你[<b style="color:red">${user.userName}</b>]
+				</td>
+				<td>
+					<div id="minimize_container">
+						<ul id="ul_skins" style="margin-left:10px;margin-top:7px;">
+					        <li id="green" title="绿色" ></li>
+							<li id="blue" title="蓝色" ></li>
+							<li id="pink" title="桃红色" ></li>
+							<li id="gray" title="灰色"></li>
+							 
+							<li id="red" title="红色" onclick=""></li>
+							<li id="brown" title="褐色"></li>
+							
+				      	</ul>
+					</div>
 				</td>
 				<td style="padding-left:20px;text-align:right;font-size: 12px;" width="30%">
 					<a href="main.do" target="main" class="a">首页</a>|
@@ -163,7 +284,7 @@
 	-->
 	<!-- 系统顶部菜单条 -->
 	<!-- <div style="width:100%;height:36px;background-image: url('images/top-menu.jpg'); padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;"> -->
-	<div style="width:100%;height:36px;background-color:#024BA0; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
+	<div id="topMenu" style="width:100%;height:36px; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
 		<div style="margin:0 auto;width:500px;">
 			<span style="cursor:pointer;" onclick="javascript:alert('${notice.id}');" >
 				<marquee scrollamount="2" onmouseover="this.stop();"
@@ -177,38 +298,6 @@
 	<!-- 底部样式 -->
 	<div style="width:100%;height:11px;margin:0px;background-image: url('images/top-bottom.jpg'); background-repeat: repeat-x;">
 	</div>
-	
- 	<%-- <table width="100%" height="64" border="0" cellpadding="0"
-		cellspacing="0" >
-		<tr class="admin_topbg">
-			<td height="64">
-				<!-- <img src="images/logo.gif"
-				width="262" height="64"> -->
-			</td>
-			<td  valign="top"><table width="100%" border="0"
-					cellspacing="0" cellpadding="0">
-					<tr>
-						<td width="70%">
-							&nbsp;
-						</td>
-						<td height="38" class="admin_txt">
-							用户：<b>${user.userName}</b>
-								您好,感谢登陆使用！
-								【<font onclick="locks();" style="cursor: pointer;">锁屏</font>】
-								【<font onclick="setsitebar();" style="cursor: pointer;">切屏</font>】
-						</td>
-						<td><a href="#" target="_self"
-							onClick="logout();"><img src="images/out.gif" alt="安全退出"
-								width="46" height="20" border="0"></a></td>
-						<td width="4%">&nbsp;</td>
-					</tr>
-					<tr class="top_bottom">
-						<td  colspan="4">&nbsp;</td>
-					</tr>
-				</table></td>
-		</tr>
-	</table>  --%>
-	
 </body>
 </html>
 

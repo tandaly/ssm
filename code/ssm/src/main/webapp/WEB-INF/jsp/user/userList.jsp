@@ -29,7 +29,7 @@
 				id: 'fTable2',
 				skin: 'skin2',
 				page: '#fPage2',
-				pageSize: 5,
+				//pageSize: 5,
 				fields: ['userName','password','registerDate','status', 'remark'],
 				url: 'user/ajaxUserList.do'
 			});

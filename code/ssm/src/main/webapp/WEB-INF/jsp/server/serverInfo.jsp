@@ -10,7 +10,7 @@
 		.tb_list_ed_txt {
 			border: 0px;
 			height: 30px;
-			width:220px;
+			width:100%;
 			background-color: transparent; //背景色透明
 		}
 	</style>
