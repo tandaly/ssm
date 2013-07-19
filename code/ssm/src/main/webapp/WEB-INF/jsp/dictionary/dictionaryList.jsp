@@ -128,6 +128,41 @@
 					 
 				    });
 		}
+		
+		//启用和禁用字典 启用或者禁用
+		function changeDicStatus(status)
+		{
+			var ids = fTable.getCheckedValue();
+			if("" == ids)
+			{
+				top.art.dialog.alert("请选择记录");
+				return;
+			}
+			
+			top.art.dialog.confirm("你确认要执行此操作吗？", function()
+			{
+				$.ajax({
+					type:"POST",
+					url:"dictionary/ajaxChangeDicStatus.do",
+					data:{"status": status, "dicIds":ids},
+					success:function(data)
+					{
+						if("y" != data.status)
+						{
+							top.art.dialog.alert(data.info);
+						}else
+						{
+							top.art.dialog.alert(data.info);
+							fTable.queryForm();
+						}
+					},
+					error:function()
+					{
+						top.art.dialog.alert("操作失败");
+					}
+				});
+			});
+		}
 	</script>
 </head>
 <body>
@@ -151,8 +186,8 @@
 				<input type="button" value="新增" onclick="openAddDictionary();"/>
 				<input type="button" value="修改" onclick="openUpdateDictionary()"/>
 				<input  type="button" value="删除" onclick="deleteDictionarys()"/>
-				<input  type="button" value="启用" onclick=""/>
-				<input  type="button" value="禁用" onclick=""/>
+				<input  type="button" value="启用" onclick="changeDicStatus('启用');"/>
+				<input  type="button" value="禁用" onclick="changeDicStatus('禁用');"/>
 			</div>
 			<div class="fTableContent">
 				<table id="fTable" class="fTable" cellpadding="0" cellspacing="0">

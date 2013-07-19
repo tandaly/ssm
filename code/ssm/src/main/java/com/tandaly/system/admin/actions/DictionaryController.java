@@ -137,4 +137,27 @@ public class DictionaryController
 		this.dictionaryService.pageQueryEntityList(pagination);
 		WebUtil.writerPagination(response, pagination);
 	}
+	
+	/**
+	 * 启用或禁用字典
+	 * @param response
+	 * @param status
+	 * @param dicIds
+	 */
+	@RequestMapping(value="ajaxChangeDicStatus", method = RequestMethod.POST)
+	public void ajaxChangeDicStatus(HttpServletResponse response, String status, String dicIds)
+	{
+		ResponseMap responseMap = new HashResponseMap();
+		try
+		{
+			this.dictionaryService.updateDicStatus(status, dicIds);
+			responseMap.setStatus(true);
+			responseMap.setInfo("操作成功");
+		} catch (ServiceException e) {
+			responseMap.setStatus(false);
+			responseMap.setInfo(e.getMessage());
+		}
+		
+		WebUtil.writerJson(response, responseMap);
+	}
 }

@@ -11,7 +11,7 @@
 	
 		$(function(){
 			fTable = new FTable({
-				fields: ['menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo', 'status', 'options'],
+				fields: ['icon', 'menuNo', 'parentNo', 'menuName', 'menuUrl', 'orderNo', 'status', 'options'],
 				url: 'menu/ajaxMenuList.do',
 				callback: callback
 			});
@@ -25,6 +25,11 @@
 			{
 				for(var i = 0; i < list.length; i++)
 				{
+					if(list[i].icon)//文件
+						list[i].icon = "<img title='文件' src='"+list[i].icon+"'/>";
+					else//文件夹
+						list[i].icon = "<img title='文件夹' src='images/tree/folder.gif'/>";
+						
 					if(list[i].status == '启用')
 					{
 						list[i].status = '<font color=green>' + list[i].status + '</font>';
@@ -201,6 +206,8 @@
 						<th></th>
 						<th>
 							<input type="checkbox" />
+						</th>
+						<th>
 						</th>
 						<th width="100px">
 							菜单编号

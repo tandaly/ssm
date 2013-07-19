@@ -154,7 +154,13 @@
 						<!-- 主体 start -->
 							<div style="width:100%;height:425px;">
 								<div style="float:left; overflow-y: auto; overflow-x: auto;">
-									<ul id="menusTree" class="ztree"></ul>
+									<div style="padding-left:50px;text-align: left;">
+										[<a href="javascript:;" onclick="treeObj.expandAll(true);" style="color:#3C6E31;">展开</a>]
+										|
+										[<a href="javascript:;" onclick="treeObj.expandAll(false);" style="color:#3C6E31;">收缩</a>]
+									</div>
+									
+									<div id="menusTree" class="ztree"></div>
 								</div>
 							</div>
 							<input type="hidden" id="submit" onclick="allotMenu()"/>

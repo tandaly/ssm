@@ -167,7 +167,7 @@
 				    });
 		}
 		
-		//启用和禁用帐号 1为启用 0为禁用
+		//启用和禁用帐号 启用或者禁用
 		function changeUserStatus(status)
 		{
 			var ids = fTable.getCheckedValue();
@@ -177,7 +177,7 @@
 				return;
 			}
 			
-			top.art.dialog.confirm("此操作会影响用户,你确认要执行次操作吗？", function()
+			top.art.dialog.confirm("你确认要执行此操作吗？", function()
 			{
 				$.ajax({
 					type:"POST",

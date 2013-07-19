@@ -1,6 +1,8 @@
 package com.tandaly.system.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -134,6 +136,32 @@ public class DictionaryService extends BaseService
 		dictionary.setStatus("启用");
 		
 		return (List<Dictionary>) this.dictionaryDao.queryEntitys(dictionary);
+	}
+	
+	/**
+	 * 启用或禁用字典
+	 * @param status
+	 * @param dicIds
+	 * @throws ServiceException 
+	 */
+	@Transactional
+	public void updateDicStatus(String status, String dicIds) throws ServiceException
+	{
+		if(null == status || null == dicIds 
+				|| "".equals(dicIds))
+		{
+			throw new ServiceException("传入的参数错误");
+		}
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("status", status);
+		paramMap.put("dicIds", dicIds);
+		Integer result = this.dictionaryDao.updateDicStatus(paramMap);
+		
+		if(null == result || 1 > result)
+		{
+			throw new ServiceException("操作失败");
+		}
 	}
 
 }

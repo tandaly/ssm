@@ -68,4 +68,13 @@ public class DBController
 		WebUtil.writerJson(response, resultMap);
 	}
 	
+	/**
+	 * 表设计页面
+	 */
+	@RequestMapping("tableDesign")
+	public void tableDesign()
+	{
+		
+	}
+	
 }

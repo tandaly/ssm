@@ -119,6 +119,22 @@
 		LIMIT #{startRow}, #{pageSize}
 	</select>
 	
+	<!--启用或禁用字典-->
+	<update id="updateDicStatus" parameterType="hashMap">
+		UPDATE 
+			t_sys_dictionary t
+		<set>
+			<if test="status == '启用' or status == '禁用'">
+				t.status = #{status}
+			</if>
+		</set>
+		WHERE
+			t.id IN( 
+			<trim suffixOverrides=",">
+				${dicIds}
+			</trim>
+			)
+	</update>
 	
 	
 </mapper>

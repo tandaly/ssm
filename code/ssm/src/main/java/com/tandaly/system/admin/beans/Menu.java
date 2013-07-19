@@ -30,9 +30,9 @@ public class Menu implements Serializable
 	/**
 	 * 显示图标
 	 */
-	private String icon = "images/tree/leaf.gif";
-	private String iconOpen = "images/tree/folder-open.gif";
-	private String iconClose = "images/tree/folder.gif";
+	private String icon;
+	private String iconOpen;
+	private String iconClose;
 	
 	public Integer getId()
 	{

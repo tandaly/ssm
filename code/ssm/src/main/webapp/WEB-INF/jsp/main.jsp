@@ -12,19 +12,6 @@
 		.pageContent{
 			margin: 8px;
 		}
-		.divider {
-			clear: both;
-			display: block;
-			overflow: hidden;
-			text-indent: -1000px;
-			width: auto;
-			height: 1px;
-			padding: 4px 0 0 0;
-			margin-bottom: 5px;
-			border-style: dotted;
-			border-width: 0 0 1px 0;
-			border-color: #b8d0d6;
-		}
 		
 		h2 {
 			display: block;
@@ -245,7 +232,15 @@
 					<h3>系统管理</h3>
 					<p class="content">
 						<span class="content-tag">[需求]</span>
-						斯蒂芬螺丝钉解放
+						用户组管理
+					</p>
+					<p class="content">
+						<span class="content-tag">[需求]</span>
+						按用户组授权
+					</p>
+					<p class="content">
+						<span class="content-tag">[BUG]</span>
+						修复菜单图标
 					</p>
 				</div>
 				<div class="divider"></div>
