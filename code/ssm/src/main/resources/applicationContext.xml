@@ -194,4 +194,47 @@
     </bean>-->
 	<!--***********数据库管理配置end**************** -->
 	
+	
+	<!--
+	  事件监听:实现了 ApplicationListener监听接口,
+	  包括AuthenticationCredentialsNotFoundEvent 事件，
+	  AuthorizationFailureEvent事件，AuthorizedEvent事件， PublicInvocationEvent事
+	  件。 -->
+	 <bean
+	  class="org.springframework.security.authentication.event.LoggerListener" />
+	
+	 <!-- 用户的密码加密或解密 
+	 <bean id="passwordEncoder"
+	  class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+	-->
+	   
+	 <!-- 用户详细信息管理：数据源、用户缓存（通过数据库管理用户、角色、权限、资源）。 
+	 <bean id="userDetailsManager" class="com.tandaly.core.security.MyUserDetailsService">
+	  <property name="pubUsersHome" ref="pubUsersHome" />
+	  <property name="pubAuthoritiesResourcesHome" ref="pubAuthoritiesResourcesHome" />
+	  <property name="dataSource" ref="dataSource" />
+	  <property name="userCache" ref="userCache" />
+	 </bean>  
+	 -->
+	 
+	 <!-- 启用用户的缓存功能 
+	 <bean id="userCache"
+	  class="org.springframework.security.core.userdetails.cache.EhCacheBasedUserCache">
+	  <property name="cache" ref="userEhCache" />
+	 </bean>
+	 
+	 <bean id="userEhCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+	  <property name="cacheName" value="userCache" />
+	  <property name="cacheManager" ref="cacheManager" />
+	 </bean>
+	 
+	 <bean id="cacheManager"
+	  class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" />
+	-->
+	
+	 <!-- spring security自带的与权限有关的数据读写Jdbc模板 
+	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	  <property name="dataSource" ref="druidDataSource" />
+	 </bean>
+	-->
 </beans>
