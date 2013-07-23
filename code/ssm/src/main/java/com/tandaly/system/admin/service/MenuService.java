@@ -231,34 +231,6 @@ public class MenuService extends BaseService
 	}
 	
 	/**
-	 * 查询权限菜单树
-	 * @param roleId
-	 * @return
-	 */
-	public List<Menu> queryMenuTree(Integer privilegeId)
-	{
-		Menu pmenu = new Menu();
-		pmenu.setStatus("启用");
-		List<Menu> menus = this.menuDao.queryMenusByMenu(pmenu);//查询所有的菜单
-		
-		List<Menu> pMenus = this.menuDao.queryMenusByPrivilegeId(privilegeId);//根据角色查询菜单
-		
-		if(null != pMenus && 0 < pMenus.size())
-		{
-			for(Menu menu:menus)
-			{
-				for(Menu rmenu:pMenus)
-				{
-					if(menu.getId() == rmenu.getId())
-						menu.setChecked(true);
-				}
-			}
-		}
-		
-		return menus;
-	}
-	
-	/**
 	 * 根据用户id查询权限菜单
 	 * @param userId
 	 * @return

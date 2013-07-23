@@ -13,6 +13,7 @@ public class Role implements Serializable
 	
 	private Integer id;
 	private String roleName;//角色名称
+	private String status;//启用/禁用
 	private String remark;//备注
 	
 	public Integer getId()
@@ -38,6 +39,14 @@ public class Role implements Serializable
 	public void setRemark(String remark)
 	{
 		this.remark = remark;
+	}
+	public String getStatus()
+	{
+		return status;
+	}
+	public void setStatus(String status)
+	{
+		this.status = status;
 	}
 	
 	

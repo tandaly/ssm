@@ -39,8 +39,18 @@
 		</param-value>
 	</context-param>
 	
+	<!--spring 监听-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	 <!--  
+        Spring Security可以限制一个主体并行认证到同一系统的次数。  
+        	很多ISV利用这点来加强授权公里，网管也喜欢这个功能，因为它可以防止人们共享登录名。  
+       	 你可以，比如，禁止用户"admin"从两个不同的会话登录到web应用里。  
+    -->
+ 	<listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
   
   <!-- ***************springMVC配置 start******************** -->
@@ -114,20 +124,20 @@
  		</listener-class>
 	</listener>
   
-  <!-- 请求拦截过滤器 
+  <!-- 请求拦截过滤器 -->
 	<filter>
 		<filter-name>requestFilter</filter-name>
 		<filter-class>com.tandaly.core.web.filter.RequestFilter</filter-class>
 		<init-param>
+			<!--是否开启记录日志操作-->
 			<param-name>enabled</param-name>
-			<param-value>true</param-value>
+			<param-value>false</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>requestFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
-	-->
 	
 	<!--系统session监听-->
 	<listener>
@@ -153,5 +163,10 @@
 	    <url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
     <!-- druid监控配置 end -->
+    
+    <error-page>
+    	<error-code>403</error-code>
+    	<location>/403.jsp</location>
+    </error-page>
     
 </web-app>

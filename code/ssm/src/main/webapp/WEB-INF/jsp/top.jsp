@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/jsp/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,13 +53,13 @@
 				});
 	}
 
-	function logout() {
+/* 	function logout() {
 		top.art.dialog.confirm('你确定要退出系统吗？', function() {
 			top.location = "logout.do";
 		}, function() {
 			top.art.dialog.alert("你还挺明智的嘛");
 		});
-	}
+	} */
 	
 	function setsitebar()
 	{
@@ -258,7 +259,8 @@
 					<a href="#" target="_self" onClick="openUpdatePassword();" class="a">修改密码</a>|
 					<a href="#" target="_self" onClick="locks();" class="a">锁屏</a>|
 					<a href="#" target="_self" onClick="setsitebar();" class="a">切屏</a>|
-					<a href="#" target="_self" onClick="logout();" class="a">退出</a>
+					<c:url value="/j_spring_security_logout" var="logoutUrl"/>
+					<a href="${logoutUrl}" target="_top" class="a">退出</a>
 				</td>
 				<td width="2%">&nbsp;</td>
 			</tr>

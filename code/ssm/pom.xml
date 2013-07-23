@@ -189,13 +189,19 @@
     	<version>1.2.0</version>
     </dependency>
     
-    <!-- ehcache缓存 
-    <dependency>
+    <!-- ehcache缓存 -->
+    <dependency> 
 		<groupId>net.sf.ehcache</groupId>
 		<artifactId>ehcache</artifactId>
 		<version>2.7.2</version>
 	</dependency>
-	-->
+	<!-- mybatis ehcache -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-ehcache</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+	
 
 
 	<!-- jstl依赖 -->

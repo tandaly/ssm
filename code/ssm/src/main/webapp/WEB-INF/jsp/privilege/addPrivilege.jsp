@@ -19,6 +19,14 @@
 	            <table width="100%" style="table-layout:fixed;padding-left: 10px;" border="0">
 	            	<tr>
 	            		<td class="need" style="width:10px;">*</td>
+	            		<td style="width:70px;">权限编码：</td>
+	                    <td style="width:205px;">
+	                    	<input type="text" value="" name="privilegeCode" 
+	                    		class="inputxt" datatype="*1-50" nullmsg="请输入权限编码！" errormsg="权限编码范围在1~50位之间！" /></td>
+	                    <td><div class="Validform_checktip">权限编码范围在1~50位之间！</div></td>
+	            	</tr>
+	            	<tr>
+	            		<td class="need" style="width:10px;">*</td>
 	            		<td style="width:70px;">权限名称：</td>
 	                    <td style="width:205px;">
 	                    	<input type="text" value="" name="privilegeName" 

@@ -1,9 +1,12 @@
 package com.tandaly.system.admin.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.tandaly.core.dao.BaseDao;
+import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.beans.Privilege;
+import com.tandaly.system.admin.beans.User;
 
 public interface PrivilegeDao extends BaseDao
 {
@@ -28,4 +31,18 @@ public interface PrivilegeDao extends BaseDao
 	 * @return
 	 */
 	Integer insertPrivilegeMenu(Map<String, Object> paramMap);
+	
+	/**
+	 * 根据用户查询权限列表
+	 * @param user
+	 * @return
+	 */
+	List<Privilege> queryPrivilegesByUser(User user);
+	
+	/**
+	 * 根据菜单查询权限集合
+	 * @param menu
+	 * @return
+	 */
+	List<Privilege> queryPrivilegesByMenu(Menu menu);
 }

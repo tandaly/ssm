@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/jsp/common/taglib.jsp" %>
 <!DOCTYPE html>
 <html xmlns=http://www.w3.org/1999/xhtml>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${sysTitle}</title>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
 <style type="text/css">
 <!--
 	html,body{
@@ -129,6 +131,12 @@
 	
 	$(function(){
 		$("input[name=userName]").focus();
+		
+		if(getCurrentLocationParam("error") == 'true')
+		{
+			$("#msgTip").text("登录失败");
+		}
+		
 	});
 </script>
 </head>
@@ -145,14 +153,14 @@
 			</div>
 			<div class="login-content-right">
 				<span class="login_txt_bt">${sysTitle}</span>
-				<form id="myform" name="myform" action="logins.do" method="post">
+				<form id="myform" name="myform" action="j_spring_security_login" method="post">
 						<table width="360" cellspacing="0" cellpadding="0" border="0">
 							<tr>
 								<td>
 									<span class="login_txt">&nbsp;</span>
 								</td>
 								<td> 
-									<font color="red" style="font-size:12px;line-height:40px;">${msg} &nbsp;</font>
+									<font color="red" style="font-size:12px;line-height:40px;" id="msgTip">${msg} &nbsp;</font>
 								</td>
 							</tr>
 							<tr>

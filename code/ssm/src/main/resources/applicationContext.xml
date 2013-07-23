@@ -5,12 +5,17 @@
      xmlns:tx="http://www.springframework.org/schema/tx"
      xmlns:jdbc="http://www.springframework.org/schema/jdbc"
      xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xmlns:cache="http://www.springframework.org/schema/cache"
      xsi:schemaLocation="
      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+     http://www.springframework.org/schema/cache
+	 http://www.springframework.org/schema/cache/spring-cache.xsd
+     ">
 
 	<!-- 读取属性配置文件 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="locations"> <list> <value>/WEB-INF/classes/jdbc.properties</value> 
@@ -143,7 +148,7 @@
     </bean>
 
     <!-- 开启组件扫描-->    
-    <context:component-scan base-package="com.tandaly.system.admin.service" />
+    <context:component-scan base-package="com.tandaly" />
 
     <!-- 开启 autowire -->
     <context:annotation-config />
@@ -198,10 +203,9 @@
 	<!--
 	  事件监听:实现了 ApplicationListener监听接口,
 	  包括AuthenticationCredentialsNotFoundEvent 事件，
-	  AuthorizationFailureEvent事件，AuthorizedEvent事件， PublicInvocationEvent事
-	  件。 -->
-	 <bean
-	  class="org.springframework.security.authentication.event.LoggerListener" />
+	  AuthorizationFailureEvent事件，AuthorizedEvent事件， PublicInvocationEvent事件。 
+	  -->
+	 <bean class="org.springframework.security.authentication.event.LoggerListener" />
 	
 	 <!-- 用户的密码加密或解密 
 	 <bean id="passwordEncoder"
@@ -236,5 +240,16 @@
 	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 	  <property name="dataSource" ref="druidDataSource" />
 	 </bean>
+	-->
+	
+	<!-- 缓存注解驱动 
+	<cache:annotation-driven />
+	
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml"
+		p:shared="false" />
+		
+	<bean id="EhCacheCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="cacheManager"/>
 	-->
 </beans>

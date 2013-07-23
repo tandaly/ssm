@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,40 +18,27 @@ import com.tandaly.system.admin.beans.User;
 import com.tandaly.system.admin.service.UserService;
 import com.tandaly.system.common.util.ParamsConstants;
 import com.tandaly.system.common.util.SystemConstants;
-
-/*
- * MyUsernamePasswordAuthenticationFilter
-	attemptAuthentication
-		this.getAuthenticationManager()
-			ProviderManager.java
-				authenticate(UsernamePasswordAuthenticationToken authRequest)
-					AbstractUserDetailsAuthenticationProvider.java
-						authenticate(Authentication authentication)
-							P155 user = retrieveUser(username, (UsernamePasswordAuthenticationToken) authentication);
-								DaoAuthenticationProvider.java
-									P86 loadUserByUsername
+/**
+ * 登录用户名密码认证过滤器
+ * @author Tandaly
+ * @date 2013-7-23 上午9:29:58
  */
 public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
-	public static final String VALIDATE_CODE = "verifyCode";
-	public static final String USERNAME = "userName";
-	public static final String PASSWORD = "password";
 	
-//	private UsersDao usersDao;
-//	public UsersDao getUsersDao() {
-//		return usersDao;
-//	}
-//	public void setUsersDao(UsersDao usersDao) {
-//		this.usersDao = usersDao;
-//	}
-
+	private static final Logger log = Logger.getLogger(MyUsernamePasswordAuthenticationFilter.class);
+	
+	public static final String VALIDATE_CODE = "verifyCode";//验证码字符
+	public static final String USERNAME = "userName";	//用户名字符
+	public static final String PASSWORD = "password"; //密码字符
+	
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 		if (!request.getMethod().equals("POST")) {
-			throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
+			throw new AuthenticationServiceException("认证方法不支持: " + request.getMethod());
 		}
 		
-		System.out.println("登录认证...");
-		//checkValidateCode(request);
+		log.info("登录用户名密码认证...");
+		checkValidateCode(request);
 		
 		String userName = obtainUsername(request);
 		String password = obtainPassword(request);
@@ -81,7 +69,7 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 //                request.getSession().setAttribute(WebAttributes.AUTHENTICATION_EXCEPTION, exception);
 //            }
             
-            
+        //登录验证操作
 		try
 		{
 			User user1 = new User();
@@ -94,9 +82,11 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 			HttpSession session = request.getSession();
 			session.setAttribute(SystemConstants.LOGIN_USER_SESSION, user);
 			session.setAttribute(SystemConstants.SYS_PARAMS, ParamsConstants.SYSTEM_PARAMS);
+			log.info("登录认证成功！");
 		} catch (ServiceException e)
 		{
-			throw new AuthenticationServiceException("用户名或者密码错误"); 
+			log.info("登录认证失败！");
+			throw new AuthenticationServiceException(e.getMessage()); 
 		}
 		
 		//UsernamePasswordAuthenticationToken实现 Authentication
@@ -106,13 +96,14 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 		// 允许子类设置详细属性
         setDetails(request, authRequest);
 		
-        //SecurityContextHolder.getContext().setAuthentication(authRequest);
-        //request.getSession().setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
-        
         // 运行UserDetailsService的loadUserByUsername 再次封装Authentication
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
 	
+	/**
+	 * 检验验证码
+	 * @param request
+	 */
 	protected void checkValidateCode(HttpServletRequest request) { 
 		HttpSession session = request.getSession();
 		
@@ -121,7 +112,7 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
 	    session.setAttribute(VALIDATE_CODE, null);
 	    String validateCodeParameter = obtainValidateCodeParameter(request);  
 	    if (StringUtil.isEmpty(validateCodeParameter) || !sessionValidateCode.equalsIgnoreCase(validateCodeParameter)) {  
-	        throw new AuthenticationServiceException("validateCode.notEquals");  
+	        throw new AuthenticationServiceException("验证码错误");  
 	    }  
 	}
 	

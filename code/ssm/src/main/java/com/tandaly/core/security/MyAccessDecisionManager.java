@@ -3,6 +3,7 @@ package com.tandaly.core.security;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -38,47 +39,67 @@ import org.springframework.security.core.GrantedAuthority;
  * AbstractSecurityInterceptor调用，来决定AccessDecisionManager
  * 是否可以执行传递ConfigAttribute。 supports(Class)方法被安全拦截器实现调用，
  * 包含安全拦截器将显示的AccessDecisionManager支持安全对象的类型。
+ * @author Tandaly
+ * @date 2013-7-23 下午2:06:00
  */
 public class MyAccessDecisionManager implements AccessDecisionManager
 {
 
-	public void decide(Authentication authentication, Object object,
-			Collection<ConfigAttribute> configAttributes)
+	private static final Logger log = Logger.getLogger(MyAccessDecisionManager.class);
+	
+	@Override
+	public void decide(Authentication authentication, //当前用户所拥有的权限
+				Object object,
+				Collection<ConfigAttribute> configAttributes //该资源所拥有的权限
+				)
 			throws AccessDeniedException, InsufficientAuthenticationException
 	{
 
-		System.out.println("开始进行权限验证...");
+		 if (log.isDebugEnabled()) 
+		 {  
+			 log.debug("权限验证进行中...");
+		 }
 		if (configAttributes == null)
 		{
 			return;
 		}
 
-		Iterator<ConfigAttribute> ite = configAttributes.iterator();
+		Iterator<ConfigAttribute> ite = configAttributes.iterator();//根据请求资源获得的权限集合
 
 		while (ite.hasNext())
 		{
 			ConfigAttribute ca = ite.next();
-			String needRole = ((SecurityConfig) ca).getAttribute();
+			String currentPrivilege = ((SecurityConfig) ca).getAttribute();
 
-			// ga 为用户所被赋予的权限。 needRole 为访问相应的资源应该具有的权限。
+			//ga为用户所被赋予的权限。 currentPrivilege为访问相应的资源应该具有的权限。
 			for (GrantedAuthority ga : authentication.getAuthorities())
 			{
-				if (needRole.trim().equals(ga.getAuthority().trim()))
+				if (currentPrivilege.trim().equals(ga.getAuthority().trim()))
 				{
+					 if (log.isDebugEnabled()) 
+					 {  
+	                        log.debug("判断到，needRole 是"+currentPrivilege+",用户的权限编码是:"+ga.getAuthority()+"，授权数据相匹配");  
+	                        log.debug("权限认证成功!");
+					 }
 					return;
 				}
 			}
 		}
 
-		//没有权限让我们去捕捉
+		 if (log.isDebugEnabled()) 
+		 {  
+			 log.debug("没有权限访问该资源");
+		 }
 		throw new AccessDeniedException(" 没有权限访问！");
 	}
 
+	@Override
 	public boolean supports(ConfigAttribute attribute)
 	{
 		return true;
 	}
 
+	@Override
 	public boolean supports(Class<?> clazz)
 	{
 		return true;

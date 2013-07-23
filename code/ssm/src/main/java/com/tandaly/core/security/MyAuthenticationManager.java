@@ -2,19 +2,30 @@ package com.tandaly.core.security;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.tandaly.core.spring.SpringFactory;
+import com.tandaly.system.admin.beans.Privilege;
+import com.tandaly.system.admin.dao.PrivilegeDao;
+import com.tandaly.system.admin.dao.UserDao;
+
 /**
  * 该类的主要作用是为Spring Security提供一个经过用户认证后的UserDetails。
- * 该UserDetails包括用户名、密码、是否可用、是否过期等信息。 sparta 11/3/29
+ * 该UserDetails包括用户名、密码、是否可用、是否过期等信息。
+ * 
+ * @author Tandaly
+ * @date 2013-7-23 下午1:48:04
  */
 public class MyAuthenticationManager implements UserDetailsService
 {
@@ -45,13 +56,14 @@ public class MyAuthenticationManager implements UserDetailsService
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
+		UserDao uDao = SpringFactory.getBean(UserDao.class);
 		//封装成spring security的user
-		User userdetail = new User(userName, "123456", enables, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuths);
+		User userdetail = new User(userName, uDao.logins(userName).getPassword(),
+				enables, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuths);
 		return userdetail;
 	}
 	
 	//取得用户的权限
-	@SuppressWarnings("deprecation")
 	private Set<GrantedAuthority> obtionGrantedAuthorities(String userName) {
 		Set<GrantedAuthority> authSet = new HashSet<GrantedAuthority>();
 //		List<Resources> resources = new ArrayList<Resources>();
@@ -66,22 +78,29 @@ public class MyAuthenticationManager implements UserDetailsService
 //		for(Resources res : resources) {
 //			authSet.add(new GrantedAuthorityImpl(res.getName()));
 //		}
-		
-		authSet.add(new GrantedAuthorityImpl("PRIVILEGE_TEST"));
+		//根据用户名查询权限集合
+		PrivilegeDao pDao = SpringFactory.getBean(PrivilegeDao.class);
+		com.tandaly.system.admin.beans.User user = new com.tandaly.system.admin.beans.User();
+		user.setUserName(userName);
+		List<Privilege> privileges = pDao.queryPrivilegesByUser(user);
+		for(Privilege p: privileges)
+		{
+			authSet.add(new SimpleGrantedAuthority(p.getPrivilegeCode()));
+		}
 		
 		return authSet;
 	}
 
 
-//	// 设置用户缓存功能。
-//	public void setUserCache(UserCache userCache)
-//	{
-//		this.userCache = userCache;
-//	}
-//
-//	public UserCache getUserCache()
-//	{
-//		return this.userCache;
-//	}
+	/*// 设置用户缓存功能。
+	public void setUserCache(UserCache userCache)
+	{
+		this.userCache = userCache;
+	}
 
+	public UserCache getUserCache()
+	{
+		return this.userCache;
+	}
+*/
 }

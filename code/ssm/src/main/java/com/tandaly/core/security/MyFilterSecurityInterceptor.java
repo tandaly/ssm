@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
@@ -16,18 +17,18 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
 /**
- * 该过滤器的主要作用就是通过spring著名的IoC生成securityMetadataSource。
+ *  该过滤器的主要作用就是通过spring著名的IoC生成securityMetadataSource。
  * securityMetadataSource相当于本包中自定义的MyInvocationSecurityMetadataSourceService。
  * 该MyInvocationSecurityMetadataSourceService的作用提从数据库提取权限和资源，装配到HashMap中，
  * 供Spring Security使用，用于权限校验。
  * 
- * @author sparta 11/3/29
- * 
+ * @author Tandaly
+ * @date 2013-7-23 下午1:47:46
  */
-
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor
 		implements Filter
 {
+	private static final Logger log = Logger.getLogger(MyFilterSecurityInterceptor.class);
 
 	private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
@@ -64,14 +65,23 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor
 		//用户拥有的权限
 		//2) GrantedAuthority
 		//Collection<GrantedAuthority> authenticated.getAuthorities()
-		System.out.println("用户发送请求！ ");
+		if(log.isDebugEnabled())
+		{
+			log.debug("用户发送请求！ ");
+		}
 
 		InterceptorStatusToken token = super.beforeInvocation(fi);
 
 		try
 		{
 			fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
-		} finally
+		} catch(Exception e)
+		{
+			if(log.isDebugEnabled())
+			{
+				log.debug("异常信息：" + e.getMessage());
+			}
+		}finally
 		{
 			super.afterInvocation(token, null);
 		}

@@ -11,7 +11,7 @@
 	
 		$(function(){
 			fTable = new FTable({
-				fields: ['privilegeName', 'remark'],
+				fields: ['privilegeCode', 'privilegeName', 'privilegeType', 'status', 'remark'],
 				url: 'privilege/ajaxPrivilegeList.do'
 			});
 		});
@@ -58,7 +58,7 @@
 		function openAddPrivilege()
 		{
 			top.art.dialog.open('privilege/addPrivilege.do',
-				    {id: 'addPrivilege', title: '添加权限', width:500, height:310, lock: true,
+				    {id: 'addPrivilege', title: '添加权限', width:500, height:350, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -89,7 +89,7 @@
 			}
 				
 			top.art.dialog.open('privilege/updatePrivilege.do?id=' + ids,
-				    {id: 'updatePrivilege', title: '修改权限', width:500, height:410, lock: true,
+				    {id: 'updatePrivilege', title: '修改权限', width:500, height:450, lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -165,8 +165,17 @@
 						<th>
 							<input type="checkbox"/>
 						</th>
+						<th>
+							权限编码
+						</th>
 						<th width="200px">
 							权限名称
+						</th>
+						<th>
+							权限类型
+						</th>
+						<th>
+							状态
 						</th>
 						<th>
 							描述

@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tandaly.core.exception.ServiceException;
 import com.tandaly.core.page.Pagination;
+import com.tandaly.core.security.MySecurityMetadataSource;
 import com.tandaly.core.service.BaseService;
+import com.tandaly.system.admin.beans.Menu;
 import com.tandaly.system.admin.beans.Privilege;
 import com.tandaly.system.admin.dao.MenuDao;
 import com.tandaly.system.admin.dao.PrivilegeDao;
@@ -158,6 +160,34 @@ public class PrivilegeService extends BaseService
 	}
 	
 	/**
+	 * 查询权限菜单树
+	 * @param roleId
+	 * @return
+	 */
+	public List<Menu> queryMenuTree(Integer privilegeId)
+	{
+		Menu pmenu = new Menu();
+		pmenu.setStatus("启用");
+		List<Menu> menus = this.menuDao.queryMenusByMenu(pmenu);//查询所有的菜单
+		
+		List<Menu> pMenus = this.menuDao.queryMenusByPrivilegeId(privilegeId);//根据权限id查询菜单
+		
+		if(null != pMenus && 0 < pMenus.size())
+		{
+			for(Menu menu:menus)
+			{
+				for(Menu rmenu:pMenus)
+				{
+					if(menu.getId() == rmenu.getId())
+						menu.setChecked(true);
+				}
+			}
+		}
+		
+		return menus;
+	}
+	
+	/**
 	 * 分配菜单
 	 * @param privilegeId
 	 * @param menuIds
@@ -188,5 +218,6 @@ public class PrivilegeService extends BaseService
 			}
 		}
 		
+		MySecurityMetadataSource.loadResourceDefine();//重新载入权限菜单
 	}
 }

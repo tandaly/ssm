@@ -166,7 +166,7 @@ public class IndexController
 	
 	
 	/**
-	 * 登录
+	 * 登录(已用spring-security代替)
 	 * @param user
 	 * @return
 	 */

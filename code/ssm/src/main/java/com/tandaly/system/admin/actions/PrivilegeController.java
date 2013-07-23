@@ -207,7 +207,7 @@ public class PrivilegeController
 	@RequestMapping("ajaxQueryMenuTree")
 	public void ajaxQueryMenuTree(HttpServletResponse response, Integer privilegeId)
 	{
-		List<Menu> menus = this.menuService.queryMenuTree(privilegeId);
+		List<Menu> menus = this.privilegeService.queryMenuTree(privilegeId);
 		
 		WebUtil.writerJson(response, menus);
 	}

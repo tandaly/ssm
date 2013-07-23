@@ -5,6 +5,10 @@
 <mapper namespace="com.tandaly.system.admin.dao.UserDao">
 
 	<!-- <cache />  -->
+	
+	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->  
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>  
+    <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache"/> -->
 
 	<!--登录查询-->
 	<select id="logins" parameterType="string" resultType="User">

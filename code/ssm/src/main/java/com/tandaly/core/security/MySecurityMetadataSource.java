@@ -4,86 +4,89 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
+import com.tandaly.core.spring.SpringFactory;
+import com.tandaly.core.util.StringUtil;
+import com.tandaly.system.admin.beans.Menu;
+import com.tandaly.system.admin.beans.Privilege;
+import com.tandaly.system.admin.dao.MenuDao;
+import com.tandaly.system.admin.dao.PrivilegeDao;
+
 /**
  * 最核心的地方，就是提供某个资源对应的权限定义，即getAttributes方法返回的结果。 此类在初始化时，应该取到所有资源及其对应角色的定义。
- * 
+ * @author Tandaly
+ * @date 2013-7-23 上午9:31:31
  */
 public class MySecurityMetadataSource implements
 		FilterInvocationSecurityMetadataSource
 {
 
-	private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
+	private static final Logger log = Logger.getLogger(MySecurityMetadataSource.class);
+	
+	private static Map<String, Collection<ConfigAttribute>> resourceMap = null;//权限资源集合
 
 	public MySecurityMetadataSource()
 	{
 		loadResourceDefine();
 	}
-
-	private void loadResourceDefine()
+	
+	/**
+	 * 载入所有权限资源集合
+	 */
+	public static void loadResourceDefine()
 	{
-		/*
-		 * ApplicationContext context = new ClassPathXmlApplicationContext(
-		 * "classpath:applicationContext.xml");
-		 * 
-		 * SessionFactory sessionFactory = (SessionFactory) context
-		 * .getBean("sessionFactory");
-		 * 
-		 * Session session = sessionFactory.openSession();
-		 * 
-		 * String username = ""; String sql = "";
-		 * 
-		 * // 在Web服务器启动时，提取系统中的所有权限。 sql =
-		 * "select authority_name from pub_authorities";
-		 * 
-		 * List<String> query = session.createSQLQuery(sql).list();
-		 * 
-		 * 
-		 * 应当是资源为key， 权限为value。 资源通常为url， 权限就是那些以ROLE_为前缀的角色。 一个资源可以由多个权限来访问。
-		 * sparta
-		 * 
-		 * resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
-		 * 
-		 * for (String auth : query) { ConfigAttribute ca = new
-		 * SecurityConfig(auth);
-		 * 
-		 * List<String> query1 = session .createSQLQuery(
-		 * "select b.resource_string " +
-		 * "from Pub_Authorities_Resources a, Pub_Resources b, " +
-		 * "Pub_authorities c where a.resource_id = b.resource_id " +
-		 * "and a.authority_id=c.authority_id and c.Authority_name='" + auth +
-		 * "'").list();
-		 * 
-		 * for (String res : query1) { String url = res;
-		 * 
-		 * 
-		 * 判断资源文件和权限的对应关系，如果已经存在相关的资源url，则要通过该url为key提取出权限集合，将权限增加到权限集合中。 sparta
-		 * 
-		 * if (resourceMap.containsKey(url)) {
-		 * 
-		 * Collection<ConfigAttribute> value = resourceMap.get(url);
-		 * value.add(ca); resourceMap.put(url, value); } else {
-		 * Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-		 * atts.add(ca); resourceMap.put(url, atts); }
-		 * 
-		 * }
-		 * 
-		 * }
-		 */
-		System.out.println("加载权限列表");
+		log.info("载入所有权限集合");
 		resourceMap = new HashMap<String, Collection<ConfigAttribute>>();
 		
-		ConfigAttribute ca = new SecurityConfig("PRIVILEGE_TEST");
-		Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
-		atts.add(ca);
-		resourceMap.put("/build.do", atts);
+		PrivilegeDao pDao = SpringFactory.getBean(PrivilegeDao.class);
+		MenuDao mDao = SpringFactory.getBean(MenuDao.class);
+		
+		List<Menu> menus = mDao.queryMenusByMenu(null);//查询所有的菜单
+		
+		for(Menu m:menus)
+		{
+			String url = m.getMenuUrl();
+			
+			if(StringUtil.isNotEmpty(url))
+			{
+				int firstQuestionMarkIndex = url.indexOf("?");
+				if (firstQuestionMarkIndex != -1)
+				{
+					url = url.substring(0, firstQuestionMarkIndex);
+				}
+				
+				//根据菜单id查询权限集合
+				List<Privilege> privileges = pDao.queryPrivilegesByMenu(m);
+				Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+				for(Privilege p:privileges)
+				{
+					ConfigAttribute ca = new SecurityConfig(p.getPrivilegeCode());//权限编码
+					atts.add(ca);
+				}
+				
+				if(!url.startsWith("/"))//避免不是以/开头会和请求url不匹配
+					url = "/" + url;
+				
+				if(resourceMap.containsKey(url))
+				{//存在该资源,需要叠加权限
+					Collection<ConfigAttribute> ps = resourceMap.get(url);
+					atts.addAll(ps);
+				}
+				
+				resourceMap.put(url, atts);
+			}
+		}
+		
+		log.info("载入所有权限集合完成！");
 	}
 
 	/** 获取所有权限匹配属性 */
@@ -103,10 +106,10 @@ public class MySecurityMetadataSource implements
 	public Collection<ConfigAttribute> getAttributes(Object object)
 			throws IllegalArgumentException
 	{
-		System.out.println("根据url找到权限...");
 		// object 是一个URL，被用户请求的url。
 		String url = ((FilterInvocation) object).getRequestUrl();
-
+		log.info("根据资源获取权限集合, 资源地址=" + url);
+		
 		int firstQuestionMarkIndex = url.indexOf("?");
 
 		if (firstQuestionMarkIndex != -1)

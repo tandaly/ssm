@@ -17,6 +17,7 @@ public class Menu implements Serializable
 	private String menuUrl;//菜单地址
 	private String orderNo;//排序号
 	private String status;//状态 启用/禁用
+	private String remark;//备注
 	
 	/************以下属性是树形菜单使用*************/
 	/**
@@ -126,6 +127,13 @@ public class Menu implements Serializable
 	public void setIconClose(String iconClose) {
 		this.iconClose = iconClose;
 	}
-	
+	public String getRemark()
+	{
+		return remark;
+	}
+	public void setRemark(String remark)
+	{
+		this.remark = remark;
+	}
 	
 }
