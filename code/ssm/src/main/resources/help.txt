@@ -9,7 +9,7 @@
 	在更新maven后，需要在项目跟路径下修改.classpath文件，找到path=org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER并加入
 <attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 
-2、servlet3.0以后默认jsp中不开启el
+2、servlet3.0以后默认jsp中不开启el 
 
 3、如发现jsp中用${}发生错误，需要在pom.xml中先加入jsp-api.jar 并更新项目，然后在删除pom.xml中jsp-api配置(避免在tomcat发布中和tomcat下jsp-api冲突)
 
