@@ -39,7 +39,7 @@
     
 	<!-- 登录验证器 -->
 	<beans:bean id="loginFilter"
-		class="com.tandaly.core.security.MyUsernamePasswordAuthenticationFilter">
+		class="com.tanf.core.security.MyUsernamePasswordAuthenticationFilter">
 		<!--处理登录--> 
 		<beans:property name="filterProcessesUrl" value="/j_spring_security_login"></beans:property>
 		<!-- 验证成功后的处理-->  
@@ -64,7 +64,7 @@
 	</beans:bean>
 	
 	<!-- 认证过滤器 -->
-	<beans:bean id="securityFilter" class="com.tandaly.core.security.MyFilterSecurityInterceptor">
+	<beans:bean id="securityFilter" class="com.tanf.core.security.MyFilterSecurityInterceptor">
 		<!-- 用户拥有的权限 -->
 		<beans:property name="authenticationManager" ref="myAuthenticationManager" />
 		<!-- 用户是否拥有所请求资源的权限 -->
@@ -77,15 +77,15 @@
 	<authentication-manager alias="myAuthenticationManager">
 		<authentication-provider user-service-ref="myAuthenticationManagerImpl" />
 	</authentication-manager>
-	<beans:bean id="myAuthenticationManagerImpl" class="com.tandaly.core.security.MyAuthenticationManager">
+	<beans:bean id="myAuthenticationManagerImpl" class="com.tanf.core.security.MyAuthenticationManager">
 		<!--<beans:property name="usersDao" ref="usersDao"></beans:property>-->
 	</beans:bean>
     
 	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 --> 
-	<beans:bean id="myAccessDecisionManager" class="com.tandaly.core.security.MyAccessDecisionManager"></beans:bean>
+	<beans:bean id="myAccessDecisionManager" class="com.tanf.core.security.MyAccessDecisionManager"></beans:bean>
 	
 	<!-- 资源权限关系，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色去访问 --> 
-	<beans:bean id="mySecurityMetadataSource" class="com.tandaly.core.security.MySecurityMetadataSource">
+	<beans:bean id="mySecurityMetadataSource" class="com.tanf.core.security.MySecurityMetadataSource">
 		<!--<beans:constructor-arg name="resourcesDao" ref="resourcesDao"></beans:constructor-arg>-->
 	</beans:bean>
 	

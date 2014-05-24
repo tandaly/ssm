@@ -217,7 +217,7 @@
 			</div>
 		</div>
 		<div class="login-bottom">
-			<span class="login-buttom-txt">Copyright &copy; 2013 tandaly</span>
+			<span class="login-buttom-txt">Copyright &copy; 2013 tanf</span>
 		</div>
 	</div>	
 	

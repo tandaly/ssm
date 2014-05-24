@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <plugins>
-	  <plugin interceptor="com.tandaly.core.mybatis.plugin.QueryPlugin">
+	  <plugin interceptor="com.tanf.core.mybatis.plugin.QueryPlugin">
 	  </plugin>
-	  <plugin interceptor="com.tandaly.core.mybatis.plugin.UpdatePlugin">
+	  <plugin interceptor="com.tanf.core.mybatis.plugin.UpdatePlugin">
 	    <property name="someProperty" value="100"/>
 	  </plugin>
-	  <plugin interceptor="com.tandaly.core.mybatis.plugin.PaginationInterceptor">
+	  <plugin interceptor="com.tanf.core.mybatis.plugin.PaginationInterceptor">
 	  </plugin>
 	</plugins>
 </configuration>

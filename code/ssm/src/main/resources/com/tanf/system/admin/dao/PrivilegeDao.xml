@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tanf.system.admin.dao.PrivilegeDao">
+
+	<!-- <cache />  -->
+	
+	<!--新增权限-->
+	<insert id="insert" parameterType="Privilege" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO t_sys_privilege
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			id,
+			privilegeCode,
+			<if test="privilegeName != null">privilegeName,</if>
+			<if test="remark != null">remark,</if>
+		</trim>
+		VALUES
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			#{id},
+			#{privilegeCode},
+			<if test="privilegeName != null">#{privilegeName},</if>
+			<if test="remark != null">#{remark},</if>
+		</trim>
+		
+	</insert>
+	
+	<!--删除权限-->
+	<delete id="delete" parameterType="string">
+		DELETE FROM
+			t_sys_privilege
+		WHERE id IN (
+		<trim suffixOverrides=",">
+			${_parameter}
+		</trim>
+		)
+	</delete>
+	
+	<!--修改权限-->
+	<update id="update" parameterType="Privilege">
+		UPDATE
+			t_sys_privilege t
+		<set>
+			<if test="privilegeCode != null and privilegeCode != ''">
+				t.privilegeCode = #{privilegeCode},				
+			</if>
+			<if test="privilegeName != null and privilegeName != ''">
+				t.privilegeName = #{privilegeName},				
+			</if>
+			<if test="remark != null and remark != ''">
+				t.remark = #{remark},				
+			</if>
+		</set>
+		WHERE
+			t.id = #{id}
+	</update>
+	
+	<!--根据条件查询权限列表-->
+	<select id="queryEntitys" parameterType="Privilege" resultType="Privilege">
+		SELECT 
+			t.*
+		FROM
+			t_sys_privilege t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="privilegeName != null and privilegeName != ''">
+					AND t.privilegeName = #{privilegeName}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!--检查修改权限有效性-->
+	<select id="checkUpdatePrivilege" parameterType="Privilege" resultType="integer">
+		SELECT
+			COUNT(1)
+		FROM
+			t_sys_privilege t
+		WHERE
+			t.id != #{id}
+			<if test="privilegeName != null and privilegeName != ''">
+				AND t.privilegeName = #{privilegeName}
+			</if>
+	</select>
+	
+	<!--分页查询权限总数-->
+	<select id="pageQueryEntityCount" parameterType="hashmap" resultType="integer">
+	  	SELECT
+	  		COUNT(1)
+	  	FROM
+	  		t_sys_privilege t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="privilege.privilegeName != null and privilege.privilegeName != ''">
+					AND t.privilegeName LIKE '%${privilege.privilegeName}%'
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!--分页查询权限列表-->
+	<select id="pageQueryEntityList" parameterType="hashmap" resultType="Privilege">
+	  	SELECT
+	  		t.*
+	  	FROM
+	  		t_sys_privilege t
+		<where>
+			<trim prefixOverrides="AND ">
+				<if test="privilege.privilegeName != null and privilege.privilegeName != ''">
+					AND t.privilegeName LIKE '%${privilege.privilegeName}%'
+				</if>
+			</trim>
+		</where>
+		ORDER BY t.id DESC
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<!--根据id查询权限-->
+	<select id="queryEntityById" parameterType="integer" resultType="Privilege">
+		SELECT
+			t.*
+		FROM
+			t_sys_privilege t
+		WHERE
+			t.id = #{_parameter}
+	</select>
+	
+	
+	<!--根据权限id删除权限菜单-->
+	<delete id="deletePrivilegeMenuByPrivilegeId" parameterType="string">
+		DELETE FROM 
+			t_sys_privilege_menu
+		WHERE privilegeId IN (
+		<trim suffixOverrides=",">
+			${_parameter}
+		</trim>
+		)
+	</delete>
+	
+	<!--根据权限id增加权限菜单-->
+	<insert id="insertPrivilegeMenu" parameterType="hashMap">
+		INSERT INTO
+			t_sys_privilege_menu
+		(privilegeId, 	 menuId)
+		VALUES
+		(#{privilegeId}, #{menuId})
+	</insert>
+	
+	<!--根据用户查询权限列表-->
+	<select id="queryPrivilegesByUser" parameterType="User" resultType="Privilege">
+		SELECT 
+			DISTINCT p.*
+		FROM 
+			t_sys_role r, 
+			t_sys_privilege p, 
+			t_sys_role_privilege rp, 
+			t_sys_user u,
+			t_sys_user_role ur
+		WHERE
+			r.id = rp.roleId 
+		AND p.id = rp.privilegeId 
+		AND u.id = ur.userId
+		AND r.id = ur.roleId
+		AND p.status = '启用'
+		<if test="id != null">
+			AND u.id = #{id}
+		</if>
+		<if test="userName != null and userName != ''">
+			AND u.userName = #{userName}
+		</if>
+	</select>
+	
+	<!--根据菜单查询权限列表-->
+	<select id="queryPrivilegesByMenu" parameterType="Menu" resultType="Privilege">
+		SELECT 
+			DISTINCT p.*
+		FROM 
+			t_sys_privilege p, 
+			t_sys_privilege_menu pm,
+			t_sys_menu m
+		WHERE
+			p.id = pm.privilegeId
+		AND m.id = pm.menuId
+		AND p.status = '启用'
+		<if test="id != null">
+			AND m.id = #{id}
+		</if>
+	</select>
+</mapper>

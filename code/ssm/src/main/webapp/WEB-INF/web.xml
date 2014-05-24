@@ -90,7 +90,7 @@
   <!--服务器启动时初始化操作 -->
 	<servlet>
 	    <servlet-name>SystemServlet</servlet-name>
-	    <servlet-class>com.tandaly.core.web.servlet.SystemServlet</servlet-class>
+	    <servlet-class>com.tanf.core.web.servlet.SystemServlet</servlet-class>
 	    <init-param>
 	      <param-name>encoding</param-name>
 	      <param-value>UTF-8</param-value>
@@ -127,7 +127,7 @@
   <!-- 请求拦截过滤器 -->
 	<filter>
 		<filter-name>requestFilter</filter-name>
-		<filter-class>com.tandaly.core.web.filter.RequestFilter</filter-class>
+		<filter-class>com.tanf.core.web.filter.RequestFilter</filter-class>
 		<init-param>
 			<!--是否开启记录日志操作-->
 			<param-name>enabled</param-name>
@@ -141,7 +141,7 @@
 	
 	<!--系统session监听-->
 	<listener>
-		<listener-class>com.tandaly.core.web.listener.SystemSessionListener</listener-class>
+		<listener-class>com.tanf.core.web.listener.SystemSessionListener</listener-class>
 	</listener>
 	
 	<!-- 设置session失效，单位分 -->

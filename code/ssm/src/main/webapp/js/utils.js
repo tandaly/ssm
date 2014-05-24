@@ -2,7 +2,7 @@
 /**
  * utils.js
  * 收集的相关工具类方法 
- * author tandaly
+ * author tanf
  */
 
 

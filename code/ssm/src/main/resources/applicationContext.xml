@@ -148,7 +148,7 @@
     </bean>
 
     <!-- 开启组件扫描-->    
-    <context:component-scan base-package="com.tandaly" />
+    <context:component-scan base-package="com.tanf" />
 
     <!-- 开启 autowire -->
     <context:annotation-config />
@@ -160,18 +160,18 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="druidDataSource" />
         <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->  
-        <property name="typeAliasesPackage" value="com.tandaly.system.admin.beans" />
+        <property name="typeAliasesPackage" value="com.tanf.system.admin.beans" />
     </bean>
 
     <!-- 扫描mappers 让它们被用户注入 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     	<!--basePackage指定要扫描的包，在此包之下的映射器都会被  
      		搜索到。可指定多个包，包与包之间用逗号或分号分隔--> 
-        <property name="basePackage" value="com.tandaly.system.admin.dao" />
+        <property name="basePackage" value="com.tanf.system.admin.dao" />
     </bean>
     
     <!--自定义 实现BeanFactoryAware接口，把该接口配置到spring中，然后把getbean方法写成静态的，就可以动态获取-->
-	<bean class="com.tandaly.core.spring.SpringFactory"/>
+	<bean class="com.tanf.core.spring.SpringFactory"/>
 	
 	
 	
@@ -213,7 +213,7 @@
 	-->
 	   
 	 <!-- 用户详细信息管理：数据源、用户缓存（通过数据库管理用户、角色、权限、资源）。 
-	 <bean id="userDetailsManager" class="com.tandaly.core.security.MyUserDetailsService">
+	 <bean id="userDetailsManager" class="com.tanf.core.security.MyUserDetailsService">
 	  <property name="pubUsersHome" ref="pubUsersHome" />
 	  <property name="pubAuthoritiesResourcesHome" ref="pubAuthoritiesResourcesHome" />
 	  <property name="dataSource" ref="dataSource" />
