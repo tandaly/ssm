@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import sun.management.ManagementFactory;
+//import sun.management.ManagementFactory;
 
 import com.sun.management.OperatingSystemMXBean;
 import com.tandaly.core.util.WebUtil;
@@ -87,7 +87,7 @@ public class ServerInfoController {
 	@RequestMapping("serverInfo")
 	public void serverInfo(@Value("#{systemProperties['java.vm.version']}")String jvmVersion,HttpServletRequest request, Model model) throws UnknownHostException
 	{
-		OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+		//OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 		model.addAttribute("", "");
 		InetAddress localhost = InetAddress.getLocalHost();
 		//操作系统
@@ -111,7 +111,7 @@ public class ServerInfoController {
 		//JVM安装路径
 		model.addAttribute("JVMHome", System.getProperty("java.home").replaceAll("\\\\", "/"));
 		//主机物理内存
-		model.addAttribute("serverSwapSpace", osmxb.getTotalSwapSpaceSize() / 1024 / 1024 + "M");
+		//model.addAttribute("serverSwapSpace", osmxb.getTotalSwapSpaceSize() / 1024 / 1024 + "M");
 		//JVM可用最大内存
 		model.addAttribute("jvmMaxMemory", Runtime.getRuntime().maxMemory() / 1024 / 1024 + "M");
 	}
