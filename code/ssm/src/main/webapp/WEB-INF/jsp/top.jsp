@@ -289,7 +289,7 @@
 	<div id="topMenu" style="width:100%;height:36px; padding-bottom:5px; margin:0px; font-size:12px; background-repeat: repeat-x;">
 		<div style="margin:0 auto;width:500px;">
 			<span style="cursor:pointer;" onclick="javascript:alert('${notice.id}');" >
-				<marquee scrollamount="2" onmouseover="this.stop();"
+				<marquee scrollamount="1" onmouseover="this.stop();"
 						onmouseout="this.start();" style="color:#E3C387;">
 					<pre><b style="color:red">系统公告</b>: ${notice.title} -${notice.createTime}发布</pre>
 				</marquee>

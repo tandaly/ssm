@@ -90,7 +90,7 @@
 		function openAddNotice()
 		{
 			top.art.dialog.open('notice/addNotice.do',
-				    {id: 'addDialog', title: '添加系统公告', width:800, height:650, lock: true,
+				    {id: 'addDialog', title: '添加系统公告', width:'100%', height:'100%', lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {
@@ -121,7 +121,7 @@
 			}
 				
 			top.art.dialog.open('notice/updateNotice.do?id=' + ids,
-				    {id: 'updateDialog', title: '修改系统公告', width:800, height:650, lock: true,
+				    {id: 'updateDialog', title: '修改系统公告', width:'100%', height:'100%', lock: true,
 					 ok: function () {
 				    	var iframe = this.iframe.contentWindow;
 				    	if (!iframe.document.body) {

@@ -57,12 +57,14 @@
 			padding-left: 20px;
 			line-height: 22px;
 			font-size: 12px;
+			color:#555;
 		}
 		
 		span.content-tag {
-			color: #008000;
+			color: #fff;
 			margin-right: 2px;
-			font-weight: bold;
+			padding:2px;
+			font-size:12px;
 		}
 	</style>
 	<script>
@@ -231,15 +233,15 @@
 					<h2>一、版本记录</h2>
 					<h3>系统管理</h3>
 					<p class="content">
-						<span class="content-tag">[需求]</span>
+						<span style="background-color:blue;" class="content-tag">需求</span>
 						用户组管理
 					</p>
 					<p class="content">
-						<span class="content-tag">[需求]</span>
+						<span style="background-color:blue;" class="content-tag">需求</span>
 						按用户组授权
 					</p>
 					<p class="content">
-						<span class="content-tag">[BUG]</span>
+						<span style="background-color:red;" class="content-tag">缺陷</span>
 						修复菜单图标
 					</p>
 				</div>
