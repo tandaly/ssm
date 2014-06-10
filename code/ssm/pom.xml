@@ -3,12 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tanf</groupId>	
   <artifactId>ssm</artifactId>	
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+<!--   <packaging>war</packaging> -->
+  <version>${project.version}</version>
+   <packaging>pom</packaging>
   <name>ssm Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  
+  <modules> 
+  	<module>modules/fixflow-core</module>
+  	<module>modules/fixflow-expand</module>
+  </modules>
   <properties>
+	<!--指定Maven用什么编码来读取源码及文档 -->
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<!--指定Maven用什么编码来呈现站点的HTML文件 -->
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.version>0.0.1-SNAPSHOT</project.version>
   	<spring-version>3.2.3.RELEASE</spring-version>
   	<spring-security-version>3.1.4.RELEASE</spring-security-version>
   </properties>
@@ -235,7 +244,6 @@
 		<version>1.1.33</version>
 	</dependency>
 	            
- 	
   </dependencies>
   
   <build>
@@ -266,5 +274,6 @@
        </plugin>
     </plugins>
   </build>
+ 
  
 </project>
